@@ -5,6 +5,9 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import CourseInfo from '../views/CourseInfo.vue'
+import League from '../views/League.vue'
+import Leaderboards from '../views/Leaderboards.vue'
 
 Vue.use(Router)
 
@@ -51,6 +54,30 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/courseinfo",
+      name: "courseinfo",
+      component: CourseInfo,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/league",
+      name: "league",
+      component: League,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/leaderboards",
+      name: "leaderboards",
+      component: Leaderboards,
+      meta: {
+        requiresAuth: true
       }
     },
   ]
