@@ -53,6 +53,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/courseinfo",
+      name: "courseinfo",
+      component: CourseInfo,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
