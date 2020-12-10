@@ -1,6 +1,5 @@
 CREATE TABLE leagues (
         league_id SERIAL PRIMARY KEY,
-        group_id 
         user_id integer NOT NULL,
         course_id integer NOT NULL,
         league_name varchar(20) NOT NULL,
@@ -28,6 +27,7 @@ CREATE TABLE course (
 
 CREATE TABLE invite (
         invite_id SERIAL PRIMARY KEY,
+        group_id integer,
         status_id integer NOT NULL,
         league_id integer NOT NULL,
         user_id integer NOT NULL,
@@ -46,11 +46,13 @@ CREATE TABLE invite_status (
 
 CREATE TABLE tee_time (
         tee_time_id SERIAL PRIMARY KEY,
+        group_id integer,
         league_id integer NOT NULL,
         course_id integer NOT NULL,
         tee_date date NOT NULL,
         start_time time NOT NULL,
         
+        CONSTRAINT fk_group_id FOREIGN KEY (group_id) REFERENCES invite(group_id),
         CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
         CONSTRAINT fk_course_id FOREIGN KEY (course_id) REFERENCES course(course_id)
         
@@ -66,3 +68,5 @@ CREATE TABLE scores (
         CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id)
         
 );
+
+
