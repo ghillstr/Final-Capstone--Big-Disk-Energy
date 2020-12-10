@@ -3,9 +3,9 @@
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
       <div class='buttons'>
-        <button class="course-info">Course Info</button>
-        <button class='league-info'>League Info</button>
-        <button class='leaderboard'>Leaderboard</button>
+        <button class="course-info" @click="$router.push('courseinfo')">Course Info</button>
+        <button class='league' @click="$router.push('league')">League Info</button>
+        <!-- <button class='leaderboard' @click="$router.push('leaderboards')">Leaderboards</button>  -->
       </div> 
   </div>
 </template>
