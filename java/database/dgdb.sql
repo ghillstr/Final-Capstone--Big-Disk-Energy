@@ -1,93 +1,68 @@
-CREATE TABLE players (
-        user_id integer NOT NULL,
-        firstName varchar(20) NOT NULL,
-        lastname varchar(20)  NOT NULL,
-        
-        CONSTRAINT pk_players_user_id PRIMARY KEY (user_id)
-);
-CREATE SEQUENCE seq_league_id;
-
-CREATE TABLE league (
-        league_id integer NOT NULL nextVal('seq_league_id'),
+CREATE TABLE leagues (
+        league_id SERIAL PRIMARY KEY,
+        group_id 
         user_id integer NOT NULL,
         course_id integer NOT NULL,
         league_name varchar(20) NOT NULL,
         
-        CONSTRAINT pk_league_league_id PRIMARY KEY (league_id),
-        CONSTRAINT fk_league_user_id FOREIGN KEY (user_id),
-        CONSTRAINT fk_league_course_id FOREIGN KEY (course_id)
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+        CONSTRAINT fk_course_id FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
         
-CREATE TABLE  leaderboard (
+CREATE TABLE leaderboard (
+        leaderboard_id SERIAL PRIMARY KEY,
         league_id integer NOT NULL,
         user_id integer NOT NULL,
         player_total integer,
         
-        CONSTRAINT pk_leaderboard_league_id PRIMARY KEY (league_id),
-        CONSTRAINT fk_leaderboard_league_id FOREIGN KEY (league_id),
-        CONSTRAINT fk_leaderboard_user_id FOREIGN KEY (user_id)
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
         
 );
 
-CREATE SEQUENCE seq_course_id;
-
 CREATE TABLE course (
-        course_id integer NOT NULL nextval('seq_course_id'),
-        course_name varchar(100) NOT NULL,
-        
-         CONSTRAINT pk_course_course_id PRIMARY KEY (course_id)
+        course_id SERIAL PRIMARY KEY,
+        course_name varchar(100) NOT NULL
         
 );   
 
-CREATE SEQUENCE seq_invite_id;
-
 CREATE TABLE invite (
-        invite_id integer NOT NULL nextval('seq_invite_id'),
+        invite_id SERIAL PRIMARY KEY,
         status_id integer NOT NULL,
+        league_id integer NOT NULL,
         user_id integer NOT NULL,
         
-        CONSTRAINT pk_invite_invite_id PRIMARY KEY (invite_id),
-        CONSTRAINT fk_invite_status_id FOREIGN KEY (status_id),
-        CONSTRAINT fk_invite_user_id FOREIGN KEY (user_id)
+        CONSTRAINT fk_status_id FOREIGN KEY (status_id) REFERENCES invite_status(status_id),
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE invite_status (
-        status_id integer NOT NULL,
+        status_id SERIAL PRIMARY KEY,
         status_type varchar(15) NOT NULL,
         
-        CONSTRAINT pk_invite_status__id PRIMARY KEY (invite_id),
-        CONSTRAINT fk_invite_status_id FOREIGN KEY (status_id),
+        CONSTRAINT fk_status_id FOREIGN KEY (status_id) REFERENCES invite(status_id)
 );
-
-CREATE SEQUENCE seq_tee_time_id;
 
 CREATE TABLE tee_time (
-        tee_time_id integer NOT NULL nextval('seq_tee_time_id'),
+        tee_time_id SERIAL PRIMARY KEY,
+        league_id integer NOT NULL,
         course_id integer NOT NULL,
-        tee_date integer NOT NULL,
+        tee_date date NOT NULL,
         start_time time NOT NULL,
-        number_of_players integer NOT NULL
         
-        CONSTRAINT pk_tee_time_tee_time__id PRIMARY KEY (tee_time_id),
-        CONSTRAINT fk_tee_time_course_id FOREIGN KEY (course_id)
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+        CONSTRAINT fk_course_id FOREIGN KEY (course_id) REFERENCES course(course_id)
         
 );
 
-CREATE SEQUENCE seq_round_id; 
-
 CREATE TABLE scores (
-        round_id integer NOT NULL nextval('seq_round_id'),
+        round_id SERIAL PRIMARY KEY,
         user_id integer NOT NULL,
         score_total integer,
         league_id integer NOT NULL,
         
-        
-        CONSTRAINT pk_scores_round_id PRIMARY KEY (round_id),
-        CONSTRAINT fk_scores_user_id FOREIGN KEY (user_id),
-        CONSTRAINT fk_scores_league_id FOREIGN KEY (league_id)
-        
-        
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id)
         
 );
-        
-    
