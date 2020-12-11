@@ -16,12 +16,6 @@ public class ScoreSqlDAO implements ScoreDAO {
 	}
 
 	@Override
-	public Score userSendScore(Score score) {
-		
-		return null;
-	}
-
-	@Override
 	public Score recordScore(Score score) {
 		
 		return null;
@@ -38,7 +32,11 @@ public class ScoreSqlDAO implements ScoreDAO {
 		
 		return null;
 	}
-
 	
+//	@Override
+//	public Score userSendScore(Score score) {
+//		
+//		return null;
+//	}
 	
 }
