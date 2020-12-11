@@ -21,7 +21,7 @@ public interface LeagueDAO {
 	 
 	 List<League> viewTeeTimesByUsername();
 
-	List<League> viewLeaguesByleagueId();
+	List<League> viewLeaguesByUserId();
 	 
 	 
 

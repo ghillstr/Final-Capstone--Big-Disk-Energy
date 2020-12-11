@@ -20,10 +20,10 @@ public class LeagueSqlDAO implements LeagueDAO {
     }
 
 	@Override
-	public List<League> viewLeaguesByleagueId() {
+	public List<League> viewLeaguesByUserId() {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT league_id, league_name FROM leagues";
+		String sqlSelectAllLeagues = "SELECT u.user_id, u.username, l.league_id, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id)";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues);
 		
