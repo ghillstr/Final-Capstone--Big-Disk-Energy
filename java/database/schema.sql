@@ -1,5 +1,11 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS scores;
+DROP TABLE IF EXISTS tee_time;
+DROP TABLE IF EXISTS invite;
+DROP TABLE IF EXISTS invite_status;
+DROP TABLE IF EXISTS leaderboard;
+DROP TABLE IF EXISTS leagues;
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -20,6 +26,70 @@ CREATE TABLE users (
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
+
+
+CREATE TABLE leagues (
+        league_id SERIAL PRIMARY KEY,
+        user_id integer NOT NULL,
+        course_name varchar(50) NOT NULL,
+        league_name varchar(20) NOT NULL,
+        
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+        
+);
+        
+CREATE TABLE leaderboard (
+        leaderboard_id SERIAL PRIMARY KEY,
+        league_id integer NOT NULL,
+        user_id integer NOT NULL,
+        player_total integer,
+        
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+        
+); 
+
+CREATE TABLE invite_status (
+        status_id SERIAL PRIMARY KEY,
+        status_type varchar(15) NOT NULL
+        
+);
+
+CREATE TABLE invite (
+        invite_id SERIAL PRIMARY KEY,
+        status_id integer NOT NULL,
+        league_id integer NOT NULL,
+        user_id integer NOT NULL,
+        
+        CONSTRAINT fk_status_id FOREIGN KEY (status_id) REFERENCES invite_status(status_id),
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+        
+);
+
+CREATE TABLE tee_time (
+        tee_time_id SERIAL PRIMARY KEY,
+        user_id integer NOT NULL,
+        league_id integer NOT NULL,
+        tee_date date NOT NULL,
+        start_time time NOT NULL,
+        
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+        
+);
+
+CREATE TABLE scores (
+        round_id SERIAL PRIMARY KEY,
+        user_id integer NOT NULL,
+        score_total integer,
+        league_id integer NOT NULL,
+        
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id)
+        
+);
 
 
 COMMIT TRANSACTION;
