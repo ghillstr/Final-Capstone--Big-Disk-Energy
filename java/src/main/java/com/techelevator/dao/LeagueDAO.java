@@ -6,7 +6,6 @@ import com.techelevator.model.League;
 
 public interface LeagueDAO {
 	
-	 List<League> viewLeaguesByUsername();
 	 
 	 League createLeague(String leagueName, String courseName);
 	 
@@ -21,6 +20,8 @@ public interface LeagueDAO {
 	 League setTeeTime(long TeeTimeId, String date, String startTime);
 	 
 	 List<League> viewTeeTimesByUsername();
+
+	List<League> viewLeaguesByleagueId();
 	 
 	 
 
