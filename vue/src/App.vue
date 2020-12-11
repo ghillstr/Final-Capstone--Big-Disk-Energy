@@ -9,8 +9,18 @@
     
     </nav>
     <router-view />
+    <Footer/>
   </div>
+  
 </template>
+<script>
+import Footer from './components/Footer.vue'
+export default {
+  components: {
+    Footer,
+  }
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
@@ -41,7 +51,20 @@ nav a:hover {
 }
 h1 {
 font-family: 'Permanent Marker', cursive;  
-color: #386641
+color: #386641;
+text-shadow: -1px -1px 0 #A7C957
+, 1px -1px 0 #A7C957, -1px 1px 0 black, 1px 1px 0 black;
+}
+.account {
+  font-size: larger;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bolder;
+  color: #BC4749;
+}
+.account:hover {
+  color: white;
 }
 
 

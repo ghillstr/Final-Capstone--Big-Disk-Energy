@@ -1,11 +1,11 @@
 <template>
   <div class="leaderboards">
       <h1>Leaderboards</h1>
-      <div class='buttons'>
+      <!-- <div class='buttons'>
         <button class="button" @click="$router.push('/')">Home</button>
         <button class="button" @click="$router.push('league')">League Info</button>
         <button class="button" @click="$router.push('courseinfo')">Course Info</button>
-      </div> 
+      </div>  -->
   </div>
 </template>
 
