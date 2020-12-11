@@ -1,17 +1,24 @@
 <template>
   <div class="course-info">
-      <h1>Course Info</h1>
-      <div class='buttons'>
-        <!-- <button class="button" @click="$router.push('/')">HOME</button>
+    <h1>Courses</h1>
+    <div class="buttons">
+      <!-- <button class="button" @click="$router.push('/')">HOME</button>
         <button class="button" @click="$router.push('league')">LEAGUE INFO</button>
         <button class="button" @click="$router.push('leaderboards')">LEADERBOARDS</button> -->
-      </div> 
+    </div>
+
+    <google-map />
   </div>
 </template>
 
 <script>
+import GoogleMap from "@/components/GoogleMap.vue";
+
 export default {
-  name: "courseinfo"
+  name: "courseinfo",
+  components: {
+    GoogleMap,
+  },
 };
 </script>
 
@@ -21,10 +28,9 @@ export default {
   color: #386641;
   border: 2px solid #386641;
   margin: 10px;
-  
 }
 .button:hover {
-  background-color: #A7C957;
-  color: #BC4749
+  background-color: #a7c957;
+  color: #bc4749;
 }
 </style>
