@@ -6,8 +6,6 @@ import com.techelevator.model.Score;
 
 public interface ScoreDAO {
 	
-	Score userSendScore(Score score);
-	//user sending a score to league admin
 	
 	Score recordScore(Score score);
 	//league admin posting round scores
@@ -18,4 +16,7 @@ public interface ScoreDAO {
 	List<Score> getAllScoresByUserId(Score score);
 	//get the scores of one user by the userId
 
+//	Score userSendScore(Score score);
+//  user sending a score to league admin
+	
 }
