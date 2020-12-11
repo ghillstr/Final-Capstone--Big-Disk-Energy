@@ -2,18 +2,18 @@ package com.techelevator.model;
 
 public class League {
 	
-	private int leagueId;
+	private long leagueId;
 	private String leagueName;
 	private String courseName;
-	private int statusId;
+	private long statusId;
 	private String inviteStatus;
-	private int teeTimeId;
+	private long teeTimeId;
 	private String date;
 	private String startTime;
 	
 	
 
-	public League(int leagueId, String leagueName, String courseName, int statusId, String inviteStatus, int teeTimeId,
+	public League(long leagueId, String leagueName, String courseName, long statusId, String inviteStatus, long teeTimeId,
 			String date, String startTime) {
 		super();
 		this.leagueId = leagueId;
@@ -27,22 +27,22 @@ public class League {
 	}
 
 
-	public int getLeagueId() {
+	public long getLeagueId() {
 		return leagueId;
 	}
 
 
-	public void setLeagueId(int leagueId) {
+	public void setLeagueId(long leagueId) {
 		this.leagueId = leagueId;
 	}
 
 
-	public int getStatusId() {
+	public long getStatusId() {
 		return statusId;
 	}
 
 
-	public void setStatusId(int statusId) {
+	public void setStatusId(long statusId) {
 		this.statusId = statusId;
 	}
 
@@ -76,12 +76,12 @@ public class League {
 		this.courseName = courseName;
 	}
 	
-	public int getTeeTimeId() {
+	public long getTeeTimeId() {
 		return teeTimeId;
 	}
 
 
-	public void setTeeTimeId(int teeTimeId) {
+	public void setTeeTimeId(long teeTimeId) {
 		this.teeTimeId = teeTimeId;
 	}
 
