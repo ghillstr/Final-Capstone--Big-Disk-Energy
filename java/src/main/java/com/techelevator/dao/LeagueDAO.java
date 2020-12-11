@@ -12,13 +12,13 @@ public interface LeagueDAO {
 	 
 	 League updateRole(String role);
 	 
-	 League invitePlayers(int userId);
+	 League invitePlayers(long userId);
 	 
 	 boolean updateInvite(League league);
 	 
 	 League[] getPendingInvites(League league);
 	 
-	 League setTeeTime(int TeeTimeId, String date, String startTime );
+	 League setTeeTime(long TeeTimeId, String date, String startTime);
 	 
 	 List<League> viewTeeTimesByUsername();
 	 
