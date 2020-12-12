@@ -33,6 +33,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 CREATE TABLE leagues (
         league_id SERIAL PRIMARY KEY,
+        username varchar(50) NOT NULL,
         course_name varchar(50) NOT NULL,
         league_name varchar(20) NOT NULL    
 );
@@ -55,7 +56,9 @@ CREATE TABLE invite (
         invite_id SERIAL PRIMARY KEY,
         status_id integer NOT NULL,
         league_id integer NOT NULL,
+        league_name varchar(20) NOT NULL,
         user_id integer NOT NULL,
+        username varchar(50) NOT NULL,
         
         CONSTRAINT fk_status_id FOREIGN KEY (status_id) REFERENCES invite_status(status_id),
         CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
@@ -66,7 +69,9 @@ CREATE TABLE invite (
 CREATE TABLE tee_time (
         tee_time_id SERIAL PRIMARY KEY,
         user_id integer NOT NULL,
+        username varchar(50) NOT NULL,
         league_id integer NOT NULL,
+        league_name varchar(20) NOT NULL,
         tee_date date NOT NULL,
         start_time time (0) NOT NULL,
         
@@ -79,7 +84,7 @@ CREATE TABLE scores (
         round_id SERIAL PRIMARY KEY,
         username varchar(50) NOT NULL,
         score_total integer,
-        leaguename varchar(20) NOT NULL
+        league_name varchar(20) NOT NULL
 );
 
 
@@ -108,7 +113,7 @@ VALUES (DEFAULT, 3, 1, '2020-12-25', '09:00:00'),
        (DEFAULT, 4, 1, '2020-12-25', '09:00:00'),
        (DEFAULT, 5, 1, '2020-12-25', '09:00:00');
        
-INSERT INTO scores (round_id, username, score_total, leaguename)
+INSERT INTO scores (round_id, username, score_total, league_name)
 VALUES (DEFAULT, 'kjm', 14, 'DA BUS'),
        (DEFAULT, 'beckboo', 47, 'DA BUS'),
        (DEFAULT, 'milf', 78, 'DA BUS'),
