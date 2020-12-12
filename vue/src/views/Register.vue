@@ -2,6 +2,9 @@
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <div>
+          <router-link class="account" :to="{ name: 'login' }">HAVE AN ACCOUNT?</router-link>
+          </div>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -32,10 +35,11 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
+      
+      <button class="button" type="submit">
+        CREATE ACCOUNT
       </button>
+       
     </form>
   </div>
 </template>
