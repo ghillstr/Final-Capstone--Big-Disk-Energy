@@ -127,3 +127,4 @@ VALUES (1, 3),
        
 
 
+SELECT u.user_id, u.username, l.league_id, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id);

@@ -8,6 +8,18 @@ public class Score {
 	private int roundScore;
 	private int scoreTotal;
 	
+	public Score() {
+		
+	}
+	
+	public Score(int userId, String username, int roundScore, int scoreTotal) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.roundScore = roundScore;
+		this.scoreTotal = scoreTotal;
+	}
+
 	public int getUserId() {
 		return userId;
 	}

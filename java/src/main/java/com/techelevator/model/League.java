@@ -10,7 +10,11 @@ public class League {
 	private long teeTimeId;
 	private String date;
 	private String startTime;
-	private long userId;
+	
+	public League() {
+	
+	}
+	
 	
 	
 
@@ -26,17 +30,7 @@ public class League {
 		this.teeTimeId = teeTimeId;
 		this.date = date;
 		this.startTime = startTime;
-		this.userId = userId;
-	}
-
-
-	public long getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(long userId) {
-		this.userId = userId;
+		
 	}
 
 

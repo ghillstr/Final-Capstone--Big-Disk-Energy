@@ -6,21 +6,25 @@ import com.techelevator.model.League;
 
 public interface LeagueDAO {
 	
-	 List<League> viewLeaguesByUsername();
 	 
-	 League createLeague(String leagueName, String courseName);
+	
 	 
-	 League updateRole(String role);
+	 void updateRole(String role);
 	 
-	 League invitePlayers(long userId);
+	 void invitePlayers(String username, String leagueName);
 	 
-	 boolean updateInvite(League league);
 	 
-	 League[] getPendingInvites(League league);
+	 public List<League> getPendingInvitesbyUsername(String username, String leagueName);
 	 
 	 League setTeeTime(long TeeTimeId, String date, String startTime);
 	 
 	 List<League> viewTeeTimesByUsername();
+
+	List<League> viewLeaguesByUserId();
+
+	void createLeague(String leagueName, String courseName);
+
+	void updateInvite(String username, String leagueName, long invite);
 	 
 	 
 
