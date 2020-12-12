@@ -36,21 +36,17 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 
 	@Override
-	public void createLeague(String leagueName, String courseName) {
+	public void createLeague(String leagueName, String courseName, String username) {
 		// TODO Auto-generated method stub //post
 	
-		String sql = "INSERT INTO leagues (league_id, league_name, course_name) VALUES (DEFAULT, ?, ?)";
+		String sql = "INSERT INTO leagues (league_id, league_name, course_name, username) VALUES (DEFAULT, ?, ?, ?)";
 		
-		jdbcTemplate.update(sql, leagueName, courseName);
+		jdbcTemplate.update(sql, leagueName, courseName, username);
 		
 		
 	}
 
-	@Override
-	public void updateRole(String role) {
-		// TODO Auto-generated method stub //put
-		
-	}
+
 
 	@Override
 	public void invitePlayers(String username, String leagueName) {
@@ -105,7 +101,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	@Override
 	public void setTeeTime( String username, String leagueName, String date, String startTime) {
 		// TODO Auto-generated method stub //post
-		String sql = "INSERT INTO tee_time (tee_time_id, username, league_name, tee_date, time_start) VALUES (DEFAULT, ?, ?, ?, ?)";
+		String sql = "INSERT INTO tee_time (tee_time_id, username, league_name, tee_date, start_time) VALUES (DEFAULT, ?, ?, ?, ?)";
 				
 		jdbcTemplate.update(sql, username, leagueName, date, startTime);
 	}
@@ -115,7 +111,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 		List<League> teeTimes = new ArrayList<>();
 		
-		String sql = "SELECT tee_date, time_start FROM tee_time WHERE username = ?";
+		String sql = "SELECT tee_date, start_time FROM tee_time WHERE username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
 		
@@ -131,7 +127,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 		List<League> teeTimes = new ArrayList<>();
 		
-		String sql = "SELECT tee_date, time_start FROM tee_time WHERE league_name = ?";
+		String sql = "SELECT tee_date, start_time FROM tee_time WHERE league_name = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, leagueName);
 		

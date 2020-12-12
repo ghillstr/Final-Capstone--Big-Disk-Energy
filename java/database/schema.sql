@@ -115,7 +115,7 @@ VALUES (DEFAULT, 3, 1, '2020-12-25', '09:00:00'),
 INSERT INTO scores (round_id, user_id, score_total, league_id)
 VALUES (DEFAULT, 3, 14, 1),
        (DEFAULT, 4, 47, 1),
-       (DEFAULT, 5, 78, 1),
+       (DEFAULT, 5, 78, 1),d
        (DEFAULT, 6, 7, 1),
        (DEFAULT, 7, 4, 2);
        
@@ -128,3 +128,7 @@ VALUES (1, 3),
        (2, 7);
 
 SELECT u.user_id, u.username, l.league_id, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id);
+SELECT invite.* FROM invite WHERE username = ? AND status_id = 1
+
+SELECT tee_date, start_time FROM tee_time WHERE user_id = 1;
+
