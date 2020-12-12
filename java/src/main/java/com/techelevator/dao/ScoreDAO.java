@@ -7,7 +7,7 @@ import com.techelevator.model.Score;
 public interface ScoreDAO {
 	
 	
-	Score recordScore(Score score);
+	void recordScore(Score score);
 	//league admin posting round scores
 	
 	List<Score> getAllScoresByLeagueId(Score score);

@@ -16,9 +16,12 @@ public class ScoreSqlDAO implements ScoreDAO {
 	}
 
 	@Override
-	public Score recordScore(Score score) {
+	public void recordScore(Score score) {
+		String sql = "INSERT INTO scores (round _id, username, leaguename, score_total) " + 
+				"VALUES (DEFAULT, ?, ?, ?)";
 		
-		return null;
+		jdbcTemplate.update(sql, score.getUsername(), score.getLeagueName(), score.getScoreTotal());
+		
 	}
 
 	@Override

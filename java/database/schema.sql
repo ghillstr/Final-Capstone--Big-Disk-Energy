@@ -77,13 +77,9 @@ CREATE TABLE tee_time (
 
 CREATE TABLE scores (
         round_id SERIAL PRIMARY KEY,
-        user_id integer NOT NULL,
+        username varchar(50) NOT NULL,
         score_total integer,
-        league_id integer NOT NULL,
-        
-        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
-        CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id)
-        
+        leaguename varchar(20) NOT NULL
 );
 
 
@@ -112,12 +108,12 @@ VALUES (DEFAULT, 3, 1, '2020-12-25', '09:00:00'),
        (DEFAULT, 4, 1, '2020-12-25', '09:00:00'),
        (DEFAULT, 5, 1, '2020-12-25', '09:00:00');
        
-INSERT INTO scores (round_id, user_id, score_total, league_id)
-VALUES (DEFAULT, 3, 14, 1),
-       (DEFAULT, 4, 47, 1),
-       (DEFAULT, 5, 78, 1),
-       (DEFAULT, 6, 7, 1),
-       (DEFAULT, 7, 4, 2);
+INSERT INTO scores (round_id, username, score_total, leaguename)
+VALUES (DEFAULT, 'kjm', 14, 'DA BUS'),
+       (DEFAULT, 'beckboo', 47, 'DA BUS'),
+       (DEFAULT, 'milf', 78, 'DA BUS'),
+       (DEFAULT, 'bobbyg', 7, 'DA BUS'),
+       (DEFAULT, 'ghill', 4, 'smart car');
        
        
 INSERT INTO users_leagues (league_id, user_id)
@@ -126,4 +122,8 @@ VALUES (1, 3),
        (1, 5),
        (1, 6),
        (2, 7);
+       
+       
+       
+
 
