@@ -10,10 +10,11 @@ public class League {
 	private long teeTimeId;
 	private String date;
 	private String startTime;
-	private long userId;
 	
+	public League() {
 	
-
+	}
+	
 
 	public League(long leagueId, String leagueName, String courseName, long statusId, String inviteStatus, long teeTimeId,
 			String date, String startTime, long userId) {
@@ -26,17 +27,7 @@ public class League {
 		this.teeTimeId = teeTimeId;
 		this.date = date;
 		this.startTime = startTime;
-		this.userId = userId;
-	}
-
-
-	public long getUserId() {
-		return userId;
-	}
-
-
-	public void setUserId(long userId) {
-		this.userId = userId;
+		
 	}
 
 

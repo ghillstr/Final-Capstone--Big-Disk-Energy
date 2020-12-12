@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS scores;
 DROP TABLE IF EXISTS tee_time;
 DROP TABLE IF EXISTS invite;
 DROP TABLE IF EXISTS invite_status;
-DROP TABLE IF EXISTS leaderboard;
 DROP TABLE IF EXISTS users_leagues; 
 DROP TABLE IF EXISTS leagues;
 DROP TABLE IF EXISTS users;
@@ -113,12 +112,25 @@ VALUES (DEFAULT, 3, 1, '2020-12-25', '09:00:00'),
        (DEFAULT, 4, 1, '2020-12-25', '09:00:00'),
        (DEFAULT, 5, 1, '2020-12-25', '09:00:00');
        
+<<<<<<< HEAD
 INSERT INTO scores (round_id, username, score_total, league_name)
+=======
+<<<<<<< HEAD
+INSERT INTO scores (round_id, user_id, score_total, league_id)
+VALUES (DEFAULT, 3, 14, 1),
+       (DEFAULT, 4, 47, 1),
+       (DEFAULT, 5, 78, 1),d
+       (DEFAULT, 6, 7, 1),
+       (DEFAULT, 7, 4, 2);
+=======
+INSERT INTO scores (round_id, username, score_total, leaguename)
+>>>>>>> 27a17f819aa7f3fcaea09a36e3e0340013400b93
 VALUES (DEFAULT, 'kjm', 14, 'DA BUS'),
        (DEFAULT, 'beckboo', 47, 'DA BUS'),
        (DEFAULT, 'milf', 78, 'DA BUS'),
        (DEFAULT, 'bobbyg', 7, 'DA BUS'),
        (DEFAULT, 'ghill', 4, 'smart car');
+>>>>>>> 3731af229a2daf0580632078ff3a957ba4517800
        
        
 INSERT INTO users_leagues (league_id, user_id)
@@ -131,4 +143,9 @@ VALUES (1, 3),
        
        
 
+
+SELECT u.user_id, u.username, l.league_id, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id);
+SELECT invite.* FROM invite WHERE username = ? AND status_id = 1
+
+SELECT tee_date, start_time FROM tee_time WHERE user_id = 1;
 
