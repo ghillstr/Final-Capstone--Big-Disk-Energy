@@ -36,34 +36,75 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 
 	@Override
-	public League createLeague(String leagueName, String courseName) {
+	public void createLeague(String leagueName, String courseName) {
 		// TODO Auto-generated method stub //post
-		return null;
+		
+	
+	
+		String sql = "INSERT INTO leagues (league_id, league_name, course_name) VALUES (DEFAULT, ?, ?)";
+		
+		jdbcTemplate.update(sql, leagueName, courseName);
+		
+		
 	}
 
 	@Override
-	public League updateRole(String role) {
+	public void updateRole(String role) {
 		// TODO Auto-generated method stub //put
-		return null;
+		
 	}
 
 	@Override
-	public League invitePlayers(long userId) {
+	public void invitePlayers(String username, String leagueName) {
 		// TODO Auto-generated method stub //post
-		return null;
+		
+		String sql = "INSERT INTO invite (invite_id, status_id, league_name, user_name) VALUES (DEFUALT, 1, ?, ?)"; 
+		
+		jdbcTemplate.update(sql, leagueName, username);
+		 
+		
 	}
 
 	@Override
-	public boolean updateInvite(League league) {
+	public void updateInvite(String username, String leagueName, long invite) {
+		
+		if(invite == 2) {
+			
+			String sql = "INSERT INTO invite (invite_id, status_id, league_name, user_name) VALUES (DEFAULT, 2, ?, ?)";
+			
+			jdbcTemplate.update(sql, leagueName, username, invite);
+		} else if (invite == 3) {
+			
+			String sql = "INSERT INTO invite (invite_id, status_id, league_name, user_name) VALUES (DEFAULT, 3, ?, ?)";
+			
+			jdbcTemplate.update(sql, leagueName, username, invite);
+			
+		} 
 		// TODO Auto-generated method stub //put
-		return false;
+		
+		
 	}
 
 	@Override
-	public League[] getPendingInvites(League league) {
+	public List<League> getPendingInvitesbyUsername(String username, String leagueName) {
 		// TODO Auto-generated method stub //get
-		return null;
+		List<League> invites = new ArrayList<>();
+		
+		String sql = "SELECT invites.* FROM invite WHERE username = ? AND league_name= ? AND status_id = 1";
+		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username, leagueName);
+		
+		while (result.next()) {
+			League theInvite= mapRowToLeague(result);
+			
+			invites.add(theInvite);
+		}
+		
+		return invites;
 	}
+		
+		
+		
 
 	@Override
 	public League setTeeTime(long TeeTimeId, String date, String startTime) {
