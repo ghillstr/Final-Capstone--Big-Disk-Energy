@@ -4,6 +4,7 @@ public class Score {
 	
 	private int userId;
 	private String username;
+	private String leagueName;
 	private int roundScore;
 	private int scoreTotal;
 	
@@ -49,6 +50,14 @@ public class Score {
 	
 	public void setScoreTotal(int scoreTotal) {
 		this.scoreTotal = scoreTotal;
+	}
+
+	public String getLeagueName() {
+		return leagueName;
+	}
+
+	public void setLeagueName(String leaguename) {
+		this.leagueName = leaguename;
 	}
 	
 	
