@@ -15,9 +15,6 @@ public class League {
 	
 	}
 	
-	
-	
-
 
 	public League(long leagueId, String leagueName, String courseName, long statusId, String inviteStatus, long teeTimeId,
 			String date, String startTime, long userId) {
