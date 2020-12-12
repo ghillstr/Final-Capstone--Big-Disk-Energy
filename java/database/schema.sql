@@ -100,39 +100,26 @@ VALUES (DEFAULT, 'Pending'),
        (DEFAULT, 'Rejected');
        
 
-INSERT INTO invite (invite_id, status_id, league_id, user_id)
-VALUES (DEFAULT, 1, 1, 3),
-       (DEFAULT, 1, 1, 4),
-       (DEFAULT, 1, 1, 5),
-       (DEFAULT, 1, 1, 6),
-       (DEFAULT, 1, 2, 7);
+INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username)
+VALUES (DEFAULT, 1, 1, 'DA BUS', 3, 'kjm'),
+       (DEFAULT, 1, 1, 'DA BUS', 4, 'beckboo'),
+       (DEFAULT, 1, 1, 'DA BUS', 5, 'milf'),
+       (DEFAULT, 1, 1, 'DA BUS', 6, 'bobbyg'),
+       (DEFAULT, 1, 2, 'smart car', 7, 'ghill');
        
-INSERT INTO tee_time (tee_time_id, user_id, league_id, tee_date, start_time)
-VALUES (DEFAULT, 3, 1, '2020-12-25', '09:00:00'),
-       (DEFAULT, 4, 1, '2020-12-25', '09:00:00'),
-       (DEFAULT, 5, 1, '2020-12-25', '09:00:00');
+INSERT INTO tee_time (tee_time_id, user_id, username, league_id, league_name, tee_date, start_time)
+VALUES (DEFAULT, 3, 'kjm', 1, 'DA BUS', '2020-12-25', '09:00:00'),
+       (DEFAULT, 4, 'beckboo', 1, 'DA BUS', '2020-12-25', '09:00:00'),
+       (DEFAULT, 5, 'milf', 1, 'DA BUS', '2020-12-25', '09:00:00');
        
-<<<<<<< HEAD
-INSERT INTO scores (round_id, username, score_total, league_name)
-=======
-<<<<<<< HEAD
-INSERT INTO scores (round_id, user_id, score_total, league_id)
-VALUES (DEFAULT, 3, 14, 1),
-       (DEFAULT, 4, 47, 1),
-       (DEFAULT, 5, 78, 1),d
-       (DEFAULT, 6, 7, 1),
-       (DEFAULT, 7, 4, 2);
-=======
+
 INSERT INTO scores (round_id, username, score_total, leaguename)
->>>>>>> 27a17f819aa7f3fcaea09a36e3e0340013400b93
 VALUES (DEFAULT, 'kjm', 14, 'DA BUS'),
        (DEFAULT, 'beckboo', 47, 'DA BUS'),
        (DEFAULT, 'milf', 78, 'DA BUS'),
        (DEFAULT, 'bobbyg', 7, 'DA BUS'),
        (DEFAULT, 'ghill', 4, 'smart car');
->>>>>>> 3731af229a2daf0580632078ff3a957ba4517800
-       
-       
+          
 INSERT INTO users_leagues (league_id, user_id)
 VALUES (1, 3),
        (1, 4),
@@ -140,12 +127,3 @@ VALUES (1, 3),
        (1, 6),
        (2, 7);
        
-       
-       
-
-
-SELECT u.user_id, u.username, l.league_id, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id);
-SELECT invite.* FROM invite WHERE username = ? AND status_id = 1
-
-SELECT tee_date, start_time FROM tee_time WHERE user_id = 1;
-

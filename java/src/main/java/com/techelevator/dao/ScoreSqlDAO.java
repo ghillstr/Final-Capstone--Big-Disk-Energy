@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,13 +28,21 @@ public class ScoreSqlDAO implements ScoreDAO {
 
 	@Override
 	public List<Score> getAllScoresByLeagueName(Score score) {
-		String sql = "SELECT scores.score_total " + 
+		 List<Score> allScores = new ArrayList<>();
+		String sql = "SELECT username, SUM(score_total) AS total " + 
 				"FROM scores " + 
-				"WHERE league_name = ?";
+				"WHERE league_name = ? " + 
+				"GROUP BY username " + 
+				"ORDER BY total";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,score.getLeagueName());
 		
-		return results;
+//		while(results.next()) {
+//			Score score = 
+//		}
+	
+		
+		return allScores;
 	}
 
 	@Override
