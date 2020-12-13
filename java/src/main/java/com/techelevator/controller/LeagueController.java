@@ -27,45 +27,51 @@ public class LeagueController {
 		this.leagueDAO = leagueDAO;
 	}
 	
+	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/a", method = RequestMethod.GET )
-	public List<League> viewLeaguesByUsername() {
-		return leagueDAO.viewLeaguesByUsername();
+	public List<League> viewLeaguesByUsername(String username) {
+		return leagueDAO.viewLeaguesByUsername(username);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping( path = "/b", method = RequestMethod.POST )
-	public League createLeague(@Valid @RequestBody String leagueName, String courseName) {
-		return leagueDAO.createLeague(leagueName, courseName);
+	public void createLeague(@Valid @RequestBody String leagueName, String courseName, String username) {
+		leagueDAO.createLeague(leagueName, courseName, username);
 	}
 	
-	@RequestMapping( path = "/c", method = RequestMethod.PUT)
-	public League updateRole(@Valid @RequestBody String role) {
-		return leagueDAO.updateRole(role);
+	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping( path = "/c", method = RequestMethod.GET)
+	public List<League> viewTeeTimesByLeagueName(String leagueName) {
+		return leagueDAO.viewTeeTimesByLeagueName(leagueName);
 	}
 	
+	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/d", method = RequestMethod.PUT) //put ?
-	public League invitePlayers(long userId) {
-		return leagueDAO.invitePlayers(userId);
+	public void invitePlayers(String username, String leagueName) {
+		leagueDAO.invitePlayers(username, leagueName);
 	}
 	
+	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/e", method = RequestMethod.PUT)
-	public boolean updateInvite(@Valid @RequestBody League league) {
-		return leagueDAO.updateInvite(league);
+	public void updateInvite(@Valid @RequestBody String username, String leagueName, long invite) {
+		leagueDAO.updateInvite(username, leagueName, invite);
 	}
 	
+	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/f", method = RequestMethod.GET )
-	public League[] getPendingInvites(League league) {
-		return leagueDAO.getPendingInvites(league);
+	public List<League> getPendingInvitesByUsername(String username, String leagueName) {
+		return leagueDAO.getPendingInvitesbyUsername(username, leagueName);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping( path = "/g", method = RequestMethod.POST )
-	public League setTeeTime(@Valid @RequestBody long TeeTimeId, String date, String startTime) {
-		return leagueDAO.setTeeTime(TeeTimeId, date, startTime);
+	public void setTeeTime(@Valid @RequestBody String username, String leagueName, String date, String startTime) {
+		leagueDAO.setTeeTime(username, leagueName, date, startTime);
 	}
 	
+	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/h", method = RequestMethod.GET )
-	public List<League> viewTeeTimesByUsername() {
-		return leagueDAO.viewTeeTimesByUsername();
+	public List<League> viewTeeTimesByUsername(String username) {
+		return leagueDAO.viewTeeTimesByUsername(username);
 	}
 }

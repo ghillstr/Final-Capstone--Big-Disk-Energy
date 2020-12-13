@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS scores;
 DROP TABLE IF EXISTS tee_time;
 DROP TABLE IF EXISTS invite;
 DROP TABLE IF EXISTS invite_status;
-DROP TABLE IF EXISTS leaderboard;
 DROP TABLE IF EXISTS users_leagues; 
 DROP TABLE IF EXISTS leagues;
 DROP TABLE IF EXISTS users;
@@ -33,6 +32,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 CREATE TABLE leagues (
         league_id SERIAL PRIMARY KEY,
+        username varchar(50) NOT NULL,
         course_name varchar(50) NOT NULL,
         league_name varchar(20) NOT NULL    
 );
@@ -55,7 +55,9 @@ CREATE TABLE invite (
         invite_id SERIAL PRIMARY KEY,
         status_id integer NOT NULL,
         league_id integer NOT NULL,
+        league_name varchar(20) NOT NULL,
         user_id integer NOT NULL,
+        username varchar(50) NOT NULL,
         
         CONSTRAINT fk_status_id FOREIGN KEY (status_id) REFERENCES invite_status(status_id),
         CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
@@ -66,7 +68,9 @@ CREATE TABLE invite (
 CREATE TABLE tee_time (
         tee_time_id SERIAL PRIMARY KEY,
         user_id integer NOT NULL,
+        username varchar(50) NOT NULL,
         league_id integer NOT NULL,
+        league_name varchar(20) NOT NULL,
         tee_date date NOT NULL,
         start_time time (0) NOT NULL,
         
@@ -79,56 +83,14 @@ CREATE TABLE scores (
         round_id SERIAL PRIMARY KEY,
         username varchar(50) NOT NULL,
         score_total integer,
-        leaguename varchar(20) NOT NULL
+        league_name varchar(20) NOT NULL
 );
 
 
 COMMIT TRANSACTION;
 
-INSERT INTO leagues (league_id, course_name, league_name)
-VALUES (DEFAULT, 'Knob', 'DA BUS'),
-       (DEFAULT, 'Nobo', 'smart car');
-       
-       
 INSERT INTO invite_status (status_id, status_type)
 VALUES (DEFAULT, 'Pending'),
        (DEFAULT, 'Accepted'),
        (DEFAULT, 'Rejected');
-       
-
-INSERT INTO invite (invite_id, status_id, league_id, user_id)
-VALUES (DEFAULT, 1, 1, 3),
-       (DEFAULT, 1, 1, 4),
-       (DEFAULT, 1, 1, 5),
-       (DEFAULT, 1, 1, 6),
-       (DEFAULT, 1, 2, 7);
-       
-INSERT INTO tee_time (tee_time_id, user_id, league_id, tee_date, start_time)
-VALUES (DEFAULT, 3, 1, '2020-12-25', '09:00:00'),
-       (DEFAULT, 4, 1, '2020-12-25', '09:00:00'),
-       (DEFAULT, 5, 1, '2020-12-25', '09:00:00');
-       
-INSERT INTO scores (round_id, username, score_total, leaguename)
-VALUES (DEFAULT, 'kjm', 14, 'DA BUS'),
-       (DEFAULT, 'beckboo', 47, 'DA BUS'),
-       (DEFAULT, 'milf', 78, 'DA BUS'),
-       (DEFAULT, 'bobbyg', 7, 'DA BUS'),
-       (DEFAULT, 'ghill', 4, 'smart car');
-       
-       
-INSERT INTO users_leagues (league_id, user_id)
-VALUES (1, 3),
-       (1, 4),
-       (1, 5),
-       (1, 6),
-       (2, 7);
-       
-       
-       
-
-
-SELECT u.user_id, u.username, l.league_id, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id);
-SELECT invite.* FROM invite WHERE username = ? AND status_id = 1
-
-SELECT tee_date, start_time FROM tee_time WHERE user_id = 1;
 

@@ -14,7 +14,16 @@
         >LOGOUT</router-link
       >
     </nav>
-    <router-view />
+    <div class="container">
+      <img
+        src="@/assets/logo_transparent.png"
+        id="BDE-logo"
+        alt="BIG DISC ENERGY logo"
+      />
+      <div class="router">
+        <router-view />
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -62,6 +71,17 @@ h1 {
   color: #386641;
   text-shadow: -1px -1px 0 #a7c957, 1px -1px 0 #a7c957, -1px 1px 0 black,
     1px 1px 0 black;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#BDE-logo {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: left;
 }
 .account {
   font-size: larger;
