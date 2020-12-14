@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>About Us</h1>
-    <p>Meet the brains behind ©Big Disc Energy!</p>
+    <p>Meet the brains behind ©BigDiscEnergy!</p>
 
     <jacob />
     <tom />

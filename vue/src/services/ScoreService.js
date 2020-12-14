@@ -3,14 +3,14 @@ import axios from 'axios';
 export default {
 
     recordScore() {
-        return axios.post('/')
+        return axios.post('/score')
     },
 
-    getAllScoresByLeagueName() {
-        return axios.get('/')
+    getAllScoresByLeagueName(leagueName) {
+        return axios.get(`/leaderboard/${leagueName}`)
     },
 
     getAllScoresByUsername() {
-        return axios.get('/')
+        return axios.get('/leagueScores')
     }
 }
