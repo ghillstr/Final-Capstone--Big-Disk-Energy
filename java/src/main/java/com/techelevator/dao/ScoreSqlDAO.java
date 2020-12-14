@@ -30,10 +30,10 @@ public class ScoreSqlDAO implements ScoreDAO {
 	@Override
 	public List<Score> getAllScoresByLeagueName(Score score) {
 		List<Score> allScores = new ArrayList<>();
-		String sql = "SELECT league_name, username, SUM(score_total) AS total " + 
+		String sql = "SELECT username, SUM(score_total) AS total " + 
 				"FROM scores " + 
 				"WHERE league_name = ? " + 
-				"GROUP BY league_name, username " + 
+				"GROUP BY username " + 
 				"ORDER BY total";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getLeagueName());
@@ -65,7 +65,7 @@ public class ScoreSqlDAO implements ScoreDAO {
 	
 	private Score mapRowToScore(SqlRowSet rs) {
         Score score = new Score();
-        score.setLeagueName(rs.getString("league_name"));
+//        score.setLeagueName(rs.getString("league_name"));
         score.setUsername(rs.getString("username"));
         score.setScoreTotal(rs.getInt("total"));
         return score;
