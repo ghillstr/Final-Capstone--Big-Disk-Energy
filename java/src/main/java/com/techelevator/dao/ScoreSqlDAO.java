@@ -54,7 +54,6 @@ public class ScoreSqlDAO implements ScoreDAO {
 	public void mapRowToRecordScore(SqlRowSet rowSet) {
 		Score score = new Score();
 		score.setUserId(rowSet.getInt("user_id"));
-		score.setLeagueId(rowSet.getInt("league_id"));
 		score.setRoundScore(rowSet.getInt("score_total"));
 	}
 	
