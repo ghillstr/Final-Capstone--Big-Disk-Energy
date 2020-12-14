@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,31 +20,12 @@ public class ScoreSqlDAO implements ScoreDAO {
 
 	@Override
 	public void recordScore(Score score) {
-		String sql = "INSERT INTO scores (round _id, username, leaguename, score_total) " + 
+		String sql = "INSERT INTO scores (round_id, username, league_name, score_total) " + 
 				"VALUES (DEFAULT, ?, ?, ?)";
 		
 		jdbcTemplate.update(sql, score.getUsername(), score.getLeagueName(), score.getScoreTotal());
 		
 	}
-
-//	@Override
-//	public List<Score> getAllScoresByLeagueName(Score score) {
-//		 List<Score> allScores = new ArrayList<>();
-//		String sql = "SELECT username, SUM(score_total) AS total " + 
-//				"FROM scores " + 
-//				"WHERE league_name = ? " + 
-//				"GROUP BY username " + 
-//				"ORDER BY total";
-//		
-//		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getLeagueName());
-//		
-////		while(results.next()) {
-////			Score score = 
-////		}
-//	
-//		
-//		return allScores;
-//	}
 	
 	@Override
 	public List<Score> getAllScoresByLeagueName(Score score) {
@@ -57,7 +39,7 @@ public class ScoreSqlDAO implements ScoreDAO {
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getLeagueName());
 		
 		while(results.next()) {
-			Score scores = mapRowToScore(results); 
+			Score scores = mapRowToScore(results);
 			allScores.add(scores);
 		}
 
@@ -66,15 +48,25 @@ public class ScoreSqlDAO implements ScoreDAO {
 
 	@Override
 	public List<Score> getAllScoresByUsername(Score score) {
+		List<Score> scoresByUsername = new ArrayList<>();
+		String sql = "SELECT score_total " +
+				"FROM scores " + 
+				"WHERE username = ? AND league_name = ?";
 		
-		return null;
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getUsername(), score.getLeagueName());
+		
+		while(results.next()) {
+			Score scores = mapRowToScore(results);
+			scoresByUsername.add(scores);
+		}
+		
+		return scoresByUsername;
 	}
 	
 	private Score mapRowToScore(SqlRowSet rs) {
         Score score = new Score();
         score.setUsername(rs.getString("username"));
-        score.setScoreTotal(rs.getInt("score_total"));
-//        score.setLeagueName(rs.getString("league_name"));
+        score.setScoreTotal(rs.getInt("total"));
         return score;
     }
 	

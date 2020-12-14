@@ -28,22 +28,22 @@ public class ScoreController {
 		this.scoreDAO = scoreDAO;
 	}
 	
-	@PreAuthorize("hasRole(LEAGUE_ADMIN)")
+//	@PreAuthorize("hasRole(LEAGUE_ADMIN)")
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping( path = "/i", method = RequestMethod.POST )
-	public void recordScore(@Valid Score score) {
+	@RequestMapping( path = "/score", method = RequestMethod.POST )
+	public void recordScore(@Valid @RequestBody Score score) {
 		scoreDAO.recordScore(score);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/leagueScores/leaderboard", method = RequestMethod.GET )
-	public List<Score> getAllScoresByLeagueName(@RequestBody Score score) {
+	public List<Score> getAllScoresByLeagueName(@Valid @RequestBody Score score) {
 		return scoreDAO.getAllScoresByLeagueName(score);
 		
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/yermum", method = RequestMethod.GET )
+	@RequestMapping( path = "/leagueScores", method = RequestMethod.GET )
 	public List<Score> getAllScoresByUsername(Score score) {
 		return scoreDAO.getAllScoresByUsername(score);
 	}

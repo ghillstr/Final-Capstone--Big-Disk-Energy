@@ -51,6 +51,7 @@ public class LeagueController {
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/league/invite", method = RequestMethod.POST) //put ?
 	public void invitePlayers(@Valid @RequestBody League invite) {
+		
 		leagueDAO.invitePlayers(invite);
 	}
 	
