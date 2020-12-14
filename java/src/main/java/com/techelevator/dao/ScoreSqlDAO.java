@@ -35,7 +35,7 @@ public class ScoreSqlDAO implements ScoreDAO {
 				"GROUP BY username " + 
 				"ORDER BY total";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,score.getLeagueName());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getLeagueName());
 		
 //		while(results.next()) {
 //			Score score = 
