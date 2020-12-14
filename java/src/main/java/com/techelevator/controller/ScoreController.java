@@ -30,7 +30,7 @@ public class ScoreController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping( path = "/i", method = RequestMethod.POST )
 	public void recordScore(@Valid Score score) {
-		scoreDAO.recordScore(score);
+		scoreDAO.recordScore(score.getUsername(), score.getLeagueName(), score.getScoreTotal());
 	}
 	
 	@ResponseStatus(HttpStatus.OK)

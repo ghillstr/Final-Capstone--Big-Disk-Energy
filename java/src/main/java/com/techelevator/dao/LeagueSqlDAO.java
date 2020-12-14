@@ -145,7 +145,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	@Override
     public int findLeagueIdByUsername(String username) {
-        return jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
+        return jdbcTemplate.queryForObject("SELECT league_id from leagues where username = ?", int.class, username);
     }
 
 	private League mapRowToLeague(SqlRowSet rowSet) {
