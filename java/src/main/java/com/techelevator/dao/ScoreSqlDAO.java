@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,28 +28,39 @@ public class ScoreSqlDAO implements ScoreDAO {
 	}
 
 	@Override
-	public List<Score> getAllScoresByLeagueName(Score score) {
-		 List<Score> allScores = new ArrayList<>();
+	public List<Score> getAllScoresByLeagueName(String leagueName) {
+		List<Score> allScores = new ArrayList<>();
 		String sql = "SELECT username, SUM(score_total) AS total " + 
 				"FROM scores " + 
 				"WHERE league_name = ? " + 
 				"GROUP BY username " + 
 				"ORDER BY total";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,score.getLeagueName());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, leagueName);
 		
-//		while(results.next()) {
-//			Score score = 
-//		}
-	
-		
+		while(results.next()) {
+			Score scores = mapRowToScore(results); 
+			allScores.add(scores);
+		}
+
 		return allScores;
 	}
 
 	@Override
-	public List<Score> getAllScoresByUsername(Score score) {
+	public List<Score> getAllScoresByUsername(Principal principal, String leagueName) {
+		List<Score> scoresByUsername = new ArrayList<>();
+		String sql = "SELECT score_total " +
+				"FROM scores " + 
+				"WHERE username = ? AND league_name = ?";
 		
-		return null;
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal, leagueName);
+		
+		while(results.next()) {
+			Score scores = mapRowToScore(results);
+			scoresByUsername.add(scores);
+		}
+		
+		return scoresByUsername;
 	}
 	
 //	@Override
@@ -56,5 +68,13 @@ public class ScoreSqlDAO implements ScoreDAO {
 //		
 //		return null;
 //	}
+	
+    private Score mapRowToScore(SqlRowSet rs) {
+        Score score = new Score();
+        score.setUsername(rs.getString("username"));
+        score.setScoreTotal(rs.getInt("score_total"));
+//        score.setLeagueName(rs.getString("league_name"));
+        return score;
+    }
 	
 }

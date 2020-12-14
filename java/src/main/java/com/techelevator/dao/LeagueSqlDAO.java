@@ -8,7 +8,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.League;
-import com.techelevator.model.User;
 
 @Component
 public class LeagueSqlDAO implements LeagueDAO {
