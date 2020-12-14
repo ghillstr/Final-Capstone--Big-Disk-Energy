@@ -11,8 +11,7 @@ public interface LeagueDAO {
 	 
 	 
 	 
-	 void invitePlayers(String username, String leagueName);
-	 
+	 void invitePlayers(League invite);
 	 
 	 public List<League> getPendingInvitesbyUsername(String username);
 	 

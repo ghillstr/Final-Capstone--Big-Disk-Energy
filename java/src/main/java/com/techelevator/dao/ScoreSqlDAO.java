@@ -26,9 +26,28 @@ public class ScoreSqlDAO implements ScoreDAO {
 		
 	}
 
+//	@Override
+//	public List<Score> getAllScoresByLeagueName(Score score) {
+//		 List<Score> allScores = new ArrayList<>();
+//		String sql = "SELECT username, SUM(score_total) AS total " + 
+//				"FROM scores " + 
+//				"WHERE league_name = ? " + 
+//				"GROUP BY username " + 
+//				"ORDER BY total";
+//		
+//		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getLeagueName());
+//		
+////		while(results.next()) {
+////			Score score = 
+////		}
+//	
+//		
+//		return allScores;
+//	}
+	
 	@Override
 	public List<Score> getAllScoresByLeagueName(Score score) {
-		 List<Score> allScores = new ArrayList<>();
+		List<Score> allScores = new ArrayList<>();
 		String sql = "SELECT username, SUM(score_total) AS total " + 
 				"FROM scores " + 
 				"WHERE league_name = ? " + 
@@ -37,11 +56,11 @@ public class ScoreSqlDAO implements ScoreDAO {
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getLeagueName());
 		
-//		while(results.next()) {
-//			Score score = 
-//		}
-	
-		
+		while(results.next()) {
+			Score scores = mapRowToScore(results); 
+			allScores.add(scores);
+		}
+
 		return allScores;
 	}
 
@@ -51,12 +70,20 @@ public class ScoreSqlDAO implements ScoreDAO {
 		return null;
 	}
 	
-	public void mapRowToRecordScore(SqlRowSet rowSet) {
-		Score score = new Score();
-		score.setUserId(rowSet.getInt("user_id"));
-		score.setLeagueId(rowSet.getInt("league_id"));
-		score.setRoundScore(rowSet.getInt("score_total"));
-	}
+	private Score mapRowToScore(SqlRowSet rs) {
+        Score score = new Score();
+        score.setUsername(rs.getString("username"));
+        score.setScoreTotal(rs.getInt("score_total"));
+//        score.setLeagueName(rs.getString("league_name"));
+        return score;
+    }
+	
+//	public void mapRowToRecordScore(SqlRowSet rowSet) {
+//		Score score = new Score();
+//		score.setUserId(rowSet.getInt("user_id"));
+//		score.setLeagueId(rowSet.getInt("league_id"));
+//		score.setRoundScore(rowSet.getInt("score_total"));
+//	}
 	
 //	@Override
 //	public Score userSendScore(Score score) {
