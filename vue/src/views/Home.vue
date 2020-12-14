@@ -1,11 +1,15 @@
 <template>
-  <div class="container-fluid">
-    <h1>Big Disc Energy</h1>
-    <img
-      src="@/assets/EP-801257102.jpg"
-      id="home-basket-image"
-      alt="red disc golf basket with grass, palms, and blue sky in background"
-    />
+  <div class="container">
+    <div>
+      <h1>Welcome</h1>
+    </div>
+    <div>
+      <img
+        src="@/assets/EP-801257102.jpg"
+        id="home-basket-image"
+        alt="red disc golf basket with grass, palms, and blue sky in background"
+      />
+    </div>
     <!-- <div class='buttons'>
         <button class="button" @click="$router.push('courseinfo')">COURSE INFO</button>
         <button class="button" @click="$router.push('league')">LEAGUE INFO</button>
@@ -34,7 +38,6 @@ export default {
 }
 #home-basket-image {
   height: 100%;
-  width: 100%;
-  object-fit: cover;
+  width: 80%;
 }
 </style>
