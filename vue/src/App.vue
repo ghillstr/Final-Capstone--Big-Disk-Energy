@@ -8,13 +8,24 @@
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'league' }">LEAGUES</router-link
       >&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
+      >&nbsp;|&nbsp;
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
         >LOGOUT</router-link
       >
     </nav>
-    <router-view />
+    <div class="container">
+      <img
+        src="@/assets/logo_transparent.png"
+        id="BDE-logo"
+        alt="BIG DISC ENERGY logo"
+      />
+      <div class="router">
+        <router-view />
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -30,7 +41,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 #app {
-  color: white;
+  color: black;
+
   background: rgb(106, 153, 78);
   background: linear-gradient(
     180deg,
@@ -39,6 +51,8 @@ export default {
     rgba(242, 232, 207, 1) 100%
   );
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 nav a {
@@ -63,6 +77,17 @@ h1 {
   text-shadow: -1px -1px 0 #a7c957, 1px -1px 0 #a7c957, -1px 1px 0 black,
     1px 1px 0 black;
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#BDE-logo {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: left;
+}
 .account {
   font-size: larger;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -73,5 +98,15 @@ h1 {
 }
 .account:hover {
   color: white;
+}
+.button {
+  background-color: white;
+  color: #386641;
+  border: 2px solid #386641;
+  margin: 10px;
+}
+.button:hover {
+  background-color: #a7c957;
+  color: #bc4749;
 }
 </style>

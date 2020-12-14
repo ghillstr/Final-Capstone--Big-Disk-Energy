@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div>
@@ -9,13 +10,25 @@
       <br />
     </div>
     <br />
-    <gmap-map :center="center" :zoom="12" style="width: 100%; height: 400px">
+    <gmap-map
+      ref="gmap"
+      :center="center"
+      :zoom="12"
+      style="width: 100%; height: 400px"
+    >
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        @click="center = m.position"
+        @click="(center = m.position), openInfoWindowTemplate(index)"
       ></gmap-marker>
+      <gmap-info-window
+        :options="infoOptions"
+        :postion="infoWindowPos"
+        :opened="infoWinOpen"
+        @closeclick="infoWinOpen = false"
+        ><div v-html="infoContent"></div
+      ></gmap-info-window>
     </gmap-map>
   </div>
 </template>
@@ -29,6 +42,19 @@ export default {
       markers: [],
       places: [],
       currentPlace: null,
+      infoContent: "",
+      infoWindowPos: {
+        lat: 0,
+        lng: 0,
+      },
+      infoWindow: false,
+      currentMidx: null,
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35,
+        },
+      },
     };
   },
 
@@ -60,8 +86,32 @@ export default {
         };
       });
     },
+    toggleInfoWindow: function (marker, idx) {
+      this.infoWindowPos = marker.position;
+      this.infoContent = this.getInfoWindowContent(marker);
+
+      if (this.currentMidx == idx) {
+        this.infoWinOpen = !this.infoWinOpen;
+      } else {
+        this.infoWinOpen = true;
+        this.currentMidx = idx;
+      }
+    },
+    getInfoWindowContent: function (marker) {
+      return `<div class="">
+          <div>
+            <div>
+              <div class="m-2"><span style="font-weight: bold;">Device Name: </span>
+                ${marker.name}
+              </div>
+            </div>
+            <div class="m-2"><span style="font-weight: bold;">Location:  </span>
+              ${marker.location}
+              <br>
+            </div>
+          </div>
+        </div>`;
+    },
   },
 };
 </script>
-
-

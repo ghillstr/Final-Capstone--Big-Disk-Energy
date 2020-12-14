@@ -8,6 +8,7 @@ import store from '../store/index'
 import CourseInfo from '../views/CourseInfo.vue'
 import League from '../views/League.vue'
 import Leaderboards from '../views/Leaderboards.vue'
+import AboutUs from '../views/AboutUs.vue'
 
 Vue.use(Router)
 
@@ -80,6 +81,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/aboutus",
+      name: "about-us",
+      component: AboutUs,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ]
 })
 

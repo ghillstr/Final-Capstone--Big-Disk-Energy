@@ -23,14 +23,4 @@ export default {
 </script>
 
 <style>
-.button {
-  background-color: white;
-  color: #386641;
-  border: 2px solid #386641;
-  margin: 10px;
-}
-.button:hover {
-  background-color: #a7c957;
-  color: #bc4749;
-}
 </style>
