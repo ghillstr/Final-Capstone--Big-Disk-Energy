@@ -3,7 +3,7 @@
     <a href="create" v-on:click.prevent="showHideForm">CREATE LEAGUE</a>
 
     <div class="form-group pt-3">
-      <form v-show="showTheCreateForm === true">
+      <form v-on:submit.prevent v-show="showTheCreateForm === true">
         <!-- <div class="alert alert-danger" role="alert" v-if="invalidEntry">
           Ah ah ah! You didn't say the magic word!
         </div> -->
@@ -30,13 +30,13 @@
           />
         </div>
         <button
-          class="button"
-          v-on:submit.prevent="createLeague()"
           type="submit"
+          class="button"
+          v-on:click="createLeague(), resetForm()"
         >
           CREATE
         </button>
-        <button class="button" v-on:click.prevent="resetForm">CANCEL</button>
+        <button class="button" v-on:click.prevent="resetForm()">CANCEL</button>
       </form>
     </div>
   </div>
@@ -48,9 +48,9 @@ export default {
   data() {
     return {
       league: {
+        username: this.$store.state.user.username,
         leagueName: "",
         courseName: "",
-        username: this.$store.state.username,
       },
       showTheCreateForm: false,
       showTheAnchor: true,
@@ -58,24 +58,23 @@ export default {
   },
   methods: {
     createLeague() {
-      leagueService.createLeague(this.league).then((response) => {
-        if (response.status == 201) {
-          this.$store.commit("SET_LEAGUE", response.data.league);
-          this.$router.push("/league");
-        }
-      });
-      // .catch((error) => {
-      //   const response = error.response;
-      //   if (response.status === 400) {
-      //     this.invalidEntry = true;
-      //   }
-      // });
+      leagueService
+        .createLeague(this.league)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$store.commit("SET_LEAGUE", response.data.league);
+            this.$router.push("/league");
+          }
+        })
+        .catch((error) => {
+          const response = error.response;
+          if (response.status === 400) {
+            this.invalidEntry = true;
+          }
+        });
     },
     resetForm() {
-      this.league = {
-        leagueName: "",
-        courseName: "",
-      };
+      this.league = {};
       this.showTheCreateForm = false;
     },
     showHideForm() {
