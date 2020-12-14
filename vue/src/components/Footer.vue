@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>©Big Disc Energy is a licensed product of Struggle Bus Software, LLC</p>
+    <p>©BigDiscEnergy is a licensed product of Struggle Bus Software, LLC</p>
   </div>
 </template>
 
