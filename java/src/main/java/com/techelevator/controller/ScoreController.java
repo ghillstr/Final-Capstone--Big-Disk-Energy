@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,16 +38,16 @@ public class ScoreController {
 	
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/score/{leagueName}", method = RequestMethod.GET )
-	public List<Score> getAllScoresByLeagueName(@PathVariable String leagueName) {
-		return scoreDAO.getAllScoresByLeagueName(leagueName);
+	@RequestMapping( path = "/leagueScores/leaderboard", method = RequestMethod.GET )
+	public List<Score> getAllScoresByLeagueName(@Valid @RequestBody Score score) {
+		return scoreDAO.getAllScoresByLeagueName(score);
 		
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/yermum", method = RequestMethod.GET )
-	public List<Score> getAllScoresByUsername(Principal principal, String leagueName) {
-		return scoreDAO.getAllScoresByUsername(principal, leagueName);
+	@RequestMapping( path = "/leagueScores", method = RequestMethod.GET )
+	public List<Score> getAllScoresByUsername(Score score) {
+		return scoreDAO.getAllScoresByUsername(score);
 	}
 	
 	

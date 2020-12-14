@@ -15,7 +15,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	private JdbcTemplate jdbcTemplate;
 	private UserSqlDAO dao;
 
-    public LeagueSqlDAO(JdbcTemplate jdbcTemplate) {
+    public LeagueSqlDAO(JdbcTemplate jdbcTemplate, UserSqlDAO dao) {
         this.jdbcTemplate = jdbcTemplate;
         this.dao = dao;
     }
@@ -49,13 +49,11 @@ public class LeagueSqlDAO implements LeagueDAO {
 
 
 	@Override
-	public void invitePlayers(String username, String leagueName) {
-		// TODO Auto-generated method stub //post
+	public void invitePlayers(League invite) {
 		
-		String sql = "INSERT INTO invite (invite_id, status_id, league_name, user_name) VALUES (DEFUALT, 1, ?, ?)"; 
+		String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 1, ?, ?, ?, ?)"; 
 		
-		jdbcTemplate.update(sql, leagueName, username);
-		 
+		jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
 		
 	}
 
@@ -142,14 +140,17 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	@Override
     public int findLeagueIdByUsername(String username) {
-        return jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
+		
+        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
+        
+        return leagueId;
     }
 
 	private League mapRowToLeague(SqlRowSet rowSet) {
 		
 		League theLeague = new League();
 		
-		theLeague.setLeagueId(rowSet.getLong("league_id"));
+		theLeague.setLeagueId(rowSet.getInt("league_id"));
 		theLeague.setLeagueName(rowSet.getString("league_name"));
 		theLeague.setCourseName(rowSet.getString("course_name"));
 		theLeague.setStatusId(rowSet.getInt("status_id"));

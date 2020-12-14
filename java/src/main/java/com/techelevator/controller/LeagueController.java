@@ -49,9 +49,10 @@ public class LeagueController {
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/invites/{username}/{leagueName}", method = RequestMethod.POST) //put ?
-	public void invitePlayers(String username, String leagueName) {
-		leagueDAO.invitePlayers(username, leagueName);
+	@RequestMapping( path = "/league/invite", method = RequestMethod.POST) //put ?
+	public void invitePlayers(@Valid @RequestBody League invite) {
+		
+		leagueDAO.invitePlayers(invite);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)

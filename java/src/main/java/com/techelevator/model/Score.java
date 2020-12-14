@@ -2,30 +2,23 @@ package com.techelevator.model;
 
 public class Score {
 	
-	private int userId;
 	private String username;
 	private String leagueName;
-	private int roundScore;
 	private int scoreTotal;
 	
 	public Score() {
 		
 	}
 	
-	public Score(int userId, String username, int roundScore, int scoreTotal) {
-		super();
-		this.userId = userId;
+	public Score(String username, int scoreTotal) {
 		this.username = username;
-		this.roundScore = roundScore;
 		this.scoreTotal = scoreTotal;
 	}
-
-	public int getUserId() {
-		return userId;
-	}
 	
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public Score(String username, String leagueName, int scoreTotal) {
+		this.username = username;
+		this.username = username;
+		this.scoreTotal = scoreTotal;
 	}
 	
 	public String getUsername() {
@@ -34,14 +27,6 @@ public class Score {
 	
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	
-	public int getRoundScore() {
-		return roundScore;
-	}
-	
-	public void setRoundScore(int roundScore) {
-		this.roundScore = roundScore;
 	}
 	
 	public int getScoreTotal() {
