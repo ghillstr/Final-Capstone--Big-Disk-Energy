@@ -65,7 +65,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 //		if(invite.getStatusId() == 2) {
 			
-			String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 2, ?, ?, ?, ?)";
+			String sql = "UPDATE SET invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 2, ?, ?, ?, ?)";
 			
 			jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
 //		} else if (invite.getStatusId() == 3) {
