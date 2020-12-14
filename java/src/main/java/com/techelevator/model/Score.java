@@ -56,8 +56,8 @@ public class Score {
 		return leagueName;
 	}
 
-	public void setLeagueName(String leaguename) {
-		this.leagueName = leaguename;
+	public void setLeagueName(String leagueName) {
+		this.leagueName = leagueName;
 	}
 	
 	

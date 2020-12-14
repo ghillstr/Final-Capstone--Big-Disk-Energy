@@ -63,6 +63,13 @@ public class ScoreSqlDAO implements ScoreDAO {
 		return scoresByUsername;
 	}
 	
+	public void mapRowToRecordScore(SqlRowSet rowSet) {
+		Score score = new Score();
+		score.setUserId(rowSet.getInt("user_id"));
+		score.setLeagueId(rowSet.getInt("league_id"));
+		score.setRoundScore(rowSet.getInt("score_total"));
+	}
+	
 //	@Override
 //	public Score userSendScore(Score score) {
 //		
