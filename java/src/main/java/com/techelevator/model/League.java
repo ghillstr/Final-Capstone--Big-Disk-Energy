@@ -3,9 +3,10 @@ package com.techelevator.model;
 public class League {
 	
 	private long leagueId;
+	private String username;
 	private String leagueName;
 	private String courseName;
-	private long statusId;
+	private int statusId;
 	private String inviteStatus;
 	private long teeTimeId;
 	private String date;
@@ -16,10 +17,11 @@ public class League {
 	}
 	
 
-	public League(long leagueId, String leagueName, String courseName, long statusId, String inviteStatus, long teeTimeId,
+	public League(long leagueId, String leagueName, String courseName, int statusId, String inviteStatus, long teeTimeId,
 			String date, String startTime, long userId) {
 		super();
 		this.leagueId = leagueId;
+		this.username = username;
 		this.leagueName = leagueName;
 		this.courseName = courseName;
 		this.statusId = statusId;
@@ -39,14 +41,22 @@ public class League {
 	public void setLeagueId(long leagueId) {
 		this.leagueId = leagueId;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 
-	public long getStatusId() {
+	public int getStatusId() {
 		return statusId;
 	}
 
 
-	public void setStatusId(long statusId) {
+	public void setStatusId(int statusId) {
 		this.statusId = statusId;
 	}
 

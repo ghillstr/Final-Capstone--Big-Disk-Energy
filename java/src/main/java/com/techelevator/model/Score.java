@@ -36,22 +36,6 @@ public class Score {
 		this.username = username;
 	}
 	
-	public int getLeagueId() {
-		return leagueId;
-	}
-	
-	public void setLeagueId(int leagueId) {
-		this.leagueId = leagueId;
-	}
-	
-	public String getLeagueName() {
-		return leagueName;
-	}
-	
-	public void setLeagueName(String leagueName) {
-		this.leagueName = leagueName;
-	}
-	
 	public int getRoundScore() {
 		return roundScore;
 	}
@@ -72,8 +56,8 @@ public class Score {
 		return leagueName;
 	}
 
-	public void setLeagueName(String leaguename) {
-		this.leagueName = leaguename;
+	public void setLeagueName(String leagueName) {
+		this.leagueName = leagueName;
 	}
 	
 	
