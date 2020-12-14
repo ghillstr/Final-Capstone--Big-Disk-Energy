@@ -30,9 +30,9 @@
           />
         </div>
         <button
-          type="submit"
           class="button"
           v-on:click="createLeague(), resetForm()"
+          type="submit"
         >
           CREATE
         </button>
@@ -58,20 +58,18 @@ export default {
   },
   methods: {
     createLeague() {
-      leagueService
-        .createLeague(this.league)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$store.commit("SET_LEAGUE", response.data.league);
-            this.$router.push("/league");
-          }
-        })
-        .catch((error) => {
-          const response = error.response;
-          if (response.status === 400) {
-            this.invalidEntry = true;
-          }
-        });
+      leagueService.createLeague(this.league).then((response) => {
+        if (response.status == 201) {
+          this.$store.commit("SET_LEAGUE", response.data.league);
+          this.$router.push("/league");
+        }
+      });
+      // .catch((error) => {
+      //   const response = error.response;
+      //   if (response.status === 400) {
+      //     this.invalidEntry = true;
+      //   }
+      // });
     },
     resetForm() {
       this.league = {};
