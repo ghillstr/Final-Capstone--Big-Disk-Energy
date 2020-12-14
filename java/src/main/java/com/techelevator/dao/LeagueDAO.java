@@ -14,19 +14,21 @@ public interface LeagueDAO {
 	 void invitePlayers(String username, String leagueName);
 	 
 	 
-	 public List<League> getPendingInvitesbyUsername(String username, String leagueName);
+	 public List<League> getPendingInvitesbyUsername(String username);
 	 
-	 public void setTeeTime( String username, String leagueName, String date, String startTime);
+	 public void setTeeTime(League teeTime);
 	 
 	 List<League> viewTeeTimesByUsername(String username);
 
-	void createLeague(String leagueName, String courseName, String username);
+	void createLeague(League league);
 
-	void updateInvite(String username, String leagueName, long invite);
+	void updateInvite(League invite);
 
 	List<League> viewLeaguesByUsername(String username);
 	
 	List<League> viewTeeTimesByLeagueName(String leagueName);
+	
+	int findLeagueIdByUsername(String username);
 	
 
 	 

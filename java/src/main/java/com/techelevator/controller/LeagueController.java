@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,9 +8,11 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,45 +31,45 @@ public class LeagueController {
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/a", method = RequestMethod.GET )
-	public List<League> viewLeaguesByUsername(String username) {
+	@RequestMapping( path = "/league/{username}", method = RequestMethod.GET )
+	public List<League> viewLeaguesByUsername(@PathVariable String username) {
 		return leagueDAO.viewLeaguesByUsername(username);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping( path = "/b", method = RequestMethod.POST )
-	public void createLeague(@Valid @RequestBody String leagueName, String courseName, String username) {
-		leagueDAO.createLeague(leagueName, courseName, username);
+	@RequestMapping( path = "/league", method = RequestMethod.POST )
+	public void createLeague(@Valid @RequestBody League league) {
+		leagueDAO.createLeague(league);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/c", method = RequestMethod.GET)
-	public List<League> viewTeeTimesByLeagueName(String leagueName) {
+	@RequestMapping( path = "/tee-times/{leagueName}", method = RequestMethod.GET)
+	public List<League> viewTeeTimesByLeagueName(@PathVariable String leagueName) {
 		return leagueDAO.viewTeeTimesByLeagueName(leagueName);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/d", method = RequestMethod.PUT) //put ?
+	@RequestMapping( path = "/invites/{username}/{leagueName}", method = RequestMethod.POST) //put ?
 	public void invitePlayers(String username, String leagueName) {
 		leagueDAO.invitePlayers(username, leagueName);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/e", method = RequestMethod.PUT)
-	public void updateInvite(@Valid @RequestBody String username, String leagueName, long invite) {
-		leagueDAO.updateInvite(username, leagueName, invite);
+	@RequestMapping( path = "/invites/status", method = RequestMethod.PUT)
+	public void updateInvite(@Valid @RequestBody League league) {
+		leagueDAO.updateInvite(league);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/f", method = RequestMethod.GET )
-	public List<League> getPendingInvitesByUsername(String username, String leagueName) {
-		return leagueDAO.getPendingInvitesbyUsername(username, leagueName);
+	@RequestMapping( path = "/invites/{username}", method = RequestMethod.GET )
+	public List<League> getPendingInvitesByUsername(Principal principal, @PathVariable String username) {
+		return leagueDAO.getPendingInvitesbyUsername(username);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping( path = "/g", method = RequestMethod.POST )
-	public void setTeeTime(@Valid @RequestBody String username, String leagueName, String date, String startTime) {
-		leagueDAO.setTeeTime(username, leagueName, date, startTime);
+	@RequestMapping( path = "/tee-times", method = RequestMethod.POST )
+	public void setTeeTime(@Valid @RequestBody League teeTime) {
+		leagueDAO.setTeeTime(teeTime);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
