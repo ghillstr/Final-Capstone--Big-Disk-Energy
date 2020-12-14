@@ -2,36 +2,36 @@ import axios from 'axios';
 
 export default {
 
-    viewLeaguesByUsername (username) {
+    viewLeaguesByUsername(username) {
         return axios.get(`/league/${username}`)
     },
 
-    createLeague (league) {
+    createLeague(league) {
         return axios.post('/league', league)
     },
 
-    viewTeeTimesByLeagueName (leagueName) {
+    viewTeeTimesByLeagueName(leagueName) {
         return axios.get(`/tee-times/${leagueName}`)
     },
 
-    invitePlayers (username, leagueName) {
+    invitePlayers(username, leagueName) {
         return axios.post(`/invites/${username}/${leagueName}`)
     },
 
-    updateInvite (league) {
+    updateInvite(league) {
         return axios.put('/invites/status', league)
     },
 
-    getPendingInvitesByUsername (username) {
+    getPendingInvitesByUsername(username) {
         return axios.get(`/invites/${username}`)
     },
 
-    setTeeTime (teeTime) {
+    setTeeTime(teeTime) {
         return axios.post('/tee-times', teeTime)
     },
 
     //PATH WILL CHANGE, OBVS
-    viewTeeTimesByUsername (username) {
+    viewTeeTimesByUsername(username) {
         return axios.get('/h', username)
     }
 
