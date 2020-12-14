@@ -63,18 +63,21 @@ public class LeagueSqlDAO implements LeagueDAO {
 	@Override
 	public void updateInvite(League invite) {
 		
-//		if(invite.getStatusId() == 2) {
+		if(invite.getStatusId() == 2) {
 			
-			String sql = "UPDATE SET invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 2, ?, ?, ?, ?)";
+
+			String sql = "UPDATE invite SET status_id = 2 WHERE username = ? AND league_name = ?";
+
 			
-			jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
-//		} else if (invite.getStatusId() == 3) {
-//			
-//			String sql = "INSERT INTO invite (invite_id, status_id, league_name, user_name) VALUES (DEFAULT, 3, ?, ?, ?, ?)";
-//			
-//			jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
-//			
-//		} 
+			jdbcTemplate.update(sql, invite.getUsername(), invite.getLeagueName());
+			
+		} else if (invite.getStatusId() == 3) {
+			
+			String sql = "UPDATE invite SET status_id = 3 WHERE username = ? AND league_name = ?";
+			
+			jdbcTemplate.update(sql, invite.getUsername(), invite.getLeagueName());
+			
+		} 
 		// TODO Auto-generated method stub //put
 		
 		
