@@ -33,7 +33,7 @@
           type="submit"
           variant="success"
           class="button"
-          v-on:click="createLeague(), resetForm(),makeToast('success')"
+          v-on:click="createLeague(), resetForm(), makeToast('success')"
         >
           CREATE
         </button>
@@ -48,7 +48,6 @@ export default {
   name: "CreateLeague",
   data() {
     return {
-        
       league: {
         username: this.$store.state.user.username,
         leagueName: "",
@@ -87,16 +86,15 @@ export default {
       this.showTheAnchor = false;
     },
     makeToast(variant = null) {
-        this.toastCount++
-        this.$bvToast.toast(`League has been created!`, {
-          title: 'Successful Registration',
-          autoHideDelay: 5000,
-          variant: variant,
-          solid: true
-        })
-      }
-    }
-  
+      this.toastCount++;
+      this.$bvToast.toast(`League has been created!`, {
+        title: "Successful Registration",
+        autoHideDelay: 5000,
+        variant: variant,
+        solid: true,
+      });
+    },
+  },
 };
 </script>
 <style scoped>

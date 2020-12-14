@@ -10,6 +10,8 @@
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
       >&nbsp;|&nbsp;
+      <a v-bind:href="'https://www.pdga.com/rules'">OFFICAL DISC GOLF RULES</a
+      >&nbsp;|&nbsp;
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
