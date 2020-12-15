@@ -26,12 +26,13 @@ public class LeagueSqlDAO implements LeagueDAO {
 	public List<League> viewLeaguesByUsername(Principal principal) {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT u.username, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id) WHERE u.username = ?";
+		String sqlSelectAllLeagues = "SELECT league_name, username FROM leagues WHERE username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, principal);
 		
 		while (result.next()) {
-			League theLeague = mapRowToLeague(result);
+			League theLeague = new League();
+			theLeague.setLeagueName(result.getString("league_name"));
 			
 			leagues.add(theLeague);
 		}
@@ -55,7 +56,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 1, ?, ?, ?, ?)"; 
 		
-		jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
+
+		jdbcTemplate.update(sql, findLeagueIdByLeagueName(invite.getLeagueName()), invite.getLeagueName(), findIdByUsernameInLeague(invite), invite.getUsername());
+
 		
 	}
 
@@ -103,10 +106,10 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 	@Override
 	public void setTeeTime(League teeTime) {
-		// TODO Auto-generated method stub //post
-		String sql = "INSERT INTO tee_time (tee_time_id, username, league_name, tee_date, start_time) VALUES (DEFAULT, ?, ?, ?, ?)";
+		
+		String sql = "INSERT INTO tee_time (tee_time_id, user_id, username, league_id, league_name, tee_date, start_time) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
 				
-		jdbcTemplate.update(sql, teeTime.getUsername(), teeTime.getLeagueName(), teeTime.getDate(), teeTime.getStartTime());
+		jdbcTemplate.update(sql, findIdByUsernameInLeague(teeTime), teeTime.getUsername(), findLeagueIdByLeagueName(teeTime.getLeagueName()), teeTime.getLeagueName(), teeTime.getDate(), teeTime.getStartTime());
 	}
 
 	@Override
@@ -143,15 +146,23 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 	
 	@Override
-    public int findLeagueIdByUsername(String username) {
-
+    public int findLeagueIdByLeagueName(String leagueName) {
 		
-        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
+        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where league_name = ?", int.class, leagueName);
         
         return leagueId;
 
     }
-
+	
+	public int findIdByUsernameInLeague(League teeTime) {
+		
+		int userIdForTeeTime = dao.findIdByUsername(teeTime.getUsername());
+		
+		return userIdForTeeTime;
+	}
+	
+	
+	
 	private League mapRowToLeague(SqlRowSet rowSet) {
 		
 		League theLeague = new League();

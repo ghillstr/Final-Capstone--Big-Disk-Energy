@@ -19,4 +19,6 @@ public interface UserDAO {
 
 
 	void updateRoleWhenLeagueIsCreated(String username);
+
+	List<User> getUserByLeague(String leagueName);
 }

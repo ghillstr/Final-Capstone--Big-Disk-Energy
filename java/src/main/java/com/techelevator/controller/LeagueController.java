@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.dao.LeagueDAO;
+import com.techelevator.dao.UserDAO;
 import com.techelevator.model.League;
 
 @CrossOrigin
@@ -25,8 +26,9 @@ import com.techelevator.model.League;
 public class LeagueController {
 	
 	private LeagueDAO leagueDAO;
+	private UserDAO userDAO;
 	
-	public LeagueController (LeagueDAO leagueDAO) {
+	public LeagueController (LeagueDAO leagueDAO, UserDAO userDAO) {
 		this.leagueDAO = leagueDAO;
 	}
 	
@@ -70,13 +72,17 @@ public class LeagueController {
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping( value = "/tee-times", method = RequestMethod.POST )
+
+
+	@RequestMapping( path = "/league/tee-times", method = RequestMethod.POST )
 	public void setTeeTime(@Valid @RequestBody League teeTime) {
+
+
 		leagueDAO.setTeeTime(teeTime);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( value = "/h", method = RequestMethod.GET )
+	@RequestMapping( path = "/league/tee-times/{username}", method = RequestMethod.GET )
 	public List<League> viewTeeTimesByUsername(String username) {
 		return leagueDAO.viewTeeTimesByUsername(username);
 	}
