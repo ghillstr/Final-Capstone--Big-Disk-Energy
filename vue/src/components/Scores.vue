@@ -1,13 +1,12 @@
 <template>
-  <table>
+  <table class="leaderboard-table">
     <thead>
       <tr>
-        <th> <td>{{$route.params.id}}</td></th>
+        <th class="league-name">{{ $route.params.id }}</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="scores in score" v-bind:key="scores.username">
-       
         <td>{{ scores.username }}</td>
         <td>{{ scores.scoreTotal }}</td>
       </tr>
@@ -40,3 +39,20 @@ export default {
   // },
 };
 </script>
+<style scoped>
+.leaderboard-table {
+  border-collapse: 2px black;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  font-size: 20px;
+}
+.league-name {
+  font-family: "Permanent Marker", cursive;
+  color: #386641;
+  text-shadow: -1px -1px 0 #a7c957, 1px -1px 0 #a7c957, -1px 1px 0 black,
+    1px 1px 0 black;
+  font-size: 30px;
+}
+</style>
