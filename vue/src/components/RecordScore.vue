@@ -1,28 +1,28 @@
 <template>
   <div>
-        <div>
-            <b-dropdown text="Select a Player">
-            <b-dropdown-item href="#">An item</b-dropdown-item>
-            <b-dropdown-item href="#">Another item</b-dropdown-item>
-            </b-dropdown>
-        </div>
-   </div>     
+    <div>
+      <b-dropdown text="Select a Player">
+        <b-dropdown-item href="#">An item</b-dropdown-item>
+        <b-dropdown-item href="#">Another item</b-dropdown-item>
+      </b-dropdown>
+    </div>
+  </div>
 </template>
 
 <script>
 import scoreService from "../services/ScoreService";
 export default {
-    name: "RecordScore",
-    data() {
-        return {
-            post: {
-                username: this.$store.state.user.username,
-                leagueName: "",
-                scoreTotal: ""
-            },
-        };
-    },
-    methods: {
+  name: "RecordScore",
+  data() {
+    return {
+      post: {
+        username: this.$store.state.user.username,
+        leagueName: "",
+        scoreTotal: "",
+      },
+    };
+  },
+  methods: {
     recordScore() {
       scoreService
         .recordScore(this.post)
@@ -38,10 +38,10 @@ export default {
             this.invalidEntry = true;
           }
         });
-    }
-}
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

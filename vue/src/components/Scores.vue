@@ -12,7 +12,6 @@
         <td>{{ scores.scoreTotal }}</td>
       </tr>
     </tbody>
-    
   </table>
 </template>
 
