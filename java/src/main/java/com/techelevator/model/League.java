@@ -4,7 +4,7 @@ public class League {
 	
 	private int leagueId;
 	private String username;
-	private long userId;
+	private int userId;
 	private String leagueName;
 	private String courseName;
 	private int statusId;
@@ -17,7 +17,7 @@ public class League {
 	
 	}
 	
-	public League(int leagueId, String username, long userId, String leagueName, String courseName, int statusId, String inviteStatus, long teeTimeId,
+	public League(int leagueId, String username, int userId, String leagueName, String courseName, int statusId, String inviteStatus, long teeTimeId,
 			String date, String startTime) {
 		super();
 		this.leagueId = leagueId;
@@ -49,11 +49,11 @@ public class League {
 		this.username = username;
 	}
 	
-	public long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 	
-	public void setUserId(long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

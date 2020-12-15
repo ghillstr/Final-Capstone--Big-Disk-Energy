@@ -54,7 +54,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 1, ?, ?, ?, ?)"; 
 		
-		jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
+		jdbcTemplate.update(sql, findLeagueIdByLeagueName(invite.getLeagueName()), invite.getLeagueName(), findIdByUsernameInLeague(invite), invite.getUsername());
 		
 	}
 
@@ -102,10 +102,10 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 	@Override
 	public void setTeeTime(League teeTime) {
-		// TODO Auto-generated method stub //post
-		String sql = "INSERT INTO tee_time (tee_time_id, username, league_name, tee_date, start_time) VALUES (DEFAULT, ?, ?, ?, ?)";
+		
+		String sql = "INSERT INTO tee_time (tee_time_id, user_id, username, league_id, league_name, tee_date, start_time) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
 				
-		jdbcTemplate.update(sql, teeTime.getUsername(), teeTime.getLeagueName(), teeTime.getDate(), teeTime.getStartTime());
+		jdbcTemplate.update(sql, findIdByUsernameInLeague(teeTime), teeTime.getUsername(), findLeagueIdByLeagueName(teeTime.getLeagueName()), teeTime.getLeagueName(), teeTime.getDate(), teeTime.getStartTime());
 	}
 
 	@Override
@@ -142,14 +142,20 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 	
 	@Override
-    public int findLeagueIdByUsername(String username) {
-
+    public int findLeagueIdByLeagueName(String leagueName) {
 		
-        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
+        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where league_name = ?", int.class, leagueName);
         
         return leagueId;
 
     }
+	
+	public int findIdByUsernameInLeague(League teeTime) {
+		
+		int userIdForTeeTime = dao.findIdByUsername(teeTime.getUsername());
+		
+		return userIdForTeeTime;
+	}
 
 	private League mapRowToLeague(SqlRowSet rowSet) {
 		
