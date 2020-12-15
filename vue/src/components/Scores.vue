@@ -6,15 +6,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="scores in score" :key="scores.leagueName" v-on:click="getAllScoresByLeagueName(scores.leagueName)">
-        <td>{{ score.leagueName }}</td>
-        <td>{{ score.username }}</td>
-        <td>{{ score.scoreTotal }}</td>
-        </tr>
-        </tbody>
-        <p>hello</p>
-      
-    </thead>
+      <tr
+        v-for="scores in score"
+        v-bind:key="scores.leagueName"
+        v-on:click="getAllScoresByLeagueName(score.leagueName)"
+      >
+        <td>{{ scoreleagueName }}</td>
+        <td>{{ username }}</td>
+        <td>{{ scoreTotal }}</td>
+      </tr>
+    </tbody>
+    <p>hello</p>
   </table>
 </template>
 
