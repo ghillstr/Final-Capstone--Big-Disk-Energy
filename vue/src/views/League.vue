@@ -8,19 +8,16 @@
         LEADERBOARD
       </button>
       <create-league />
-      <scores />
     </div>
   </div>
 </template>
 
 <script>
 import CreateLeague from "../components/CreateLeague.vue";
-import Scores from "../components/Scores.vue";
 export default {
   name: "league",
   components: {
     CreateLeague,
-    Scores,
   },
 };
 </script>
