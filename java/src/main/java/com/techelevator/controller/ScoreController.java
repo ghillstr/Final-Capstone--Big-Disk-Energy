@@ -41,7 +41,7 @@ public class ScoreController {
 	
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/leaderboard/{leagueName}", method = RequestMethod.GET )
+	@RequestMapping( path = "/leagueScores/{leagueName}", method = RequestMethod.GET )
 	public List<Score> getAllScoresByLeagueName(@Valid @PathVariable String leagueName) {
 		return scoreDAO.getAllScoresByLeagueName(leagueName);
 		
