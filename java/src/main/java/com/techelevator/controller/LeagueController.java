@@ -73,17 +73,15 @@ public class LeagueController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 
+
 	@RequestMapping( path = "/league/tee-times", method = RequestMethod.POST )
 	public void setTeeTime(@Valid @RequestBody League teeTime) {
-//		String usernameString = teeTime.getUsername();
-//		int userId = userDAO.findIdByUsername(usernameString);
-//		String leagueString = teeTime.getLeagueName();
-//		int leagueId = leagueDAO.findLeagueIdByLeagueName(leagueString);
+
+
 		leagueDAO.setTeeTime(teeTime);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-
 	@RequestMapping( path = "/league/tee-times/{username}", method = RequestMethod.GET )
 	public List<League> viewTeeTimesByUsername(String username) {
 		return leagueDAO.viewTeeTimesByUsername(username);
