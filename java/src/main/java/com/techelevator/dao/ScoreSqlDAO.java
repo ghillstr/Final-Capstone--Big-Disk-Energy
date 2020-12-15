@@ -43,6 +43,11 @@ public class ScoreSqlDAO implements ScoreDAO {
 		while(results.next()) {
 			Score scores = mapRowToScore(results);
 			allScores.add(scores);
+//			Score scores = new Score();
+//			scores.setLeagueName(results.getString("league_name"));
+//			scores.setUsername(results.getString("username"));
+//			scores.setScoreTotal(results.getInt("total"));
+//			allScores.add(scores);
 		}
 
 		return allScores;
@@ -66,14 +71,8 @@ public class ScoreSqlDAO implements ScoreDAO {
 	}
 	
 
-	private Score mapRowToScore(SqlRowSet rs) {
-        Score score = new Score();
-//        score.setLeagueName(rs.getString("league_name"));
-        score.setUsername(rs.getString("username"));
-        score.setScoreTotal(rs.getInt("total"));
-        return score;
-        
-    }
+
+
 	
 //	public void mapRowToRecordScore(SqlRowSet rowSet) {
 //		Score score = new Score();
@@ -88,5 +87,13 @@ public class ScoreSqlDAO implements ScoreDAO {
 //		
 //		return null;
 //	}
+	
+    private Score mapRowToScore(SqlRowSet rs) {
+        Score score = new Score();
+        score.setUsername(rs.getString("username"));
+        score.setScoreTotal(rs.getInt("total"));
+//        score.setLeagueName(rs.getString("league_name"));
+        return score;
+    }
 	
 }

@@ -8,7 +8,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.League;
-import com.techelevator.model.User;
 
 @Component
 public class LeagueSqlDAO implements LeagueDAO {
@@ -54,7 +53,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 1, ?, ?, ?, ?)"; 
 		
-		jdbcTemplate.update(sql, findLeagueIdByUsername(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
+		jdbcTemplate.update(sql, findLeagueIdByLeagueName(invite.getUsername()), invite.getLeagueName(), dao.findIdByUsername(invite.getUsername()), invite.getUsername());
 		
 	}
 
@@ -142,10 +141,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 	
 	@Override
-    public int findLeagueIdByUsername(String username) {
-
+    public int findLeagueIdByLeagueName(String leagueName) {
 		
-        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
+        int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where league_name = ?", int.class, leagueName);
         
         return leagueId;
 
