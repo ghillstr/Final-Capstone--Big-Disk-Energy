@@ -10,6 +10,10 @@ export default {
         return axios.get(`/leagueScores/${leagueName}`)
     },
 
+    getUserByLeague(leagueName) {
+        return axios.get(`/leagueUsers/${leagueName}`)
+    },
+
     getAllScoresByUsername() {
         return axios.get('/leagueScores')
     }
