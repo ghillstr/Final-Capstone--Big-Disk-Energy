@@ -22,7 +22,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     league: {},
-    score: [],
+    leaderboard: {},
   },
 
   mutations: {
@@ -47,9 +47,9 @@ export default new Vuex.Store({
       localStorage.setItem('league', JSON.stringify(league));
 
     },
-    GET_LEAGUE_SCORES(state, score) {
-      state.score = [];
-      localStorage.getItem('score', JSON.stringify(score));
+    GET_LEAGUE_SCORES(state, leaderboard) {
+      state.leaderboard = {};
+      localStorage.getItem('leaderboard', JSON.stringify(leaderboard));
     }
   }
 })
