@@ -53,18 +53,19 @@ public class LeagueController {
 			
 		leagueDAO.invitePlayers(invite);
 	}
-		
+	
+	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( value = "/invites/{username}", method = RequestMethod.GET )
-	public List<League> getPendingInvitesByUsername(Principal principal, @PathVariable String username) {
-		return leagueDAO.getPendingInvitesbyUsername(username);
+	@RequestMapping( value = "/invites", method = RequestMethod.GET )
+	public List<League> getPendingInvitesByUsername(Principal principal) {
+		return leagueDAO.getPendingInvitesbyUsername(principal);
 	}
 		
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( value = "/invites/status", method = RequestMethod.PUT)
-	public void updateInvite(@Valid @RequestBody League league) {
-		leagueDAO.updateInvite(league);
+	public void updateInvite(@Valid Principal principal, @RequestBody League league) {
+		leagueDAO.updateInvite(principal, league);
 	}
 	
 	//WORKING
@@ -82,6 +83,7 @@ public class LeagueController {
 		return leagueDAO.viewTeeTimesByUsername(principal);
 	}
 	
+	//WORKING
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( value = "/tee-times/{leagueName}", method = RequestMethod.GET)
 	public List<League> viewTeeTimesByLeagueName(@PathVariable String leagueName) {

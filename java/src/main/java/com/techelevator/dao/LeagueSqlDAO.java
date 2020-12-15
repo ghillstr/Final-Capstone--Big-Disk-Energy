@@ -62,18 +62,19 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 	}
 
+	//WORKING
 	@Override
-	public List<League> getPendingInvitesbyUsername(String username) {
+	public List<League> getPendingInvitesbyUsername(Principal principal) {
 		// TODO Auto-generated method stub //get
 		List<League> invites = new ArrayList<>();
 		
 		String sql = "SELECT league_name FROM invite WHERE username = ? AND status_id = 1";
 		
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, principal.getName());
 		
 		while (result.next()) {
-			League theInvite = mapRowToLeague(result);
-			
+			League theInvite = new League();
+			theInvite.setLeagueName(result.getString("league_name"));
 			invites.add(theInvite);
 		}
 		
@@ -82,7 +83,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	//WORKING
 	@Override
-	public void updateInvite(League invite) {
+	public void updateInvite(Principal principal, League invite) {
 		
 		if(invite.getStatusId() == 2) {
 			
@@ -90,17 +91,19 @@ public class LeagueSqlDAO implements LeagueDAO {
 			String sql = "UPDATE invite SET status_id = 2 WHERE username = ? AND league_name = ?";
 
 			
-			jdbcTemplate.update(sql, invite.getUsername(), invite.getLeagueName());
+			jdbcTemplate.update(sql, principal.getName(), invite.getLeagueName());
+			
+			String sql2 = "INSERT INTO users_leagues (user_id, league_id) VALUES (?, ?)";
+			
+			jdbcTemplate.update(sql2, findUserIdByUsernameInLeague(principal), findLeagueIdByLeagueName(invite.getLeagueName()));
 			
 		} else if (invite.getStatusId() == 3) {
 			
 			String sql = "UPDATE invite SET status_id = 3 WHERE username = ? AND league_name = ?";
 			
-			jdbcTemplate.update(sql, invite.getUsername(), invite.getLeagueName());
+			jdbcTemplate.update(sql, principal.getName(), invite.getLeagueName());
 			
-		} 
-		// TODO Auto-generated method stub //put
-		
+		}
 		
 	}
 		
@@ -146,7 +149,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, leagueName);
 		
 		while (result.next()) {
-			League theTeeTime = mapRowToLeague(result);
+			League theTeeTime = new League();
+			theTeeTime.setDate(result.getString("tee_date"));
+			theTeeTime.setStartTime(result.getString("start_time"));
 			
 			teeTimes.add(theTeeTime);
 		}
@@ -169,23 +174,31 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		return userIdForTeeTime;
 	}
-
-	private League mapRowToLeague(SqlRowSet rowSet) {
+	
+	@Override
+	public int findUserIdByUsernameInLeague(Principal principal) {
 		
-		League theLeague = new League();
+		int userIdForTeeTime = dao.findIdByUsername(principal.getName());
 		
-		theLeague.setLeagueId(rowSet.getInt("league_id"));
-		theLeague.setLeagueName(rowSet.getString("league_name"));
-		theLeague.setCourseName(rowSet.getString("course_name"));
-		theLeague.setStatusId(rowSet.getInt("status_id"));
-		theLeague.setInviteStatus(rowSet.getString("status_type"));
-		theLeague.setTeeTimeId(rowSet.getLong("tee_time_id"));
-		theLeague.setDate(rowSet.getString("tee_date"));
-		theLeague.setStartTime(rowSet.getString("start_time"));
-		
-		return theLeague;
-		
+		return userIdForTeeTime;
 	}
+
+//	private League mapRowToLeague(SqlRowSet rowSet) {
+//		
+//		League theLeague = new League();
+//		
+//		theLeague.setLeagueId(rowSet.getInt("league_id"));
+//		theLeague.setLeagueName(rowSet.getString("league_name"));
+//		theLeague.setCourseName(rowSet.getString("course_name"));
+//		theLeague.setStatusId(rowSet.getInt("status_id"));
+//		theLeague.setInviteStatus(rowSet.getString("status_type"));
+//		theLeague.setTeeTimeId(rowSet.getLong("tee_time_id"));
+//		theLeague.setDate(rowSet.getString("tee_date"));
+//		theLeague.setStartTime(rowSet.getString("start_time"));
+//		
+//		return theLeague;
+//		
+//	}
 
 	
 

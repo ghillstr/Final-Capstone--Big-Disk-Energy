@@ -14,7 +14,7 @@ public interface LeagueDAO {
 	 
 	 void invitePlayers(League invite);
 	 
-	 public List<League> getPendingInvitesbyUsername(String username);
+	 public List<League> getPendingInvitesbyUsername(Principal principal);
 	 
 	 public void setTeeTime(League teeTime);
 	 
@@ -22,13 +22,15 @@ public interface LeagueDAO {
 
 	void createLeague(League league);
 
-	void updateInvite(League invite);
+	void updateInvite(Principal principal, League invite);
 
 	List<League> viewLeaguesByUsername(Principal principal);
 	
 	List<League> viewTeeTimesByLeagueName(String leagueName);
 	
 	int findLeagueIdByLeagueName(String leagueName);
+	
+	int findUserIdByUsernameInLeague(Principal principal);
 
 	int findIdByUsernameInLeague(League teeTime);
 
