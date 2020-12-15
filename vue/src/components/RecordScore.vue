@@ -12,23 +12,24 @@
 <script>
 import scoreService from "../services/ScoreService";
 export default {
-    name: "PostScore",
+    name: "RecordScore",
     data() {
         return {
             post: {
                 username: this.$store.state.user.username,
-                scoreTotal: this.$store.state.
+                leagueName: "",
+                scoreTotal: ""
             },
-            };
-        },
+        };
+    },
     methods: {
-    postScore() {
+    recordScore() {
       scoreService
-        .postScore(this.post)
+        .recordScore(this.post)
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_SCORE", response.data.post);
-            this.$router.push("/league");
+            this.$router.push("/score");
           }
         })
         .catch((error) => {
@@ -37,7 +38,7 @@ export default {
             this.invalidEntry = true;
           }
         });
-    },
+    }
 }
 </script>
 
