@@ -1,12 +1,12 @@
 <template>
   <div>
-    <a href="create" v-on:click.prevent="showHideForm" v>CREATE LEAGUE</a>
+    <a href="create" v-on:click.prevent="showHideForm">CREATE LEAGUE</a>
 
     <div class="form-group pt-3">
-      <form
-        v-on:submit.prevent="createLeague"
-        v-show="showTheCreateForm === true"
-      >
+      <form v-on:submit.prevent v-show="showTheCreateForm === true">
+        <!-- <div class="alert alert-danger" role="alert" v-if="invalidEntry">
+          Ah ah ah! You didn't say the magic word!
+        </div> -->
         <div class="form-element">
           <label for="leagueName">League Name:</label>
           <input
@@ -14,6 +14,8 @@
             class="form-control"
             placeholder="Enter a League Name"
             id="league-name"
+            v-model="league.leagueName"
+            required
           />
         </div>
         <div class="form-element">
@@ -23,20 +25,31 @@
             class="form-control"
             placeholder="Enter a Course Name"
             id="course-name"
+            v-model="league.courseName"
+            required
           />
         </div>
-        <button class="button" type="submit">CREATE</button>
-        <button class="button" v-on:click.prevent="resetForm">CANCEL</button>
+        <button
+          type="submit"
+          variant="success"
+          class="button"
+          v-on:click="createLeague(), resetForm(), makeToast('success')"
+        >
+          CREATE
+        </button>
+        <button class="button" v-on:click.prevent="resetForm()">CANCEL</button>
       </form>
     </div>
   </div>
 </template>
 <script>
+import leagueService from "../services/LeagueService";
 export default {
   name: "CreateLeague",
   data() {
     return {
-      newLeague: {
+      league: {
+        username: this.$store.state.user.username,
         leagueName: "",
         courseName: "",
       },
@@ -45,11 +58,24 @@ export default {
     };
   },
   methods: {
+    createLeague() {
+      leagueService
+        .createLeague(this.league)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$store.commit("SET_LEAGUE", response.data.league);
+            this.$router.push("/league");
+          }
+        })
+        .catch((error) => {
+          const response = error.response;
+          if (response.status === 400) {
+            this.invalidEntry = true;
+          }
+        });
+    },
     resetForm() {
-      this.newLeague = {
-        leagueName: "",
-        courseName: "",
-      };
+      this.league = {};
       this.showTheCreateForm = false;
     },
     showHideForm() {
@@ -58,6 +84,15 @@ export default {
     },
     showHideAnchor() {
       this.showTheAnchor = false;
+    },
+    makeToast(variant = null) {
+      this.toastCount++;
+      this.$bvToast.toast(`League has been created!`, {
+        title: "Successful Registration",
+        autoHideDelay: 5000,
+        variant: variant,
+        solid: true,
+      });
     },
   },
 };

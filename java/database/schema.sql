@@ -94,4 +94,3 @@ VALUES (DEFAULT, 'Pending'),
        (DEFAULT, 'Accepted'),
        (DEFAULT, 'Rejected');
 
-

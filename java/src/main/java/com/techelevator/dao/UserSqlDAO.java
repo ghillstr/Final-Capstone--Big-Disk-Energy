@@ -85,6 +85,14 @@ public class UserSqlDAO implements UserDAO {
 
         return userCreated;
     }
+	@Override
+	public void updateRoleWhenLeagueIsCreated(String username) {
+		// TODO Auto-generated method stub //put
+		String updateRoleSql = "UPDATE users SET role = LEAGUE_ADMIN";
+		
+		jdbcTemplate.update(updateRoleSql);
+		
+	}
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
@@ -96,3 +104,5 @@ public class UserSqlDAO implements UserDAO {
         return user;
     }
 }
+
+

@@ -4,7 +4,7 @@
     <div class="buttons">
       <!-- <button class="button" @click="$router.push('/')">HOME</button>
         <button class="button" @click="$router.push('courseinfo')">COURSE INFO</button>-->
-      <button class="button" @click="$router.push('leaderboards')">
+      <button class="button" @click="$router.push('leaderboard')">
         LEADERBOARD
       </button>
       <create-league />

@@ -62,7 +62,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		if(invite.getStatusId() == 2) {
 			
+
 			String sql = "UPDATE invite SET status_id = 2 WHERE username = ? AND league_name = ?";
+
 			
 			jdbcTemplate.update(sql, invite.getUsername(), invite.getLeagueName());
 			
@@ -140,10 +142,12 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	@Override
     public int findLeagueIdByUsername(String username) {
+
 		
         int leagueId = jdbcTemplate.queryForObject("select league_id from leagues where username = ?", int.class, username);
         
         return leagueId;
+
     }
 
 	private League mapRowToLeague(SqlRowSet rowSet) {
