@@ -63,16 +63,17 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 
 	@Override
-	public List<League> getPendingInvitesbyUsername(String username) {
+	public List<League> getPendingInvitesbyUsername(Principal principal) {
 		// TODO Auto-generated method stub //get
 		List<League> invites = new ArrayList<>();
 		
 		String sql = "SELECT league_name FROM invite WHERE username = ? AND status_id = 1";
 		
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, principal.getName());
 		
 		while (result.next()) {
-			League theInvite = mapRowToLeague(result);
+			League theInvite = new League();
+			theInvite.setLeagueName(result.getString("league_name"));
 			
 			invites.add(theInvite);
 		}
@@ -135,7 +136,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		return teeTimes;
 	}
 	
-	
+	//WORKING
 	@Override
 	public List<League> viewTeeTimesByLeagueName(String leagueName) {
 	
@@ -146,8 +147,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, leagueName);
 		
 		while (result.next()) {
-			League theTeeTime = mapRowToLeague(result);
-			
+			League theTeeTime = new League();
+			theTeeTime.setDate(result.getString("tee_date"));
+			theTeeTime.setStartTime(result.getString("start_time"));
 			teeTimes.add(theTeeTime);
 		}
 		return teeTimes;
