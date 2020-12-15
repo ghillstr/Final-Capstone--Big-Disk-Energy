@@ -11,9 +11,9 @@
         v-bind:key="scores.leagueName"
         v-on:click="getAllScoresByLeagueName(score.leagueName)"
       >
-        <td>{{ scoreleagueName }}</td>
-        <td>{{ username }}</td>
-        <td>{{ scoreTotal }}</td>
+        <!-- <td>{{ scoreleagueName }}</td> -->
+        <td>{{ score.username }}</td>
+        <td>{{ score.scoreTotal }}</td>
       </tr>
     </tbody>
     <p>hello</p>
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       score: {
-        leagueName: "",
+        // leagueName: "",
         username: "",
         scoreTotal: 0,
       },
