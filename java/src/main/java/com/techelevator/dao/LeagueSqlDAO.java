@@ -25,12 +25,13 @@ public class LeagueSqlDAO implements LeagueDAO {
 	public List<League> viewLeaguesByUsername(String username) {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT u.username, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id) WHERE u.username = ?";
+		String sqlSelectAllLeagues = "SELECT league_name, username FROM leagues WHERE username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, username);
 		
 		while (result.next()) {
-			League theLeague = mapRowToLeague(result);
+			League theLeague = new League();
+			theLeague.setLeagueName(result.getString("league_name"));
 			
 			leagues.add(theLeague);
 		}
@@ -158,6 +159,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		return userIdForTeeTime;
 	}
+	
 	
 	
 	private League mapRowToLeague(SqlRowSet rowSet) {
