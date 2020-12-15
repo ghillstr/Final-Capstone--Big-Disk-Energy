@@ -1,33 +1,49 @@
 <template>
-  <div>
-    <h1>FUCK ME</h1>
-    <p>hello</p>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>SCORES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="scores in score" :key="scores.leagueName" v-on:click="getAllScoresByLeagueName(scores.leagueName)">
+        <td>{{ score.leagueName }}</td>
+        <td>{{ score.username }}</td>
+        <td>{{ score.scoreTotal }}</td>
+        </tr>
+        </tbody>
+        <p>hello</p>
+      
+    </thead>
+  </table>
 </template>
 
  <script>
-// import scoreService from "../services/ScoreService.js";
+import scoreService from "../services/ScoreService.js";
 
 export default {
   name: "scores",
-  //   data() {
-  //     return {
-  //       score: {
-  //         username: "",
-  //         leagueName: "",
-  //         scoreTotal: 0,
+
+  data() {
+    return {
+      score: {
+        leagueName: "",
+        username: "",
+        scoreTotal: 0,
+      },
+    };
+  },
+  created() {
+    scoreService
+      .getAllScoresByLeagueName(this.$route.params.leagueName)
+      .then((response) => {
+        this.$store.commit("GET_LEAGUE_SCORES", response.data);
+      });
+  },
+  methods: {
+    getAllScoresByLeagueName(leagueName) {
+      this.$router.push(`/leaderboard/${leagueName}`);
+    },
+  },
 };
-//     };
-//   },
-// methods: {
-//   getAllScoresByLeagueName() {
-//     scoreService
-//       .getAllScoresByLeagueName(this.$route.params.score)
-//       .then((response) => {
-//         this.score = response.data.score;
-//       });
-//   },
-// },
-// };
-//
 </script>

@@ -7,7 +7,7 @@ export default {
     },
 
     getAllScoresByLeagueName(leagueName) {
-        return axios.get(`/leaderboard/${leagueName}`)
+        return axios.get('/leaderboard', leagueName)
     },
 
     getAllScoresByUsername() {
