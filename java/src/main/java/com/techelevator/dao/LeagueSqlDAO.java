@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class LeagueSqlDAO implements LeagueDAO {
     }
 
 	@Override
-	public List<League> viewLeaguesByUsername(String username) {
+	public List<League> viewLeaguesByUsername(Principal principal) {
 		List<League> leagues =new ArrayList<>();
 		
 		String sqlSelectAllLeagues = "SELECT u.username, l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id) WHERE u.username = ?";
 		
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, username);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, principal);
 		
 		while (result.next()) {
 			League theLeague = mapRowToLeague(result);

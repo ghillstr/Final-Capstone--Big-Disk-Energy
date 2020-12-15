@@ -32,8 +32,8 @@ public class LeagueController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( value = "/league/{username}", method = RequestMethod.GET )
-	public List<League> viewLeaguesByUsername(@PathVariable String username) {
-		return leagueDAO.viewLeaguesByUsername(username);
+	public List<League> viewLeaguesByUsername(Principal principal) {
+		return leagueDAO.viewLeaguesByUsername(principal);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
