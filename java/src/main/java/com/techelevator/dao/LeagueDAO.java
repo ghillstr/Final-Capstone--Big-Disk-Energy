@@ -27,7 +27,7 @@ public interface LeagueDAO {
 	
 	List<League> viewTeeTimesByLeagueName(String leagueName);
 	
-	int findLeagueIdByUsername(String username);
+	int findLeagueIdByLeagueName(String leagueName);
 	
 
 	 
