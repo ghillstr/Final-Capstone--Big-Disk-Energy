@@ -28,6 +28,11 @@ public interface LeagueDAO {
 	List<League> viewTeeTimesByLeagueName(String leagueName);
 	
 	int findLeagueIdByLeagueName(String leagueName);
+<<<<<<< HEAD
+=======
+	
+	int findIdByUsernameInLeague(League teeTime);
+>>>>>>> b1ce36cb2ecbbfa6248a63831e8227f0601c9c95
 	
 
 	 

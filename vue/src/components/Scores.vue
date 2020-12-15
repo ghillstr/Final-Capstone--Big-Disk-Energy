@@ -9,7 +9,7 @@
       <tr
         v-for="scores in score"
         v-bind:key="scores.leagueName"
-        v-on:click="getAllScoresByLeagueName(score.leagueName)"
+        v-bind:="getAllScoresByLeagueName(score.leagueName)"
       >
         <td>{{ scoreleagueName }}</td>
         <td>{{ username }}</td>
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     getAllScoresByLeagueName(leagueName) {
-      this.$router.push(`/leaderboard/${leagueName}`);
+      this.$router.push(`/leaderboard/${leagueName}`).catch(() => {});
     },
   },
 };
