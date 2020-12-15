@@ -8,6 +8,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.League;
+import com.techelevator.model.User;
 
 @Component
 public class LeagueSqlDAO implements LeagueDAO {
@@ -157,7 +158,8 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		return userIdForTeeTime;
 	}
-
+	
+	
 	private League mapRowToLeague(SqlRowSet rowSet) {
 		
 		League theLeague = new League();

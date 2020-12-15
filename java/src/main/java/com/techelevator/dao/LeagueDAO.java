@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import java.util.List;
 
 import com.techelevator.model.League;
+import com.techelevator.model.User;
 
 public interface LeagueDAO {
 	
@@ -30,6 +31,10 @@ public interface LeagueDAO {
 	int findLeagueIdByLeagueName(String leagueName);
 
 	int findIdByUsernameInLeague(League teeTime);
+
+
+	
+	
 	
 
 

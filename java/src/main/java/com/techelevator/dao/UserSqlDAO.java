@@ -41,7 +41,7 @@ public class UserSqlDAO implements UserDAO {
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM users";
+        String sql = "select * from users";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
@@ -93,6 +93,23 @@ public class UserSqlDAO implements UserDAO {
 		jdbcTemplate.update(updateRoleSql);
 		
 	}
+	@Override
+	public List<User> getUserByLeague(String leagueName) {
+		List<User> users =new ArrayList<>();
+		
+		String sqlSelectUsers= "SELECT username FROM leagues WHERE league_name = ?";
+		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectUsers, leagueName);
+		
+		while (result.next()) {
+			User theUser = new User();
+			theUser.setUsername(result.getString("username"));
+			
+			
+			users.add(theUser);
+		}
+		return users;
+	}
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
@@ -100,7 +117,7 @@ public class UserSqlDAO implements UserDAO {
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(rs.getString("role"));
-        user.setActivated(true);
+       user.setActivated(true);
         return user;
     }
 }
