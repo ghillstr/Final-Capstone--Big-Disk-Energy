@@ -52,18 +52,19 @@ public class ScoreSqlDAO implements ScoreDAO {
 
 		return allScores;
 	}
-
+	
 	@Override
-	public List<Score> getAllScoresByUsername(Score score) {
+	public List<Score> getAllScoresByUsername(Principal principal, String leagueName) {
 		List<Score> scoresByUsername = new ArrayList<>();
 		String sql = "SELECT score_total " +
 				"FROM scores " + 
 				"WHERE username = ? AND league_name = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, score.getUsername(), score.getLeagueName());
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName(), leagueName);
 		
 		while(results.next()) {
-			Score scores = mapRowToScore(results);
+			Score scores = new Score();
+			scores.setScoreTotal(results.getInt("score_total"));
 			scoresByUsername.add(scores);
 		}
 		
