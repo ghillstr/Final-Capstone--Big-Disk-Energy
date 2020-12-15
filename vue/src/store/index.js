@@ -23,6 +23,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     league: {},
     leaderboard: {},
+
   },
 
   mutations: {

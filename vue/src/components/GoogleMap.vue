@@ -4,7 +4,11 @@
     <div>
       <h4>Search for a course and add a pin</h4>
       <label>
-        <gmap-autocomplete @place_changed="setPlace"> </gmap-autocomplete>
+        <gmap-autocomplete
+          input
+          type="text"
+          value="Disc Golf Course"
+        ></gmap-autocomplete>
         <button class="button" @click="addMarker">Add</button>
       </label>
       <br />

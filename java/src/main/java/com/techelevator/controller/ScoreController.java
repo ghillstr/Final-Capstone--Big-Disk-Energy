@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,7 @@ public class ScoreController {
 
 	}
 	
+	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/leagueScores/{leagueName}", method = RequestMethod.GET )
 	public List<Score> getAllScoresByLeagueName(@Valid @PathVariable String leagueName) {
