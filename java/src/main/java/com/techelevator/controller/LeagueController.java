@@ -72,8 +72,8 @@ public class LeagueController {
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
-//		int userId = userDAO.findIdByUsername(usernameString);
-//		int leagueId = leagueDAO.findLeagueIdByLeagueName(leagueString);
+	@RequestMapping( path = "/league/tee-times", method = RequestMethod.POST )
+	public void setTeeTime(@Valid @RequestBody League teeTime) {
 		leagueDAO.setTeeTime(teeTime);
 	}
 	
