@@ -4,9 +4,7 @@
     <div class="buttons">
       <!-- <button class="button" @click="$router.push('/')">HOME</button>
         <button class="button" @click="$router.push('courseinfo')">COURSE INFO</button>-->
-      <button class="button" @click="$router.push('leaderboard')">
-        LEADERBOARD
-      </button>
+      <button class="button" @click="navigate">LEADERBOARD</button>
       <create-league />
     </div>
   </div>
@@ -18,6 +16,11 @@ export default {
   name: "league",
   components: {
     CreateLeague,
+  },
+  methods: {
+    navigate() {
+      this.$router.push({ name: "leaderboard", params: { id: "DA BUS" } });
+    },
   },
 };
 </script>

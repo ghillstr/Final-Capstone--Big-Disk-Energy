@@ -74,7 +74,7 @@ const router = new Router({
       }
     },
     {
-      path: "/leaderboard",
+      path: "/league/:id/leaderboard",
       name: "leaderboard",
       component: Leaderboard,
       meta: {
