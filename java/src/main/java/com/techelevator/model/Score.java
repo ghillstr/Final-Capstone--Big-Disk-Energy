@@ -11,12 +11,7 @@ public class Score {
 	}
 	
 	public Score(String username, int scoreTotal) {
-		this.username = username;
-		this.scoreTotal = scoreTotal;
-	}
-	
-	public Score(String username, String leagueName, int scoreTotal) {
-		this.username = username;
+		super();
 		this.username = username;
 		this.scoreTotal = scoreTotal;
 	}

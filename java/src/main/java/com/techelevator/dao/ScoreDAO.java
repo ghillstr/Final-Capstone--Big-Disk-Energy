@@ -10,7 +10,7 @@ public interface ScoreDAO {
 	void recordScore(Score score);
 	//league admin posting round scores
 	
-	List<Score> getAllScoresByLeagueName(Score score);
+	List<Score> getAllScoresByLeagueName(String leagueName);
 	//getting a sum of round scores WHERE leagueId and GROUPed by userId
 	
 	List<Score> getAllScoresByUsername(Score score);
