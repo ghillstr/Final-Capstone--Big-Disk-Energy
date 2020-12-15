@@ -2,12 +2,14 @@
   <div class="league">
     <h1>League Info</h1>
     <div v-for="leagues in league" v-bind:key="leagues.username">
-      <p>{{ leagues.leagueName }}</p>
+      <router-link
+        v-bind:to="{ name: 'leaderboard', params: { id: leagues.leagueName } }"
+      >
+        {{ leagues.leagueName }}
+      </router-link>
+      <!-- <button class="button" @click="navigate">LEADERBOARD</button> -->
     </div>
-    <div class="buttons">
-      <button class="button" @click="navigate">LEADERBOARD</button>
-      <create-league />
-    </div>
+    <create-league />
   </div>
 </template>
 
@@ -24,19 +26,18 @@ export default {
   components: {
     CreateLeague,
   },
-
+  created() {
+    leagueService
+      .viewLeaguesByUsername(this.$store.state.user.username)
+      .then((response) => {
+        this.league = response.data;
+        console.log(response.data);
+      });
+  },
   methods: {
-    created() {
-      leagueService
-        .viewLeaguesByUsername(this.$store.state.user.username)
-        .then((response) => {
-          this.league = response.data;
-          console.log(response.data);
-        });
-    },
-    navigate() {
-      this.$router.push({ name: "leaderboard", params: { id: "DA BUS" } });
-    },
+    // navigate() {
+    //   this.$router.push({ name: "leaderboard", params: { id: "DA BUS" } });
+    // },
   },
 };
 </script>
