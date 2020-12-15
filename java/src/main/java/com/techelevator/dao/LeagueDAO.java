@@ -29,6 +29,8 @@ public interface LeagueDAO {
 	
 	int findLeagueIdByLeagueName(String leagueName);
 	
+	int findIdByUsernameInLeague(League teeTime);
+	
 
 	 
 	 
