@@ -6,6 +6,10 @@ import axios from 'axios'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueConfirmDialog from 'vue-confirm-dialog'
+
+Vue.use(VueConfirmDialog)
+Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(BootstrapVue)
