@@ -48,9 +48,9 @@ public class ScoreController {
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/leagueScores", method = RequestMethod.GET )
-	public List<Score> getAllScoresByUsername(Score score) {
-		return scoreDAO.getAllScoresByUsername(score);
+	@RequestMapping( path = "/leagueScores/{leagueName}", method = RequestMethod.GET )
+	public List<Score> getAllScoresByUsername(Principal principal, @PathVariable String leagueName) {
+		return scoreDAO.getAllScoresByUsername(principal, leagueName);
 	}
 	
 	
