@@ -91,7 +91,7 @@ const router = new Router({
       }
     },
     {
-      path: "/league/:scoreid/score",
+      path: "/league/:user/score",
       name: "score",
       component: RecordScore,
       meta: {

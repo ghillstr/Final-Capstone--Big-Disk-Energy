@@ -1,8 +1,8 @@
 <template>
   <div>
         <div>
-            <select name="recordscore" v-model="selectedUser" text="Select a Player">
-            <option v-for="posts in post" v-bind:key="posts.username">{{ post.username }}</option>
+            <select  name="recordscore" text="Select a Player">
+            <option v-for="post in post" v-bind:key="post.username" >{{ post.username }}</option>
             </select>
         </div>
         <div>
@@ -11,7 +11,7 @@
             </form>
         </div>
         <div>
-            <button class="button" type="submit">SUBMIT SCORE</button>
+            <button class="button" type="submit" @click="recordScore">SUBMIT SCORE</button>
         </div>
    </div>     
 </template>
@@ -23,10 +23,16 @@ export default {
     data() {
         return {
             post: [],
+            score: {
+                leagueName: this.$store.state.league.leagueName,
+                username: "",
+                scoreTotal: 0,
+
+            }
         };
     },
     created() {
-        scoreService.getUserByLeague(this.$route.params.scoreid).then((response) => {
+        scoreService.getUserByLeague(this.$route.params.user).then((response) => {
       this.post = response.data;
       console.log(response.data);
         });
@@ -34,10 +40,10 @@ export default {
     methods: {
     recordScore() {
       scoreService
-        .recordScore(this.post)
+        .recordScore(this.score)
         .then((response) => {
           if (response.status == 201) {
-            this.$store.commit("SET_SCORE", response.data.post);
+            this.$store.commit("SET_SCORES", response.data.score);
             this.$router.push("/score");
           }
         })
