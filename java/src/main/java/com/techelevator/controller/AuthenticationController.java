@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
@@ -61,7 +63,13 @@ public class AuthenticationController {
         } catch (UsernameNotFoundException e) {
             userDAO.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
+        
     }
+    @ResponseStatus(HttpStatus.OK)
+	@RequestMapping( value = "/leagueUsers/{leagueName}", method = RequestMethod.GET )
+	public List<User> getUserByLeague(@PathVariable String leagueName) {
+		return userDAO.getUserByLeague(leagueName);
+	}
 
     /**
      * Object to return as body in JWT Authentication.

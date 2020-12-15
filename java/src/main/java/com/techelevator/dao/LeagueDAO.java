@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import com.techelevator.model.League;
+import com.techelevator.model.User;
 
 public interface LeagueDAO {
 	

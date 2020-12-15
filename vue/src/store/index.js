@@ -23,6 +23,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     league: {},
     leaderboard: {},
+    score: {},
+    post: {},
 
   },
 
@@ -51,6 +53,10 @@ export default new Vuex.Store({
     GET_LEAGUE_SCORES(state, leaderboard) {
       state.leaderboard = {};
       localStorage.getItem('leaderboard', JSON.stringify(leaderboard));
+    },
+    SET_SCORES(state, score) {
+      state.score = {};
+      localStorage.setItem('score', JSON.stringify(score));
     }
   }
 })
