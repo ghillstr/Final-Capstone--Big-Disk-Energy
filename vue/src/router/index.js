@@ -9,6 +9,7 @@ import CourseInfo from '../views/CourseInfo.vue'
 import League from '../views/League.vue'
 import Leaderboard from '../views/Leaderboard.vue'
 import AboutUs from '../views/AboutUs.vue'
+import RecordScore from '../components/RecordScore.vue'
 
 Vue.use(Router)
 
@@ -85,6 +86,14 @@ const router = new Router({
       path: "/aboutus",
       name: "about-us",
       component: AboutUs,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/league/:scoreid/score",
+      name: "score",
+      component: RecordScore,
       meta: {
         requiresAuth: true
       }

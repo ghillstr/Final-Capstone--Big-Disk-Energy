@@ -5,6 +5,7 @@
       <!-- <button class="button" @click="$router.push('/')">HOME</button>
         <button class="button" @click="$router.push('courseinfo')">COURSE INFO</button>-->
       <button class="button" @click="navigate">LEADERBOARD</button>
+      <button class="button" @click="scoresNav">RECORD SCORE</button>
       <create-league />
     </div>
   </div>
@@ -21,6 +22,9 @@ export default {
     navigate() {
       this.$router.push({ name: "leaderboard", params: { id: "DA BUS" } });
     },
+    scoresNav() {
+      this.$router.push({ name: "score", params: {}});
+    }
   },
 };
 </script>
