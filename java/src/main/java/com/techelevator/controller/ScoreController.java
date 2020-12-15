@@ -30,15 +30,16 @@ public class ScoreController {
 		this.scoreDAO = scoreDAO;
 	}
 	
+	//WORKING
 //	@PreAuthorize("hasRole(LEAGUE_ADMIN)")
 	@ResponseStatus(HttpStatus.CREATED)
-
 	@RequestMapping( path = "/score", method = RequestMethod.POST )
 	public void recordScore(@Valid @RequestBody Score score) {
 		scoreDAO.recordScore(score);
 
 	}
 	
+	//WORKING
 	@PreAuthorize("permitAll")
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/leagueScores/{leagueName}", method = RequestMethod.GET )
@@ -47,6 +48,7 @@ public class ScoreController {
 		
 	}
 	
+	//WORKING
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( path = "/leagueScores/{leagueName}", method = RequestMethod.GET )
 	public List<Score> getAllScoresByUsername(Principal principal, @PathVariable String leagueName) {

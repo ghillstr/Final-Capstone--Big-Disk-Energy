@@ -18,6 +18,7 @@ public class ScoreSqlDAO implements ScoreDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	//WORKING
 	@Override
 	public void recordScore(Score score) {
 
@@ -29,6 +30,7 @@ public class ScoreSqlDAO implements ScoreDAO {
 		
 	}
 	
+	//WORKING
 	@Override
 	public List<Score> getAllScoresByLeagueName(String leagueName) {
 		List<Score> allScores = new ArrayList<>();
@@ -43,16 +45,13 @@ public class ScoreSqlDAO implements ScoreDAO {
 		while(results.next()) {
 			Score scores = mapRowToScore(results);
 			allScores.add(scores);
-//			Score scores = new Score();
-//			scores.setLeagueName(results.getString("league_name"));
-//			scores.setUsername(results.getString("username"));
-//			scores.setScoreTotal(results.getInt("total"));
-//			allScores.add(scores);
+
 		}
 
 		return allScores;
 	}
 	
+	//WORKING
 	@Override
 	public List<Score> getAllScoresByUsername(Principal principal, String leagueName) {
 		List<Score> scoresByUsername = new ArrayList<>();
@@ -71,29 +70,10 @@ public class ScoreSqlDAO implements ScoreDAO {
 		return scoresByUsername;
 	}
 	
-
-
-
-	
-//	public void mapRowToRecordScore(SqlRowSet rowSet) {
-//		Score score = new Score();
-//		score.setUserId(rowSet.getInt("user_id"));
-//		score.setLeagueId(rowSet.getInt("league_id"));
-//		score.setRoundScore(rowSet.getInt("score_total"));
-//	}
-
-	
-//	@Override
-//	public Score userSendScore(Score score) {
-//		
-//		return null;
-//	}
-	
     private Score mapRowToScore(SqlRowSet rs) {
         Score score = new Score();
         score.setUsername(rs.getString("username"));
         score.setScoreTotal(rs.getInt("total"));
-//        score.setLeagueName(rs.getString("league_name"));
         return score;
     }
 	
