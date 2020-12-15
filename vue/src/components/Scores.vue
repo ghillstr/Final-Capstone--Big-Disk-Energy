@@ -2,19 +2,17 @@
   <table>
     <thead>
       <tr>
-        <th>SCORES</th>
+        <th> <td>{{$route.params.id}}</td></th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="scores in score" :key="scores.leagueName" v-on:click="getAllScoresByLeagueName(scores.leagueName)">
-        <td>{{ score.leagueName }}</td>
-        <td>{{ score.username }}</td>
-        <td>{{ score.scoreTotal }}</td>
-        </tr>
-        </tbody>
-        <p>hello</p>
-      
-    </thead>
+      <tr v-for="scores in score" v-bind:key="scores.username">
+       
+        <td>{{ scores.username }}</td>
+        <td>{{ scores.scoreTotal }}</td>
+      </tr>
+    </tbody>
+    <p>hello</p>
   </table>
 </template>
 
@@ -26,24 +24,19 @@ export default {
 
   data() {
     return {
-      score: {
-        leagueName: "",
-        username: "",
-        scoreTotal: 0,
-      },
+      score: [],
     };
   },
   created() {
-    scoreService
-      .getAllScoresByLeagueName(this.$route.params.leagueName)
-      .then((response) => {
-        this.$store.commit("GET_LEAGUE_SCORES", response.data);
-      });
+    scoreService.list(this.$route.params.id).then((response) => {
+      this.score = response.data;
+      console.log(response.data);
+    });
   },
-  methods: {
-    getAllScoresByLeagueName(leagueName) {
-      this.$router.push(`/leaderboard/${leagueName}`);
-    },
-  },
+  // methods: {
+  //   getAllScoresByLeagueName(leagueName) {
+  //     this.$router.push(`/leaderboard/${leagueName}`);
+  //   },
+  // },
 };
 </script>
