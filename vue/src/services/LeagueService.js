@@ -10,7 +10,7 @@ export default {
         return axios.post('/league', league)
     },
 
-    viewTeeTimesByLeagueName(leagueName) {
+    viewTeeTimesByLeagueName(principal, leagueName) {
         return axios.get(`/tee-times/${leagueName}`)
     },
 
