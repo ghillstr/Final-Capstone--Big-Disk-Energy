@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <vue-confirm-dialog></vue-confirm-dialog>
     <nav
       class="navbar sticky-top navbar-expand-sm bg-dark justify-content-center"
     >
@@ -11,9 +10,6 @@
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
       >&nbsp;|&nbsp;
-      <span v-on:click="handleClick"> OFFICAL DISC GOLF RULES</span
-      >&nbsp;|&nbsp;
-
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
@@ -36,30 +32,8 @@
 <script>
 import Footer from "./components/Footer.vue";
 export default {
-  name: "app",
-
   components: {
     Footer,
-  },
-  methods: {
-    handleClick() {
-      this.$confirm({
-        message: `Would you like to be redirected to PDGA?`,
-        button: {
-          no: "No",
-          yes: "Yes",
-        },
-        /**
-         * Callback Function
-         * @param {Boolean} confirm
-         */
-        callback: (confirm) => {
-          if (confirm == true) {
-            location = "https://www.pdga.com/rules";
-          }
-        },
-      });
-    },
   },
 };
 </script>
@@ -67,8 +41,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 #app {
-  color: black;
-
+  color: white;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: rgb(106, 153, 78);
   background: linear-gradient(
     180deg,
@@ -81,8 +57,7 @@ export default {
   height: 100vh;
 }
 
-nav a,
-span {
+nav a {
   color: white;
   text-decoration: underline;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -97,10 +72,6 @@ nav a.router-link-exact-active {
 }
 nav a:hover {
   color: #bc4749;
-}
-span:hover {
-  color: #bc4749;
-  cursor: pointer;
 }
 h1 {
   font-family: "Permanent Marker", cursive;
