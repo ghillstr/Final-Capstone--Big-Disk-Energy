@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default {
 
-    viewLeaguesByUsername(username) {
-        return axios.get(`/league/${username}`)
+    viewLeaguesByUsername(principal) {
+        return axios.get(`/league/${principal}`)
     },
 
     createLeague(league) {
