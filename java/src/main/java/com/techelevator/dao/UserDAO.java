@@ -18,4 +18,6 @@ public interface UserDAO {
     boolean create(String username, String password, String role);
 
 	void updateRoleWhenLeagueIsCreated(Principal principal);
+
+	List<User> getUserByLeague(String leagueName);
 }
