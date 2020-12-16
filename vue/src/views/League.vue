@@ -23,6 +23,7 @@
         </router-link>
       </div>
       <!-- <button class="button" @click="navigate">LEADERBOARD</button> -->
+      <button class="button" @click="scoresNav">RECORD SCORE</button>
     </div>
   </div>
 </template>
