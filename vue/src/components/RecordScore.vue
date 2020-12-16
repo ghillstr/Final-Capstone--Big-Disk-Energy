@@ -1,42 +1,41 @@
 <template>
   <div>
-    <div>
-      <select name="recordscore" text="Select a Player">
-        <option v-for="post in post" v-bind:key="post.username">
-          {{ post.username }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <form>
-        <input type="number" placeholder="Enter a score" />
-      </form>
-    </div>
-    <div>
-      <button class="button" type="submit" @click="recordScore">
-        SUBMIT SCORE
-      </button>
-    </div>
-  </div>
+            <form name="RecordScore">
+        <div>
+            <select text="Select a Player" v-model="score.username">
+            <option v-for="post in posts" v-bind:key="post.username" >{{ post.username }}</option>
+            </select>
+        </div>
+        <div>
+             
+                <input v-model="score.scoreTotal" value= 0 type="number" placeholder="Enter a score">
+        </div>
+        <div>
+            <!-- <router-link to:="{ name: 'score', params: { leagues.league: this.$store.state.user.username }}">SUBMIT SCORE</router-link> -->
+            <button class="button" type="submit" v-on:click.prevent="recordScore(), resetForm()">SUBMIT SCORE</button>
+        </div>
+            </form>
+   </div>     
 </template>
 
 <script>
 import scoreService from "../services/ScoreService";
 export default {
-  name: "recordscore",
-  data() {
-    return {
-      post: [],
-      score: {
-        leagueName: this.$store.state.league.leagueName,
-        username: "",
-        scoreTotal: 0,
-      },
-    };
-  },
-  created() {
-    scoreService.getUserByLeague(this.$route.params.user).then((response) => {
-      this.post = response.data;
+    name: "RecordScore",
+    data() {
+        return {
+            posts: [],
+            score: {
+                leagueName: "",
+                username: "",
+                scoreTotal: 0,
+
+            }
+        };
+    },
+    created() {
+        scoreService.getUserByLeague(this.$route.params.leagueName).then((response) => {
+      this.posts = response.data;
       console.log(response.data);
     });
   },
@@ -47,7 +46,6 @@ export default {
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_SCORES", response.data.score);
-            this.$router.push("/score");
           }
         })
         .catch((error) => {
@@ -58,6 +56,9 @@ export default {
         });
     },
   },
+  resetForm() {
+      this.score.scoreTotal = 0;
+    },
 };
 </script>
 
