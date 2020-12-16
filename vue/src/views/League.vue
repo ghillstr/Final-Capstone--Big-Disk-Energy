@@ -21,10 +21,9 @@
         >
           <button class="button">{{ leagues.leagueName }}</button>
         </router-link>
-          <button class="button" @click="scoresNav">RECORD SCORE</button>
       </div>
-      <!-- <button class="button" @click="navigate">LEADERBOARD</button> -->
       <button class="button" @click="scoresNav">RECORD SCORE</button>
+      <!-- <button class="button" @click="navigate">LEADERBOARD</button> -->
     </div>
   </div>
 </template>
@@ -55,8 +54,8 @@ export default {
     //   this.$router.push({ name: "leaderboard", params: { id: "hi" } });
     // },
     scoresNav() {
-      this.$router.push({ name: "score", params: {leagueName: "DA BUS"}});
-    }
+      this.$router.push({ name: "score", params: { leagueName: "DA BUS" } });
+    },
   },
 };
 </script>

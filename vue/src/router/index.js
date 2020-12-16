@@ -91,11 +91,7 @@ const router = new Router({
       }
     },
     {
-<<<<<<< HEAD
-      path: "/league/:id/score",
-=======
       path: "/score/:leagueName",
->>>>>>> 300217f54cbd13579a32c5ff7cb444c75c3db1c4
       name: "score",
       component: RecordScore,
       meta: {
