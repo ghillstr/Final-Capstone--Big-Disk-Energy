@@ -86,4 +86,6 @@ public class LeagueController {
 	public List<League> viewTeeTimesByUsername(String username) {
 		return leagueDAO.viewTeeTimesByUsername(username);
 	}
+	
+	
 }

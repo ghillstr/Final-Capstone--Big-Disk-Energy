@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.UserDAO;
+import com.techelevator.model.League;
 import com.techelevator.model.LoginDTO;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
@@ -67,9 +68,10 @@ public class AuthenticationController {
     }
     @ResponseStatus(HttpStatus.OK)
 	@RequestMapping( value = "/leagueUsers/{leagueName}", method = RequestMethod.GET )
-	public List<User> getUserByLeague(@PathVariable String leagueName) {
-		return userDAO.getUserByLeague(leagueName);
+	public List<User> getUserByLeague(@PathVariable String username) {
+		return userDAO.getUserByLeague(username);
 	}
+   
 
     /**
      * Object to return as body in JWT Authentication.
