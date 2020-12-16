@@ -1,9 +1,7 @@
 <template>
   <div class="league">
     <h1>League Info</h1>
-    <div>
-      <create-league />
-    </div>
+
     <div class="leaderboards-sec">
       <h2>Your League Leaderboards</h2>
       <div
@@ -29,7 +27,6 @@
 </template>
 
 <script>
-import CreateLeague from "../components/CreateLeague.vue";
 import leagueService from "../services/LeagueService";
 export default {
   name: "league",
@@ -38,9 +35,7 @@ export default {
       league: [],
     };
   },
-  components: {
-    CreateLeague,
-  },
+
   created() {
     leagueService
       .viewLeaguesByUsername(this.$store.state.user.username)

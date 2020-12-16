@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.dao.LeagueDAO;
 import com.techelevator.dao.UserDAO;
 import com.techelevator.model.League;
+import com.techelevator.model.User;
 
 @CrossOrigin
 @RestController
@@ -89,5 +90,14 @@ public class LeagueController {
 		return leagueDAO.viewTeeTimesByLeagueName(leagueName);
 	}
 	
+<<<<<<< HEAD
 
+=======
+	 @ResponseStatus(HttpStatus.OK)
+	    @RequestMapping(value = "/getAllLeagues", method = RequestMethod.GET)
+	    public List<League> getAllLeagues() {
+	    	return leagueDAO.getAllLeagues();
+	    }
+	
+>>>>>>> c4e20d8ac8faec02e511fcc7a8cd3db7a43268da
 }
