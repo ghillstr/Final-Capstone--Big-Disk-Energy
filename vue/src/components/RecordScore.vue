@@ -1,25 +1,27 @@
 <template>
   <div>
+            <form name="RecordScore">
         <div>
-            <select  name="recordscore" text="Select a Player">
+            <select text="Select a Player">
             <option v-for="post in post" v-bind:key="post.username" >{{ post.username }}</option>
             </select>
         </div>
         <div>
-            <form> 
-                <input type="text" placeholder="Enter a score">
-            </form>
+             
+                <input v-bind:key="score.scoreTotal" type="number" placeholder="Enter a score">
         </div>
         <div>
-            <button class="button" type="submit" @click="recordScore">SUBMIT SCORE</button>
+            <!-- <router-link to:="{ name: 'score', params: { leagues.league: this.$store.state.user.username }}">SUBMIT SCORE</router-link> -->
+            <button class="button" type="submit" v-on:click.prevent="recordScore()">SUBMIT SCORE</button>
         </div>
+            </form>
    </div>     
 </template>
 
 <script>
 import scoreService from "../services/ScoreService";
 export default {
-    name: "recordscore",
+    name: "RecordScore",
     data() {
         return {
             post: [],
@@ -32,7 +34,7 @@ export default {
         };
     },
     created() {
-        scoreService.getUserByLeague(this.$route.params.user).then((response) => {
+        scoreService.getUserByLeague(this.$route.params.league).then((response) => {
       this.post = response.data;
       console.log(response.data);
         });

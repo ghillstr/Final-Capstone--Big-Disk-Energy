@@ -23,7 +23,7 @@ export default {
       this.$router.push({ name: "leaderboard", params: { id: "DA BUS" } });
     },
     scoresNav() {
-      this.$router.push({ name: "score", params: {user: "DA BUS"}});
+      this.$router.push({ name: "score", params: {league: "DA BUS"}});
     }
   },
 };

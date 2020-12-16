@@ -17,13 +17,14 @@ public class Score {
 	public Score(String username, int scoreTotal, String leagueName) {
 		this.username = username;
 		this.scoreTotal = scoreTotal;
+		this.leagueName = leagueName;
 	}
 	
-	public Score(String username, String leagueName, int scoreTotal) {
-		this.username = username;
+//	public Score(String username, String leagueName, int scoreTotal) {
+//		this.username = username;
 //		this.leagueName = leagueName;
-		this.scoreTotal = scoreTotal;
-	}
+//		this.scoreTotal = scoreTotal;
+//	}
 	
 	public String getUsername() {
 		return username;
