@@ -173,7 +173,20 @@ public class LeagueSqlDAO implements LeagueDAO {
 		return userIdForTeeTime;
 	}
 	
-	
+	@Override
+    public List<League> getAllLeagues() {
+        List<League> leagues = new ArrayList<>();
+        String sql = "select league_name from leagues";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()) {
+             League league = new League();
+             league.setLeagueName(results.getString("league_name"));
+            leagues.add(league);
+        }
+
+        return leagues;
+	}
 	
 	private League mapRowToLeague(SqlRowSet rowSet) {
 		

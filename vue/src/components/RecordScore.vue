@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>Record Scores for a League</h3>
     <div>
       <select name="recordscore" text="Select a Player">
         <option v-for="post in post" v-bind:key="post.username">
@@ -13,7 +14,7 @@
       </form>
     </div>
     <div>
-      <button class="button" type="submit" @click="recordScore">
+      <button class="button" type="submit" @click="recordScore(), resetForm()">
         SUBMIT SCORE
       </button>
     </div>
@@ -28,7 +29,7 @@ export default {
     return {
       post: [],
       score: {
-        leagueName: this.$store.state.league.leagueName,
+        leagueName: "this.$store.state.league.leagueName",
         username: "",
         scoreTotal: 0,
       },
@@ -56,6 +57,9 @@ export default {
             this.invalidEntry = true;
           }
         });
+    },
+    resetForm() {
+      this.score.scoreTotal = 0;
     },
   },
 };
