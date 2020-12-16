@@ -9,7 +9,7 @@
     </div>
     <div>
       <form>
-        <input type="text" placeholder="Enter a score" />
+        <input type="number" placeholder="Enter a score" />
       </form>
     </div>
     <div>

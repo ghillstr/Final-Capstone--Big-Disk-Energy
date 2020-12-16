@@ -20,11 +20,11 @@ export default {
   },
   methods: {
     navigate() {
-      this.$router.push({ name: "leaderboard", params: { id: "DA BUS" } });
+      this.$router.push({ name: "leaderboard", params: { id: "hi" } });
     },
     scoresNav() {
-      this.$router.push({ name: "score", params: {user: "DA BUS"}});
-    }
+      this.$router.push({ name: "score", params: { user: "hi" } });
+    },
   },
 };
 </script>
