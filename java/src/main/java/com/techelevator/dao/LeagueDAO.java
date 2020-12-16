@@ -15,11 +15,11 @@ public interface LeagueDAO {
 	 
 	 void invitePlayers(League invite);
 	 
-	 public List<League> getPendingInvitesbyUsername(String username);
+	 public List<League> getPendingInvitesbyUsername(Principal principal);
 	 
 	 public void setTeeTime(League teeTime);
 	 
-	 List<League> viewTeeTimesByUsername(String username);
+	 List<League> viewTeeTimesByUsername(Principal principal);
 
 	void createLeague(League league);
 
@@ -33,8 +33,6 @@ public interface LeagueDAO {
 
 	int findIdByUsernameInLeague(League teeTime);
 
-
-	
 	
 	
 

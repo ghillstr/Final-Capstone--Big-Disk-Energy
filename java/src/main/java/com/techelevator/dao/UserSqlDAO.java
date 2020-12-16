@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,12 +86,13 @@ public class UserSqlDAO implements UserDAO {
 
         return userCreated;
     }
+    
 	@Override
-	public void updateRoleWhenLeagueIsCreated(String username) {
+	public void updateRoleWhenLeagueIsCreated(Principal principal) {
 		// TODO Auto-generated method stub //put
-		String updateRoleSql = "UPDATE users SET role = LEAGUE_ADMIN";
+		String updateRoleSql = "UPDATE users SET role = 'LEAGUE_ADMIN' WHERE username = ?";
 		
-		jdbcTemplate.update(updateRoleSql);
+		jdbcTemplate.update(updateRoleSql, principal);
 		
 	}
 	@Override
