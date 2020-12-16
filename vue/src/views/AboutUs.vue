@@ -5,15 +5,18 @@
 
     <jacob />
     <tom />
+    <the-bus />
   </div>
 </template>
 
 <script>
+import TheBus from "@/components/TheBus.vue";
 import Jacob from "@/components/Jacob.vue";
 import Tom from "@/components/Tom.vue";
 export default {
   name: "about-us",
   components: {
+    TheBus,
     Jacob,
     Tom,
   },
