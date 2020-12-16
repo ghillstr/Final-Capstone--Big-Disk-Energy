@@ -139,13 +139,13 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	//WORKING
 	@Override
-	public List<League> viewTeeTimesByLeagueName(String leagueName) {
+	public List<League> viewTeeTimesByLeagueName(Principal principal, String leagueName) {
 	
 		List<League> teeTimes = new ArrayList<>();
 		
 		String sql = "SELECT tee_date, start_time FROM tee_time WHERE league_name = ?";
 		
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, leagueName);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, principal.getName(), leagueName);
 		
 		while (result.next()) {
 			League theTeeTime = new League();
