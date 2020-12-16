@@ -20,7 +20,7 @@
           <button class="button">{{ leagues.leagueName }}</button>
         </router-link>
       </div>
-      <button class="button" @click="scoresNav">RECORD SCORE</button>
+
       <!-- <button class="button" @click="navigate">LEADERBOARD</button> -->
     </div>
   </div>

@@ -139,7 +139,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	//WORKING
 	@Override
-	public List<League> viewTeeTimesByLeagueName(String leagueName) {
+	public List<League> viewTeeTimesByLeagueName(Principal principal, String leagueName) {
 	
 		List<League> teeTimes = new ArrayList<>();
 		

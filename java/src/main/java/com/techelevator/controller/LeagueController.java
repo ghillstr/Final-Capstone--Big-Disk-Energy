@@ -87,17 +87,15 @@ public class LeagueController {
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping( value = "/tee-times/{leagueName}", method = RequestMethod.GET)
 	public List<League> viewTeeTimesByLeagueName(@PathVariable String leagueName) {
-		return leagueDAO.viewTeeTimesByLeagueName(leagueName);
+		return leagueDAO.viewTeeTimesByLeagueName( null, leagueName);
 	}
 	
-<<<<<<< HEAD
 
-=======
 	 @ResponseStatus(HttpStatus.OK)
 	    @RequestMapping(value = "/getAllLeagues", method = RequestMethod.GET)
 	    public List<League> getAllLeagues() {
 	    	return leagueDAO.getAllLeagues();
-	    }
-	
->>>>>>> c4e20d8ac8faec02e511fcc7a8cd3db7a43268da
+	   }
 }
+	
+
