@@ -68,10 +68,10 @@ public class AuthenticationController {
     }
     @ResponseStatus(HttpStatus.OK)
 	@RequestMapping( value = "/leagueUsers/{leagueName}", method = RequestMethod.GET )
-	public List<User> getUserByLeague(@PathVariable String username) {
-		return userDAO.getUserByLeague(username);
+	public List<User> getUserByLeague(@PathVariable String leagueName) {
+		return userDAO.getUserByLeague(leagueName);
 	}
-   
+     
 
     /**
      * Object to return as body in JWT Authentication.

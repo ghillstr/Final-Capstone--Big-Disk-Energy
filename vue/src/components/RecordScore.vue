@@ -3,16 +3,16 @@
             <form name="RecordScore">
         <div>
             <select text="Select a Player" v-model="score.username">
-            <option v-for="post in post" v-bind:key="post.username" >{{ post.username }}</option>
+            <option v-for="post in posts" v-bind:key="post.username" >{{ post.username }}</option>
             </select>
         </div>
         <div>
              
-                <input v-model="score.scoreTotal" type="number" placeholder="Enter a score">
+                <input v-model="score.scoreTotal" value= 0 type="number" placeholder="Enter a score">
         </div>
         <div>
             <!-- <router-link to:="{ name: 'score', params: { leagues.league: this.$store.state.user.username }}">SUBMIT SCORE</router-link> -->
-            <button class="button" type="submit" v-on:click.prevent="recordScore()">SUBMIT SCORE</button>
+            <button class="button" type="submit" v-on:click.prevent="recordScore(), resetForm()">SUBMIT SCORE</button>
         </div>
             </form>
    </div>     
@@ -24,9 +24,9 @@ export default {
     name: "RecordScore",
     data() {
         return {
-            post: [],
+            posts: [],
             score: {
-                leagueName: this.$store.state.league.leagueName,
+                leagueName: "",
                 username: "",
                 scoreTotal: 0,
 
@@ -34,8 +34,8 @@ export default {
         };
     },
     created() {
-        scoreService.getUserByLeague(this.$route.params.league).then((response) => {
-      this.post = response.data;
+        scoreService.getUserByLeague(this.$route.params.leagueName).then((response) => {
+      this.posts = response.data;
       console.log(response.data);
     });
   },
@@ -46,7 +46,6 @@ export default {
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_SCORES", response.data.score);
-            this.$router.push("/score");
           }
         })
         .catch((error) => {
@@ -57,6 +56,9 @@ export default {
         });
     },
   },
+  resetForm() {
+      this.score.scoreTotal = 0;
+    },
 };
 </script>
 

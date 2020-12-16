@@ -6,7 +6,7 @@ public class Score {
 	
 
 	private String username;
-	@NotNull(message = "The field `transfer type id` should not be blank.")
+	//@NotNull(message = "The field `transfer type id` should not be blank.")
 	private String leagueName;
 	private int scoreTotal;
 	
