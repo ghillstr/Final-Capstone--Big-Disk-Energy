@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <vue-confirm-dialog></vue-confirm-dialog>
     <nav
       class="navbar sticky-top navbar-expand-sm bg-dark justify-content-center"
     >
@@ -11,6 +12,8 @@
       <router-link v-bind:to="{ name: 'leagueadmin' }">ADMIN</router-link
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
+      >&nbsp;|&nbsp;
+      <span v-on:click="handleClick"> OFFICAL DISC GOLF RULES</span
       >&nbsp;|&nbsp;
       <router-link
         v-bind:to="{ name: 'logout' }"
@@ -37,6 +40,26 @@ export default {
   components: {
     Footer,
   },
+  methods: {
+    handleClick() {
+      this.$confirm({
+        message: `Would you like to be redirected to PDGA?`,
+        button: {
+          no: "No",
+          yes: "Yes",
+        },
+        /**
+         * Callback Function
+         * @param {Boolean} confirm
+         */
+        callback: (confirm) => {
+          if (confirm == true) {
+            location = "https://www.pdga.com/rules";
+          }
+        },
+      });
+    },
+  },
 };
 </script>
 <style>
@@ -59,7 +82,8 @@ export default {
   height: 100%;
 }
 
-nav a {
+nav a,
+span {
   color: white;
   text-decoration: underline;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -74,6 +98,10 @@ nav a.router-link-exact-active {
 }
 nav a:hover {
   color: #bc4749;
+}
+span:hover {
+  color: #bc4749;
+  cursor: pointer;
 }
 h1 {
   font-family: "Permanent Marker", cursive;

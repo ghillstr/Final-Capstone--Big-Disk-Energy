@@ -90,10 +90,12 @@ public class LeagueController {
 		return leagueDAO.viewTeeTimesByLeagueName(principal, leagueName);
 	}
 	
+
 	 @ResponseStatus(HttpStatus.OK)
 	    @RequestMapping(value = "/getAllLeagues", method = RequestMethod.GET)
 	    public List<League> getAllLeagues() {
 	    	return leagueDAO.getAllLeagues();
-	    }
-	
+	   }
 }
+	
+

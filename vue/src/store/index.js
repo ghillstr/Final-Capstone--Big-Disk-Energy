@@ -24,7 +24,7 @@ export default new Vuex.Store({
     league: {},
     leaderboard: {},
     score: {},
-    post: {},
+    posts: {},
 
   },
 
