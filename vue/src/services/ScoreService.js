@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default {
 
-    recordScore() {
-        return axios.post('/score')
+    recordScore(score) {
+        return axios.post('/score', score)
     },
 
     list(leagueName) {

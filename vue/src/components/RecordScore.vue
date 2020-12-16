@@ -2,13 +2,13 @@
   <div>
             <form name="RecordScore">
         <div>
-            <select text="Select a Player">
+            <select text="Select a Player" v-model="score.username">
             <option v-for="post in post" v-bind:key="post.username" >{{ post.username }}</option>
             </select>
         </div>
         <div>
              
-                <input v-bind:key="score.scoreTotal" type="number" placeholder="Enter a score">
+                <input v-model="score.scoreTotal" type="number" placeholder="Enter a score">
         </div>
         <div>
             <!-- <router-link to:="{ name: 'score', params: { leagues.league: this.$store.state.user.username }}">SUBMIT SCORE</router-link> -->
