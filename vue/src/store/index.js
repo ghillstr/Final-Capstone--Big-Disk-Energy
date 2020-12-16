@@ -57,6 +57,10 @@ export default new Vuex.Store({
     SET_SCORES(state, score) {
       state.score = {};
       localStorage.setItem('score', JSON.stringify(score));
+    },
+    SEND_INVITE(state, invite) {
+      state.invite = {};
+      localStorage.setItem('invite', JSON.stringify(invite));
     }
   }
 })

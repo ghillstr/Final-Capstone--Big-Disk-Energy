@@ -143,7 +143,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 		List<League> teeTimes = new ArrayList<>();
 		
-		String sql = "SELECT tee_date, start_time FROM tee_time WHERE league_name = ?";
+		String sql = "SELECT tee_date, start_time FROM tee_time WHERE username = ? AND league_name = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, principal.getName(), leagueName);
 		
