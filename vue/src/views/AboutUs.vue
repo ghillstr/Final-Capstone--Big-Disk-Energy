@@ -23,5 +23,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.about {
+  color: #386641;
+}
 </style>
