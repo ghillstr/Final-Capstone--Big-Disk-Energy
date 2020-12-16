@@ -33,8 +33,11 @@ export default {
     //PATH WILL CHANGE, OBVS
     viewTeeTimesByUsername(username) {
         return axios.get('/h', username)
-    }
+    },
 
+    getAllLeagues() {
+        return axios.get('/getAllLeagues')
+    }
 
 
 }

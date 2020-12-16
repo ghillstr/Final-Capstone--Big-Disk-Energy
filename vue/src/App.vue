@@ -8,6 +8,8 @@
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'league' }">LEAGUES</router-link
       >&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'leagueadmin' }">ADMIN</router-link
+      >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
       >&nbsp;|&nbsp;
       <router-link

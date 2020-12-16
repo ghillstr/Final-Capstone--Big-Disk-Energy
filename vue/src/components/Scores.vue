@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="league-name">{{ $route.params.id }}</h1>
     <table>
       <thead>
         <th>USERNAME</th>

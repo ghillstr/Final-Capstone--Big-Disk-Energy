@@ -70,6 +70,12 @@ public class AuthenticationController {
 	public List<User> getUserByLeague(@PathVariable String leagueName) {
 		return userDAO.getUserByLeague(leagueName);
 	}
+    
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/findAllUsers", method = RequestMethod.GET)
+    public List<User> findAll() {
+    	return userDAO.findAll();
+    }
 
     /**
      * Object to return as body in JWT Authentication.
