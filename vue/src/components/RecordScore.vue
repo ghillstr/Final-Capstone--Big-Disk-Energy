@@ -3,8 +3,8 @@
     <h3>Record Scores for a League</h3>
     <div>
       <select name="recordscore" text="Select a Player">
-        <option v-for="post in post" v-bind:key="post.username">
-          {{ post.username }}
+        <option v-for="posts in post" v-bind:key="posts.username">
+          {{ posts.username }}
         </option>
       </select>
     </div>
