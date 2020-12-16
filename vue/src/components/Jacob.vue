@@ -8,7 +8,7 @@
     />
     <div id="jacob-div" class="media-body align-self-center mr-3">
       <p>
-        Jacob is the product owner of ©Big Disc Energy! He was involuntarily
+        Jacob is the product owner of ©BigDiscEnergy! He was involuntarily
         chosen as our product owner and we strong-armed him into letting us
         choose disc golf.
       </p>
@@ -26,10 +26,10 @@ export default {
   width: 150px;
 }
 #jacob-div {
-  background: #f2e8cf;
+  background: white;
   outline: 2px;
   outline-style: ridge;
   outline-color: #386641;
-  padding: 3px;
+  padding: 5px 0px 5px 0px;
 }
 </style>

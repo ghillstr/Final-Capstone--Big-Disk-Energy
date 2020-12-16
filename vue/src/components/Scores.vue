@@ -1,19 +1,22 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th> <td>{{$route.params.id}}</td></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="scores in score" v-bind:key="scores.username">
-       
-        <td>{{ scores.username }}</td>
-        <td>{{ scores.scoreTotal }}</td>
-      </tr>
-    </tbody>
-    
-  </table>
+  <div>
+    <h1 class="league-name">{{ $route.params.id }}</h1>
+    <table>
+      <thead>
+        <th>USERNAME</th>
+        <th>TOTAL SCORE</th>
+      </thead>
+      <tbody class="leaderboard-table">
+        <tr v-for="scores in score" v-bind:key="scores.username">
+          <td class="score-user">{{ scores.username }}</td>
+          <td class="score-total">{{ scores.scoreTotal }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="button" @click="$router.push('/league')">
+      BACK TO LEAGUES
+    </button>
+  </div>
 </template>
 
  <script>
@@ -40,3 +43,30 @@ export default {
   // },
 };
 </script>
+<style scoped>
+th {
+  background: #a7c957;
+}
+table,
+th,
+td {
+  border: solid 2px black;
+  width: 300px;
+  padding: 5px 5px 5px 5px;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #386641;
+}
+.leaderboard-table {
+  border: solid 2px black;
+  font-size: 20px;
+  background: white;
+}
+.score-user {
+  text-align: left;
+}
+.score-total {
+  text-align: right;
+}
+</style>

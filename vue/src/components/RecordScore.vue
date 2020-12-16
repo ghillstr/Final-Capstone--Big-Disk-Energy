@@ -37,9 +37,9 @@ export default {
         scoreService.getUserByLeague(this.$route.params.league).then((response) => {
       this.post = response.data;
       console.log(response.data);
-        });
-    },
-    methods: {
+    });
+  },
+  methods: {
     recordScore() {
       scoreService
         .recordScore(this.score)
@@ -55,11 +55,10 @@ export default {
             this.invalidEntry = true;
           }
         });
-    }
-    }
-}
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

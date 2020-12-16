@@ -25,7 +25,7 @@ export default {
   width: 150px;
 }
 #tom-div {
-  background: #f2e8cf;
+  background: white;
   outline: 2px;
   outline-style: ridge;
   outline-color: #386641;
