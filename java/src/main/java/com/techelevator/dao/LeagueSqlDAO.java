@@ -101,7 +101,6 @@ public class LeagueSqlDAO implements LeagueDAO {
 
 			String sql = "UPDATE invite SET status_id = 2 WHERE username = ? AND league_name = ?";
 
-			
 			jdbcTemplate.update(sql, principal.getName(), invite.getLeagueName());
 			
 			String sql2 = "INSERT INTO users_leagues (user_id, league_id) VALUES (?, ?)";
@@ -212,5 +211,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 		 			
 		return userIdForTeeTime;
 	}
+	
+//	public String findCourseNameByLeagueName(League invite) {
+//		return jdbcTemplate.queryForObject("select course_name from leagues where league_name = ?", String.class, invite);
+//	}
 
 }
