@@ -36,7 +36,6 @@
         <div class="time-date-form">
           <label for="datepicker">SELECT A DATE TO PLAY</label>
           <b-form-datepicker
-            type="date"
             id="example-datepicker"
             v-model="teetime.date"
             class="mb-2"
@@ -88,7 +87,7 @@ export default {
       LeagueService.setTeeTime(this.teetime)
         .then((response) => {
           if (response.status == 201) {
-            this.$store.commit("SET_TEE_TIME", response.data.teetime);
+            this.$store.commit("SET_TIME", response.data.teetime);
             // this.resetForm();
           }
         })

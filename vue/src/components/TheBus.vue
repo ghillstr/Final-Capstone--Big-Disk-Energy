@@ -1,45 +1,29 @@
 <template>
-  <div>
-    <h2>The Developer Team</h2>
-    <div class="d-flex justify-content-around">
-      <div class="picture-name">
-        <img class="align-self-center mr-3" src="@/assets/Bob.png" id="bob" />
+  <div class="container">
+    <h2>The Developers</h2>
+    <div id="bios" class="row">
+      <div class="col">
+        <img src="@/assets/Bob.png" id="bob" />
         <h4>Bob</h4>
       </div>
-      <div class="picture-name">
-        <img
-          class="align-self-center mr-3"
-          src="@/assets/George.png"
-          id="george"
-        />
+      <div class="col">
+        <img src="@/assets/George.png" id="george" />
         <h4>George</h4>
       </div>
-      <div class="picture-name">
-        <img
-          class="align-self-center mr-3"
-          src="@/assets/Kelsey.png"
-          id="kelsey"
-        />
+      <div class="col">
+        <img src="@/assets/Kelsey.png" id="kelsey" />
         <h4>Kelsey</h4>
       </div>
-      <div class="picture-name">
-        <img
-          class="align-self-center mr-3"
-          src="@/assets/Shane.png"
-          id="shane"
-        />
+      <div class="col">
+        <img src="@/assets/Shane.png" id="shane" />
         <h4>Shane</h4>
       </div>
-      <div class="picture-name">
-        <img
-          class="align-self-center mr-3"
-          src="@/assets/Becky.png"
-          id="becky"
-        />
+      <div class="col">
+        <img src="@/assets/Becky.png" id="becky" />
         <h4>Becky</h4>
       </div>
     </div>
-    <div id="bus-div" class="media-body">
+    <div id="bus-div" class="col">
       <p>
         BUS FOR LIFE BABYYYYYYYYYY
         hjdskhfjkdshfjdshfdhsjfhdsjfdlfhdsjhfdshfjdshajfdsf shfj
@@ -57,7 +41,6 @@ export default {
   name: "TheBus",
 };
 </script>
-
 
 <style scoped>
 #bob {
@@ -91,16 +74,16 @@ export default {
   justify-content: space-between;
 }
 #bus-div {
-  display: block;
   background: white;
   outline: 2px;
   outline-style: ridge;
   outline-color: #386641;
-  padding: 3px;
+  padding: 3px 3px 3px 3px;
   margin-top: 15px;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-bottom: 20px;
 }
 
 h2 {
@@ -116,9 +99,5 @@ h4 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 10px;
-}
-
-.picture-name {
-  display: block;
 }
 </style>
