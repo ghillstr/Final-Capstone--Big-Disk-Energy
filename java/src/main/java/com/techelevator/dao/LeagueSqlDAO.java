@@ -61,15 +61,24 @@ public class LeagueSqlDAO implements LeagueDAO {
 
 
 	//WORKING
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void invitePlayers(League invite) {
 		
+		List<User> usersInLeague = dao.getUserByLeague(invite.getLeagueName());
+		
+		for (User user : usersInLeague) {
+			if (invite.getUsername().equals(user.getUsername())) {
+				break;
+			
+			} else {
+				
 		String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 1, ?, ?, ?, ?)"; 
 		
-
 		jdbcTemplate.update(sql, findLeagueIdByLeagueName(invite.getLeagueName()), invite.getLeagueName(), findIdByUsernameInLeague(invite), invite.getUsername());
-
-		
+				break;
+			}
+		} 
 	}
 
 	//WORKING
