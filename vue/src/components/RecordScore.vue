@@ -1,41 +1,47 @@
 <template>
   <div>
-    <h3>Record Scores for a League</h3>
-    <div>
-      <select
-        @change="inputLeagueUser"
-        v-model="score.leagueName"
-        name="recordscore"
-        text="Select a League"
-      >
-        <option v-for="league in leagues" v-bind:key="league.username">
-          {{ league.leagueName }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <select
-        v-model="score.username"
-        name="recordscore"
-        text="Select a Player"
-      >
-        <option v-for="posts in post" v-bind:key="posts.username">
-          {{ posts.username }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <form>
-        <input
+    <h4>RECORD SCORES FOR A LEAGUE</h4>
+    <b-button class="button" v-b-toggle.record-collapse>RECORD</b-button>
+    <b-collapse id="record-collapse">
+      <div>
+        <b-form-select
+          @change="inputLeagueUser"
+          v-model="score.leagueName"
+          name="recordscore"
+          text="Select a League"
+          ><option value="" disabled selected hidden>SELECT A LEAGUE</option>
+          <option v-for="league in leagues" v-bind:key="league.username">
+            {{ league.leagueName }}
+          </option>
+        </b-form-select>
+      </div>
+      <div>
+        <b-form-select
+          v-model="score.username"
+          name="recordscore"
+          text="Select a Player"
+        >
+          <option value="" disabled selected hidden>SELECT A PLAYER</option>
+          <option v-for="posts in post" v-bind:key="posts.username">
+            {{ posts.username }}
+          </option>
+        </b-form-select>
+      </div>
+
+      <div>
+        <b-form-input
           v-model="score.scoreTotal"
-          type="text"
+          type="number"
           placeholder="Enter a score"
-        />
-      </form>
-    </div>
-    <div>
-      <button class="button" @click="recordScore">SUBMIT SCORE</button>
-    </div>
+        >
+        </b-form-input>
+      </div>
+      <div>
+        <button class="button" type="submit" @click="recordScore()">
+          SUBMIT SCORE
+        </button>
+      </div>
+    </b-collapse>
   </div>
 </template>
 <script>
@@ -53,6 +59,7 @@ export default {
         username: "",
         scoreTotal: "",
       },
+      showRecordScoreForm: false,
     };
   },
   created() {
@@ -85,11 +92,15 @@ export default {
           }
         });
     },
+    showHideForm() {
+      this.showRecordScoreForm = true;
+    },
     resetForm() {
       this.score.scoreTotal = "";
     },
   },
 };
 </script>
-<style>
+
+<style scoped>
 </style>

@@ -4,35 +4,34 @@
 
     <!-- <form v-on:submit.prevent v-show="showTheCreateForm === true"> -->
 
-    <h3>INVITE PLAYERS TO JOIN A LEAGUE</h3>
+    <h4>INVITE PLAYERS TO JOIN A LEAGUE</h4>
     <div>
-      <div class="form-element">
-        <label for="sendUsername">Username:</label>
-        <select v-model="invite.username" text="Select a User">
-          <option value="" disabled selected hidden>
-            Please Choose Player
-          </option>
-          <option v-for="users in user" v-bind:key="users.username">
-            {{ users.username }}
-          </option>
-        </select>
-      </div>
-      <div class="form-element">
-        <label for="sendLeague">League Name:</label>
-        <select v-model="invite.leagueName">
-          <option value="" disabled selected hidden>
-            Please Choose League
-          </option>
-          <option v-for="league in leagues" v-bind:key="league.leagueName">
-            {{ league.leagueName }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <button class="button" type="submit" @click="sendInvite(), submitForm">
-          INVITE PLAYER
-        </button>
-      </div>
+      <b-button class="button" v-b-toggle.invite-collapse>
+        INVITE PLAYER
+      </b-button>
+      <b-collapse id="invite-collapse">
+        <div>
+          <b-form-select v-model="invite.username">
+            <option value="" disabled selected hidden>SELECT A PLAYER</option>
+            <option v-for="users in user" v-bind:key="users.username">
+              {{ users.username }}
+            </option>
+          </b-form-select>
+        </div>
+        <div class="form-element">
+          <b-form-select v-model="invite.leagueName">
+            <option value="" disabled selected hidden>SELECT A LEAGUE</option>
+            <option v-for="league in leagues" v-bind:key="league.leagueName">
+              {{ league.leagueName }}
+            </option>
+          </b-form-select>
+        </div>
+        <div>
+          <button class="button" type="submit" @click="sendInvite()">
+            SUBMIT INVITE
+          </button>
+        </div>
+      </b-collapse>
     </div>
   </div>
 </template>
@@ -63,18 +62,9 @@ export default {
 
   methods: {
     sendInvite() {
-      LeagueService.invitePlayers(this.invite)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$store.commit("SEND_INVITE", response.data.invite);
-          }
-        })
-        .catch((error) => {
-          const response = error.response;
-          if (response.status === 400) {
-            this.invalidEntry = true;
-          }
-        });
+      LeagueService.invitePlayers(this.invite).then((response) => {
+        this.$store.commit("SEND_INVITE", response.data.invite);
+      });
     },
   },
 };
