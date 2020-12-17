@@ -34,7 +34,7 @@ public class ScoreSqlDAO implements ScoreDAO {
 	@Override
 	public List<Score> getAllScoresByLeagueName(String leagueName) {
 		List<Score> allScores = new ArrayList<>();
-		String sql = "SELECT username, SUM(score_total) AS total " + 
+		String sql = "SELECT username, SUM(score_total) AS total, COUNT(round_id) AS rounds " + 
 				"FROM scores " + 
 				"WHERE league_name = ? " + 
 				"GROUP BY username " + 
@@ -74,6 +74,7 @@ public class ScoreSqlDAO implements ScoreDAO {
         Score score = new Score();
         score.setUsername(rs.getString("username"));
         score.setScoreTotal(rs.getInt("total"));
+        score.setRoundId(rs.getInt("rounds"));
         return score;
     }
 	
