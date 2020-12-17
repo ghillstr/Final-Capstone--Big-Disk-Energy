@@ -25,7 +25,7 @@ export default new Vuex.Store({
     leaderboard: {},
     score: {},
     posts: {},
-
+    teetime: {},
 
   },
 
@@ -62,6 +62,10 @@ export default new Vuex.Store({
     SEND_INVITE(state, invite) {
       state.invite = {};
       localStorage.setItem('invite', JSON.stringify(invite));
+    },
+    SET_TIME(state, teeTime) {
+      state.teetime = {};
+      localStorage.setItem('teeTime', JSON.stringify(teeTime));
     },
 
   }

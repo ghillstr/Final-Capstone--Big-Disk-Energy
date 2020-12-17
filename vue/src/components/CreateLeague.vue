@@ -98,7 +98,7 @@ export default {
 };
 </script>
 <style scoped>
-#form-group {
+.form-group {
   margin-top: 20px;
 }
 a {

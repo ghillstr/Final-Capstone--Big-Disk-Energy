@@ -19,6 +19,7 @@
         </b-form-select>
       </div>
       <div>
+        <p>SELECT A PLAYER</p>
         <b-form-select
           id="player-select"
           v-model="score.username"
@@ -78,7 +79,6 @@ export default {
     inputLeagueUser() {
       scoreService.getUserByLeague(this.score.leagueName).then((response) => {
         this.post = response.data;
-        console.log(response.data);
       });
     },
     recordScore() {
