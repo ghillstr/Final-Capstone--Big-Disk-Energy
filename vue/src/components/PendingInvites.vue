@@ -12,14 +12,12 @@
           v-model="invites.statusId"
           :aria-describedby="ariaDescribedby"
           name="some-radios"
-          value="2"
           >Accept</b-form-radio
         >
         <b-form-radio
           v-model="invites.statusId"
           :aria-describedby="ariaDescribedby"
           name="some-radios"
-          value="3"
           >Reject</b-form-radio
         >
       </b-form-group>
