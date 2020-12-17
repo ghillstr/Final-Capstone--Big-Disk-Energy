@@ -25,7 +25,7 @@ export default new Vuex.Store({
     leaderboard: {},
     score: {},
     posts: {},
-    invites: {}
+
 
   },
 
@@ -63,9 +63,6 @@ export default new Vuex.Store({
       state.invite = {};
       localStorage.setItem('invite', JSON.stringify(invite));
     },
-    UPDATE_INVITE(state, invite) {
-      state.league = {};
-      localStorage.setItem('league', JSON.stringify(invite));
-    }
+
   }
 })
