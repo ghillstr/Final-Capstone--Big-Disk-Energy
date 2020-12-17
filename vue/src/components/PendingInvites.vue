@@ -12,16 +12,18 @@
           v-model="invites.statusId"
           :aria-describedby="ariaDescribedby"
           name="some-radios"
+          value="2"
           >Accept</b-form-radio
         >
         <b-form-radio
           v-model="invites.statusId"
           :aria-describedby="ariaDescribedby"
           name="some-radios"
+          value="3"
           >Reject</b-form-radio
         >
       </b-form-group>
-      <button class="button" type="submit" @click="updateInvite()">
+      <button class="button" type="submit" @click="updateTheInvite()">
         SUBMIT
       </button>
     </div>
@@ -29,7 +31,7 @@
 </template>
 
 <script>
-import leagueService from "../services/LeagueService";
+import LeagueService from "../services/LeagueService";
 
 export default {
   data() {
@@ -40,11 +42,19 @@ export default {
     };
   },
   created() {
-    leagueService
-      .getPendingInvitesByUsername(this.$store.state.user.username)
-      .then((response) => {
-        this.invites = response.data;
+    LeagueService.getPendingInvitesByUsername(
+      this.$store.state.user.username
+    ).then((response) => {
+      this.invites = response.data;
+    });
+  },
+
+  methods: {
+    updateTheInvite() {
+      LeagueService.updateInvite(this.invites).then((response) => {
+        this.$store.commit("UPDATE_INVITE", response.data.invites);
       });
+    },
   },
 };
 </script>

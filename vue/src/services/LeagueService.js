@@ -18,8 +18,8 @@ export default {
         return axios.post('league/invite/', invite)
     },
 
-    updateInvite(league) {
-        return axios.put('/invites/status', league)
+    updateInvite(principal, invite) {
+        return axios.put('/invites/status', principal, invite)
     },
 
     getPendingInvitesByUsername(principal) {
