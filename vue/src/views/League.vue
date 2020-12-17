@@ -1,7 +1,7 @@
 <template>
   <div class="league">
     <h1>League Info</h1>
-
+    <pending-invites />
     <div class="leaderboards-sec">
       <h2>Your League Leaderboards</h2>
       <div
@@ -27,9 +27,13 @@
 </template>
 
 <script>
+import PendingInvites from "../components/PendingInvites.vue";
 import leagueService from "../services/LeagueService";
 export default {
   name: "league",
+  components: {
+    PendingInvites,
+  },
   data() {
     return {
       league: [],

@@ -47,9 +47,8 @@
 <script>
 import scoreService from "../services/ScoreService";
 import LeagueService from "../services/LeagueService";
-
 export default {
-  name: "RecordScore",
+  name: "recordscore",
   data() {
     return {
       leagues: [],

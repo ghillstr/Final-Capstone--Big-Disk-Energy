@@ -99,9 +99,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 		if(invite.getStatusId() == 2) {
 			
 
-			String sql = "UPDATE invite SET status_id = 2 WHERE username = ? AND league_name = ?";
+			String sql = "UPDATE invite SET status_id = ? WHERE username = ? AND league_name = ?";
 
-			jdbcTemplate.update(sql, principal.getName(), invite.getLeagueName());
+			jdbcTemplate.update(sql, invite.getStatusId(), principal.getName(), invite.getLeagueName());
 			
 			String sql2 = "INSERT INTO users_leagues (user_id, league_id) VALUES (?, ?)";
 			
