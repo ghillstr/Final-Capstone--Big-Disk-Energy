@@ -38,6 +38,8 @@ public interface LeagueDAO {
 	int findIdByUsername(Principal principal);
 	
 	int findUserIdByUsernameInLeague(Principal principal);
+	
+//	String findCourseNameByLeagueName(League invite);
 
 	
 	

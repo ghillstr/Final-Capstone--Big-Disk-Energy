@@ -99,7 +99,7 @@ public class UserSqlDAO implements UserDAO {
 	public List<User> getUserByLeague(String leagueName) {
 		List<User> users =new ArrayList<>();
 		
-		String sqlSelectUsers= "SELECT username FROM leagues WHERE league_name = ?";
+		String sqlSelectUsers= "SELECT users.username FROM leagues JOIN users_leagues USING (league_id) JOIN users USING (user_id) WHERE leagues.league_name = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectUsers, leagueName);
 		
