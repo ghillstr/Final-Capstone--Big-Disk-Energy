@@ -23,13 +23,12 @@
         <h4>Becky</h4>
       </div>
     </div>
-    <div id="bus-div" class="col">
+    <div id="bus-div" class="row">
       <p>
-        BUS FOR LIFE BABYYYYYYYYYY
-        hjdskhfjkdshfjdshfdhsjfhdsjfdlfhdsjhfdshfjdshajfdsf shfj
-        dfsahjfdhsjkfhdshfjdsl hjkdsla sdjakfhdjk wow we are so cool
-        wowowowowwowo hi hi hi hi hi hi hi ckksfjkfsdlfdlkdsa jsdhjf
-        hjdskhfjkdshfjdshfdhsjfhdsjfdlfhdsjhfdshfjdshajfdsf
+        The Struggle Bus Software, LLC team is dedicated to bringing quality
+        products and amazing solutions to the table. They are all hard-working,
+        creative people who support each other no matter what! You really
+        couldn't ask for a better group of awesomeness!
       </p>
     </div>
   </div>
@@ -68,11 +67,6 @@ export default {
   width: 150px;
 }
 
-.media m-3 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 #bus-div {
   background: white;
   outline: 2px;
@@ -80,9 +74,6 @@ export default {
   outline-color: #386641;
   padding: 3px 3px 3px 3px;
   margin-top: 15px;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   margin-bottom: 20px;
 }
 
