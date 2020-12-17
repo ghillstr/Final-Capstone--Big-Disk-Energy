@@ -9,6 +9,9 @@
       <div class="form-element">
         <label for="sendUsername">Username:</label>
         <select v-model="invite.username" text="Select a User">
+          <option value="" disabled selected hidden>
+            Please Choose Player
+          </option>
           <option v-for="users in user" v-bind:key="users.username">
             {{ users.username }}
           </option>
@@ -17,6 +20,9 @@
       <div class="form-element">
         <label for="sendLeague">League Name:</label>
         <select v-model="invite.leagueName">
+          <option value="" disabled selected hidden>
+            Please Choose League
+          </option>
           <option v-for="league in leagues" v-bind:key="league.leagueName">
             {{ league.leagueName }}
           </option>
