@@ -9,15 +9,17 @@ public class Score {
 	//@NotNull(message = "The field `transfer type id` should not be blank.")
 	private String leagueName;
 	private int scoreTotal;
+	private int roundId;
 	
 	public Score() {
 		
 	}
 	
-	public Score(String username, int scoreTotal, String leagueName) {
+	public Score(String username, int scoreTotal, String leagueName, int roundId) {
 		this.username = username;
 		this.scoreTotal = scoreTotal;
 		this.leagueName = leagueName;
+		this.roundId = roundId;
 	}
 	
 //	public Score(String username, String leagueName, int scoreTotal) {
@@ -48,6 +50,14 @@ public class Score {
 
 	public void setLeagueName(String leagueName) {
 		this.leagueName = leagueName;
+	}
+	
+	public int getRoundId() {
+		return roundId;
+	}
+	
+	public void setRoundId(int roundId) {
+		this.roundId = roundId;
 	}
 
 
