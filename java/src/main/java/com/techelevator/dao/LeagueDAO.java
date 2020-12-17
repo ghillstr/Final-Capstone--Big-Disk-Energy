@@ -21,9 +21,9 @@ public interface LeagueDAO {
 	 
 	 List<League> viewTeeTimesByUsername(Principal principal);
 
-	void createLeague(League league);
+	void createLeague(Principal principal, League league);
 
-	void updateInvite(League invite);
+	void updateInvite(Principal principal, League invite);
 
 	List<League> viewLeaguesByUsername(Principal principal);
 	
@@ -34,6 +34,10 @@ public interface LeagueDAO {
 	int findIdByUsernameInLeague(League teeTime);
 	
 	List<League> getAllLeagues();
+	
+	int findIdByUsername(Principal principal);
+	
+	int findUserIdByUsernameInLeague(Principal principal);
 
 	
 	
