@@ -4,13 +4,12 @@
     <b-button class="button" v-b-toggle.record-collapse>RECORD</b-button>
     <b-collapse id="record-collapse">
       <div>
-        <p>SELECT A LEAGUE</p>
         <b-form-select
           @change="inputLeagueUser"
           v-model="score.leagueName"
           name="recordscore"
           text="Select a League"
-        >
+          ><option value="" disabled selected hidden>SELECT A LEAGUE</option>
           <option v-for="league in leagues" v-bind:key="league.username">
             {{ league.leagueName }}
           </option>
@@ -23,6 +22,7 @@
           name="recordscore"
           text="Select a Player"
         >
+          <option value="" disabled selected hidden>SELECT A PLAYER</option>
           <option v-for="posts in post" v-bind:key="posts.username">
             {{ posts.username }}
           </option>
@@ -48,9 +48,8 @@
 <script>
 import scoreService from "../services/ScoreService";
 import LeagueService from "../services/LeagueService";
-
 export default {
-  name: "RecordScore",
+  name: "recordscore",
   data() {
     return {
       leagues: [],

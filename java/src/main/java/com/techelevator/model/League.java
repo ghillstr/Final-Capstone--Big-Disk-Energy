@@ -3,6 +3,11 @@ package com.techelevator.model;
 import java.sql.Date;
 import java.sql.Time;
 
+import org.springframework.data.relational.core.mapping.Column;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 public class League {
 	
 	private int leagueId;
@@ -14,6 +19,9 @@ public class League {
 	private String inviteStatus;
 	private long teeTimeId;
 	private Date date;
+	@JsonFormat(pattern = "HH:mm")
+	@JsonDeserialize(using = com.techelevator.SqlTimeDeserializer.class)
+
 	private Time startTime;
 	
 	public League() {

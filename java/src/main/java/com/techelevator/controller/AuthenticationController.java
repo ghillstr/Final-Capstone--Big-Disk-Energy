@@ -79,7 +79,6 @@ public class AuthenticationController {
     	return userDAO.findAll();
     }
 
-
     /**
      * Object to return as body in JWT Authentication.
      */

@@ -11,16 +11,16 @@
       </b-button>
       <b-collapse id="invite-collapse">
         <div>
-          <p>SELECT A PLAYER</p>
-          <b-form-select>
+          <b-form-select v-model="invite.username">
+            <option value="" disabled selected hidden>SELECT A PLAYER</option>
             <option v-for="users in user" v-bind:key="users.username">
               {{ users.username }}
             </option>
           </b-form-select>
         </div>
         <div class="form-element">
-          <p>SELECT A LEAGUE</p>
-          <b-form-select v-model="invite.username">
+          <b-form-select v-model="invite.leagueName">
+            <option value="" disabled selected hidden>SELECT A LEAGUE</option>
             <option v-for="league in leagues" v-bind:key="league.leagueName">
               {{ league.leagueName }}
             </option>

@@ -62,8 +62,8 @@ export default {
       users: [],
       leagues: [],
       teetime: {
-        username: "",
         leagueName: "",
+        username: "",
         date: "",
         startTime: "",
       },
@@ -88,6 +88,7 @@ export default {
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_TIME", response.data.teetime);
+
             // this.resetForm();
           }
         })
