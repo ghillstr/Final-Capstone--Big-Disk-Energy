@@ -64,7 +64,7 @@ export default {
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_LEAGUE", response.data.league);
-            this.$router.push("/league");
+            this.$router.go(0);
           }
         })
         .catch((error) => {
@@ -98,7 +98,7 @@ export default {
 };
 </script>
 <style scoped>
-#form-group {
+.form-group {
   margin-top: 20px;
 }
 a {

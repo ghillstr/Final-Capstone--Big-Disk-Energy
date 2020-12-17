@@ -5,23 +5,30 @@
     <b-collapse id="record-collapse">
       <div>
         <b-form-select
+          id="league-select"
           @change="inputLeagueUser"
           v-model="score.leagueName"
           name="recordscore"
           text="Select a League"
-          ><option value="" disabled selected hidden>SELECT A LEAGUE</option>
+          ><option defualt value="" selected disabled hidden>
+            SELECT A LEAGUE
+          </option>
           <option v-for="league in leagues" v-bind:key="league.username">
             {{ league.leagueName }}
           </option>
         </b-form-select>
       </div>
       <div>
+        <p>SELECT A PLAYER</p>
         <b-form-select
+          id="player-select"
           v-model="score.username"
           name="recordscore"
           text="Select a Player"
         >
-          <option value="" disabled selected hidden>SELECT A PLAYER</option>
+          <option default value="" disabled selected hidden>
+            SELECT A PLAYER
+          </option>
           <option v-for="posts in post" v-bind:key="posts.username">
             {{ posts.username }}
           </option>
@@ -72,7 +79,6 @@ export default {
     inputLeagueUser() {
       scoreService.getUserByLeague(this.score.leagueName).then((response) => {
         this.post = response.data;
-        console.log(response.data);
       });
     },
     recordScore() {
@@ -82,6 +88,7 @@ export default {
           if (response.status == 201) {
             this.$store.commit("SET_SCORES", response.data.score);
             this.resetForm();
+            this.$router.go(0);
           }
         })
         .catch((error) => {
@@ -90,9 +97,6 @@ export default {
             this.invalidEntry = true;
           }
         });
-    },
-    showHideForm() {
-      this.showRecordScoreForm = true;
     },
     resetForm() {
       this.score.scoreTotal = "";

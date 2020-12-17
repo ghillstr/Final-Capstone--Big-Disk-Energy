@@ -8,8 +8,9 @@
     />
     <div id="tom-div" class="media-body align-self-center mr-3">
       <p>
-        Tom is the scrum master of ©Big Disc Energy! He yells at us all the time
-        and tells us we are doing a terrible job, so that we work harder!
+        Tom is the scrum master of ©BigDiscEnergy! He is encouraging, helful and
+        patient, and man, he's got style! We were lucky to have him scrummin'
+        for us and thank you for the experience!
       </p>
     </div>
   </div>

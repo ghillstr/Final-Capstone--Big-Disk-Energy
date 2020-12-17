@@ -9,7 +9,8 @@
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'league' }">LEAGUES</router-link
       >&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'leagueadmin' }">ADMIN</router-link
+      <router-link v-if="rolePermission()" v-bind:to="{ name: 'leagueadmin' }"
+        >ADMIN</router-link
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
       >&nbsp;|&nbsp;
@@ -21,12 +22,14 @@
         >LOGOUT</router-link
       >
     </nav>
+    <p>{{ this.$store.state.user.role }}</p>
     <div class="container">
       <img
         src="@/assets/logo_transparent.png"
         id="BDE-logo"
         alt="BIG DISC ENERGY logo"
       />
+
       <div class="router">
         <router-view />
       </div>
@@ -59,6 +62,16 @@ export default {
         },
       });
     },
+    rolePermission() {
+      if (
+        this.$store.state.user &&
+        this.$store.state.user.authorities &&
+        this.$store.state.user.authorities[0].name != "ROLE_USER"
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>
@@ -74,7 +87,7 @@ export default {
   background: linear-gradient(
     180deg,
     rgba(106, 153, 78, 1) 0%,
-    rgba(167, 201, 87, 1) 35%,
+    rgba(167, 201, 87, 1) 55%,
     rgba(242, 232, 207, 1) 100%
   );
   text-align: center;
@@ -108,6 +121,15 @@ h1 {
   color: #386641;
   text-shadow: -1px -1px 0 #a7c957, 1px -1px 0 #a7c957, -1px 1px 0 black,
     1px 1px 0 black;
+}
+h2,
+h3,
+h4 {
+  text-shadow: 0 0 0 white, 0 0 0 white, -1 1 0 black, 1px 1px 0 black;
+}
+p,
+label {
+  color: #386641;
 }
 .container {
   display: flex;

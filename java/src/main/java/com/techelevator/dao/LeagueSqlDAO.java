@@ -121,7 +121,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 			
 			jdbcTemplate.update(sql, principal.getName(), invite.getLeagueName());
 			
+
 		}
+
 		
 	}
 		
@@ -148,8 +150,8 @@ public class LeagueSqlDAO implements LeagueDAO {
 		while (result.next()) {
 			League teeTime = new League();
 			teeTime.setLeagueName(result.getString("league_name"));
-			teeTime.setDate(result.getString("tee_date"));
-			teeTime.setStartTime(result.getString("start_time"));
+			teeTime.setDate(result.getDate("tee_date"));
+			teeTime.setStartTime(result.getTime("start_time"));
 			teeTimes.add(teeTime);
 			
 		}
@@ -168,8 +170,8 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		while (result.next()) {
 			League theTeeTime = new League();
-			theTeeTime.setDate(result.getString("tee_date"));
-			theTeeTime.setStartTime(result.getString("start_time"));
+			theTeeTime.setDate(result.getDate("tee_date"));
+			theTeeTime.setStartTime(result.getTime("start_time"));
 			teeTimes.add(theTeeTime);
 		}
 		return teeTimes;
