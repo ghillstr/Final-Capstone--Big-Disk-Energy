@@ -40,12 +40,21 @@ public class LeagueSqlDAO implements LeagueDAO {
 
 	//WORKING
 	@Override
-	public void createLeague(League league) {
-	
+	public void createLeague(Principal principal, League league) {
+		
 		String sql = "INSERT INTO leagues (league_id, league_name, course_name, username) VALUES (DEFAULT, ?, ?, ?)";
 		
 		jdbcTemplate.update(sql, league.getLeagueName(), league.getCourseName(), league.getUsername());
 		
+		insertLeagueAdminWhenLeagueCreated(principal, league);
+		
+	}
+	
+	public void insertLeagueAdminWhenLeagueCreated(Principal principal, League league) {
+		
+		String sql2 = "INSERT INTO users_leagues (user_id, league_id) VALUES(?, ?)";
+		
+		jdbcTemplate.update(sql2, findIdByUsername(principal), findLeagueIdByLeagueName(league.getLeagueName()));
 		
 	}
 
@@ -182,6 +191,11 @@ public class LeagueSqlDAO implements LeagueDAO {
 		
 		return userIdForTeeTime;
 	}
+	
+	@Override
+    public int findIdByUsername(Principal principal) {
+        return jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, principal.getName());
+    }
 
 //	private League mapRowToLeague(SqlRowSet rowSet) {
 //		

@@ -26,51 +26,50 @@ import com.techelevator.model.League;
 public class LeagueController {
 	
 	private LeagueDAO leagueDAO;
-	private UserDAO userDAO;
+//	private UserDAO userDAO;
 	
-	public LeagueController (LeagueDAO leagueDAO, UserDAO userDAO) {
+	public LeagueController (LeagueDAO leagueDAO) {
 		this.leagueDAO = leagueDAO;
 	}
 	
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( value = "/league/{username}", method = RequestMethod.GET )
-	public List<League> viewLeaguesByUsername(Principal principal) {
+	@RequestMapping(value = "/league/{username}", method = RequestMethod.GET)
+	public List<League> viewLeaguesByUsername(@Valid Principal principal) {
 		return leagueDAO.viewLeaguesByUsername(principal);
 	}
 	
 	//WORKING
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping( value = "/league", method = RequestMethod.POST )
-	public void createLeague(@Valid @RequestBody League league) {
-		leagueDAO.createLeague(league);
+	@RequestMapping(value = "/league", method = RequestMethod.POST)
+	public void createLeague(@Valid Principal principal, @RequestBody League league) {
+		leagueDAO.createLeague(principal, league);
 	}
 	
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/league/invite", method = RequestMethod.POST) //put ?
+	@RequestMapping(path = "/league/invite", method = RequestMethod.POST) //put ?
 	public void invitePlayers(@Valid @RequestBody League invite) {
-			
 		leagueDAO.invitePlayers(invite);
 	}
 	
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( value = "/invites", method = RequestMethod.GET )
-	public List<League> getPendingInvitesByUsername(Principal principal) {
+	@RequestMapping(value = "/invites", method = RequestMethod.GET)
+	public List<League> getPendingInvitesByUsername(@Valid Principal principal) {
 		return leagueDAO.getPendingInvitesbyUsername(principal);
 	}
 		
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( value = "/invites/status", method = RequestMethod.PUT)
+	@RequestMapping(value = "/invites/status", method = RequestMethod.PUT)
 	public void updateInvite(@Valid Principal principal, @RequestBody League league) {
 		leagueDAO.updateInvite(principal, league);
 	}
 	
 	//WORKING
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping( path = "/league/tee-times", method = RequestMethod.POST )
+	@RequestMapping(path = "/league/tee-times", method = RequestMethod.POST)
 	public void setTeeTime(@Valid @RequestBody League teeTime) {
 
 		leagueDAO.setTeeTime(teeTime);
@@ -78,15 +77,15 @@ public class LeagueController {
 		
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( path = "/tee-times", method = RequestMethod.GET )
-	public List<League> viewTeeTimesByUsername(Principal principal) {
+	@RequestMapping(path = "/tee-times", method = RequestMethod.GET)
+	public List<League> viewTeeTimesByUsername(@Valid Principal principal) {
 		return leagueDAO.viewTeeTimesByUsername(principal);
 	}
 	
 	//WORKING
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping( value = "/tee-times/{leagueName}", method = RequestMethod.GET)
-	public List<League> viewTeeTimesByLeagueName(@PathVariable String leagueName) {
+	@RequestMapping(value = "/tee-times/{leagueName}", method = RequestMethod.GET)
+	public List<League> viewTeeTimesByLeagueName(@Valid @PathVariable String leagueName) {
 		return leagueDAO.viewTeeTimesByLeagueName(leagueName);
 	}
 	

@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
@@ -62,6 +64,16 @@ public class AuthenticationController {
             userDAO.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
     }
+    
+//    @ResponseStatus(HttpStatus.OK)
+//    @RequestMapping(value = "/league/league-admin", method = RequestMethod.PUT)
+    
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/findAllUsers", method = RequestMethod.GET)
+    public List<User> findAll() {
+    	return userDAO.findAll();
+    }
+    
 
     /**
      * Object to return as body in JWT Authentication.
