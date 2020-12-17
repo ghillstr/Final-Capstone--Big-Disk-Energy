@@ -4,29 +4,34 @@
 
     <!-- <form v-on:submit.prevent v-show="showTheCreateForm === true"> -->
 
-    <h3>INVITE PLAYERS TO JOIN A LEAGUE</h3>
+    <h4>INVITE PLAYERS TO JOIN A LEAGUE</h4>
     <div>
-      <div class="form-element">
-        <label for="sendUsername">Username:</label>
-        <select text="Select a User">
-          <option v-for="users in user" v-bind:key="users.username">
-            {{ users.username }}
-          </option>
-        </select>
-      </div>
-      <div class="form-element">
-        <label for="sendLeague">League Name:</label>
-        <select v-model="invite.username">
-          <option v-for="league in leagues" v-bind:key="league.leagueName">
-            {{ league.leagueName }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <button class="button" type="submit" @click="sendInvite()">
-          INVITE PLAYER
-        </button>
-      </div>
+      <b-button class="button" v-b-toggle.invite-collapse>
+        INVITE PLAYER
+      </b-button>
+      <b-collapse id="invite-collapse">
+        <div>
+          <p>SELECT A PLAYER</p>
+          <b-form-select>
+            <option v-for="users in user" v-bind:key="users.username">
+              {{ users.username }}
+            </option>
+          </b-form-select>
+        </div>
+        <div class="form-element">
+          <p>SELECT A LEAGUE</p>
+          <b-form-select v-model="invite.username">
+            <option v-for="league in leagues" v-bind:key="league.leagueName">
+              {{ league.leagueName }}
+            </option>
+          </b-form-select>
+        </div>
+        <div>
+          <button class="button" type="submit" @click="sendInvite()">
+            SUBMIT INVITE
+          </button>
+        </div>
+      </b-collapse>
     </div>
   </div>
 </template>
@@ -42,7 +47,6 @@ export default {
       invite: {
         username: "",
         leagueName: "",
-        statusId: 1,
       },
     };
   },
@@ -57,18 +61,9 @@ export default {
 
   methods: {
     sendInvite() {
-      LeagueService.invitePlayers(this.invite)
-        .then((response) => {
-          if (response.status == 201) {
-            this.$store.commit("SEND_INVITE", response.data.invite);
-          }
-        })
-        .catch((error) => {
-          const response = error.response;
-          if (response.status === 400) {
-            this.invalidEntry = true;
-          }
-        });
+      LeagueService.invitePlayers(this.invite).then((response) => {
+        this.$store.commit("SEND_INVITE", response.data.invite);
+      });
     },
   },
 };
