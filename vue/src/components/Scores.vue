@@ -2,7 +2,7 @@
   <div>
     <table>
       <thead>
-        <th>USERNAME</th>
+        <th>PLAYERS</th>
         <th>TOTAL SCORE</th>
       </thead>
       <tbody class="leaderboard-table">

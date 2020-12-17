@@ -3,12 +3,24 @@
     <h3>Record Scores for a League</h3>
     <div>
       <select
+        @change="inputLeagueUser"
+        v-model="score.leagueName"
+        name="recordscore"
+        text="Select a League"
+      >
+        <option v-for="league in leagues" v-bind:key="league.username">
+          {{ league.leagueName }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <select
         v-model="score.username"
         name="recordscore"
         text="Select a Player"
       >
-        <option v-for="post in posts" v-bind:key="post.username">
-          {{ post.username }}
+        <option v-for="posts in post" v-bind:key="posts.username">
+          {{ posts.username }}
         </option>
       </select>
     </div>
@@ -22,41 +34,48 @@
       </form>
     </div>
     <div>
-      <button class="button" type="submit" @click="recordScore, resetForm">
-        SUBMIT SCORE
-      </button>
+      <button class="button" @click="recordScore">SUBMIT SCORE</button>
     </div>
   </div>
 </template>
 <script>
 import scoreService from "../services/ScoreService";
+import LeagueService from "../services/LeagueService";
+
 export default {
   name: "RecordScore",
   data() {
     return {
-      posts: [],
+      leagues: [],
+      post: [],
       score: {
         leagueName: "",
         username: "",
-        scoreTotal: 0,
+        scoreTotal: "",
       },
     };
   },
   created() {
-    scoreService
-      .getUserByLeague(this.$route.params.leagueName)
-      .then((response) => {
-        this.posts = response.data;
-        console.log(response.data);
-      });
+    LeagueService.viewLeaguesByUsername(this.$store.state.user.username).then(
+      (response) => {
+        this.leagues = response.data;
+      }
+    );
   },
   methods: {
+    inputLeagueUser() {
+      scoreService.getUserByLeague(this.score.leagueName).then((response) => {
+        this.post = response.data;
+        console.log(response.data);
+      });
+    },
     recordScore() {
       scoreService
         .recordScore(this.score)
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_SCORES", response.data.score);
+            this.resetForm();
           }
         })
         .catch((error) => {
@@ -66,9 +85,9 @@ export default {
           }
         });
     },
-    // resetForm() {
-    //   this.score.scoreTotal = 0;
-    // },
+    resetForm() {
+      this.score.scoreTotal = "";
+    },
   },
 };
 </script>

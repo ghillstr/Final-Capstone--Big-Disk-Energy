@@ -10,12 +10,12 @@ export default {
         return axios.post('/league', league)
     },
 
-    viewTeeTimesByLeagueName(leagueName) {
+    viewTeeTimesByLeagueName(principal, leagueName) {
         return axios.get(`/tee-times/${leagueName}`)
     },
 
-    invitePlayers(username, leagueName) {
-        return axios.post(`/invites/${username}/${leagueName}`)
+    invitePlayers(invite) {
+        return axios.post('league/invite/', invite)
     },
 
     updateInvite(league) {
