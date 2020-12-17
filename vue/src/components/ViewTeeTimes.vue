@@ -2,7 +2,7 @@
   <div>
     <h1 class="league-name">{{ $route.params.id }}</h1>
     <h4>Upcoming Tee Times:</h4>
-    <div class="tee-times" v-for="times in teetime" v-bind:key="times.userName">
+    <div class="tee-times" v-for="times in teetime" v-bind:key="times.username">
       <p>{{ times.date }} | {{ times.startTime }}</p>
     </div>
   </div>
@@ -19,7 +19,10 @@ export default {
   },
   created() {
     leagueService
-      .viewTeeTimesByLeagueName(this.$route.params.id)
+      .viewTeeTimesByLeagueName(
+        this.$store.state.user.username,
+        this.$route.params.id
+      )
       .then((response) => {
         this.teetime = response.data;
       });

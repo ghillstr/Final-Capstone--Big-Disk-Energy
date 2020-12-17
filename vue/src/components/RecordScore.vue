@@ -2,19 +2,9 @@
   <div>
     <h3>Record Scores for a League</h3>
     <div>
-<<<<<<< HEAD
       <select name="recordscore" text="Select a Player">
         <option v-for="posts in post" v-bind:key="posts.username">
           {{ posts.username }}
-=======
-      <select
-        v-model="score.username"
-        name="recordscore"
-        text="Select a Player"
-      >
-        <option v-for="post in posts" v-bind:key="post.username">
-          {{ post.username }}
->>>>>>> 19edeb2e612e4fe66eff29bf255b3415ffeae03f
         </option>
       </select>
     </div>
