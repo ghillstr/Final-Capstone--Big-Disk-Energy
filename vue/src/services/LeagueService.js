@@ -14,8 +14,8 @@ export default {
         return axios.get(`/tee-times/${leagueName}`)
     },
 
-    invitePlayers(username, leagueName) {
-        return axios.post(`/invites/${username}/${leagueName}`)
+    invitePlayers(invite) {
+        return axios.post('league/invites/', invite)
     },
 
     updateInvite(league) {

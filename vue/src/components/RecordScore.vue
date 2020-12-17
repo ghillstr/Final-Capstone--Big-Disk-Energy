@@ -1,53 +1,4 @@
-<template>
-  <div>
-    <h3>Record Scores for a League</h3>
-    <div>
-      <select name="recordscore" text="Select a Player">
-        <option v-for="posts in post" v-bind:key="posts.username">
-          {{ posts.username }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <form>
-        <input
-          v-model="score.scoreTotal"
-          type="text"
-          placeholder="Enter a score"
-        />
-      </form>
-    </div>
-    <div>
-      <button class="button" type="submit" @click="recordScore, resetForm">
-        SUBMIT SCORE
-      </button>
-    </div>
-  </div>
-</template>
-<script>
-import scoreService from "../services/ScoreService";
-export default {
-  name: "RecordScore",
-  data() {
-    return {
-      posts: [],
-      score: {
-        leagueName: "",
-        username: "",
-        scoreTotal: 0,
-      },
-    };
-  },
-  created() {
-    scoreService
-      .getUserByLeague(this.$route.params.leagueName)
-      .then((response) => {
-        this.posts = response.data;
-        console.log(response.data);
-      });
-  },
-  methods: {
-    recordScore() {
+recordScore() {
       scoreService
         .recordScore(this.score)
         .then((response) => {
@@ -62,9 +13,9 @@ export default {
           }
         });
     },
-    // resetForm() {
-    //   this.score.scoreTotal = 0;
-    // },
+    resetForm() {
+      this.score.scoreTotal = 0;
+    },
   },
 };
 </script>

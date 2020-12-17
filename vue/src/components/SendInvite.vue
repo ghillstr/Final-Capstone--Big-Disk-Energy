@@ -2,9 +2,10 @@
   <div>
     <!-- <a href="create" v-on:click.prevent="showHideForm">CREATE LEAGUE</a> -->
 
+    <!-- <form v-on:submit.prevent v-show="showTheCreateForm === true"> -->
+
+    <h3>INVITE PLAYERS TO JOIN A LEAGUE</h3>
     <div>
-      <!-- <form v-on:submit.prevent v-show="showTheCreateForm === true"> -->
-      <h3>INVITE PLAYERS TO JOIN A LEAGUE</h3>
       <div class="form-element">
         <label for="sendUsername">Username:</label>
         <select text="Select a User">
@@ -15,11 +16,16 @@
       </div>
       <div class="form-element">
         <label for="sendLeague">League Name:</label>
-        <select>
+        <select v-model="invite.username">
           <option v-for="league in leagues" v-bind:key="league.leagueName">
             {{ league.leagueName }}
           </option>
         </select>
+      </div>
+      <div>
+        <button class="button" type="submit" @click="sendInvite()">
+          INVITE PLAYER
+        </button>
       </div>
     </div>
   </div>
@@ -33,64 +39,38 @@ export default {
     return {
       user: [],
       leagues: [],
+      invite: {
+        username: "",
+        leagueName: "",
+        statusId: 1,
+      },
     };
   },
   created() {
     UserService.findAll().then((response) => {
       this.user = response.data;
-      console.log(response.data);
     });
     LeagueService.getAllLeagues().then((response) => {
       this.leagues = response.data;
     });
   },
-  //   league: {
-  //     username: this.$store.state.user.username,
-  //     leagueName: "",
-  //     courseName: "",
-  //   },
-  //   showTheCreateForm: false,
-  //   showTheAnchor: true,
-  // };
 
-  //   methods: {
-  //     createLeague() {
-  //       leagueService
-  //         .createLeague(this.league)
-  //         .then((response) => {
-  //           if (response.status == 201) {
-  //             this.$store.commit("SET_LEAGUE", response.data.league);
-  //             this.$router.push("/league");
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           const response = error.response;
-  //           if (response.status === 400) {
-  //             this.invalidEntry = true;
-  //           }
-  //         });
-  //     },
-  //     resetForm() {
-  //       this.league = {};
-  //       this.showTheCreateForm = false;
-  //     },
-  //     showHideForm() {
-  //       this.showTheCreateForm = true;
-  //       this.showTheAnchor = false;
-  //     },
-  //     showHideAnchor() {
-  //       this.showTheAnchor = false;
-  //     },
-  //     makeToast(variant = null) {
-  //       this.toastCount++;
-  //       this.$bvToast.toast(`The score has been set!`, {
-  //         title: "Updated Leaderboard",
-  //         autoHideDelay: 5000,
-  //         variant: variant,
-  //         solid: true,
-  //       });
-  //     },
-  //   },
+  methods: {
+    sendInvite() {
+      LeagueService.invitePlayers(this.invite)
+        .then((response) => {
+          if (response.status == 201) {
+            this.$store.commit("SEND_INVITE", response.data.invite);
+          }
+        })
+        .catch((error) => {
+          const response = error.response;
+          if (response.status === 400) {
+            this.invalidEntry = true;
+          }
+        });
+    },
+  },
 };
 </script>
 <style scoped>
