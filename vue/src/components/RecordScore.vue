@@ -10,7 +10,7 @@
           v-model="score.leagueName"
           name="recordscore"
           text="Select a League"
-          ><option id="selected" value="" selected disabled hidden>
+          ><option defualt value="" selected disabled hidden>
             SELECT A LEAGUE
           </option>
           <option v-for="league in leagues" v-bind:key="league.username">
@@ -20,11 +20,12 @@
       </div>
       <div>
         <b-form-select
+          id="player-select"
           v-model="score.username"
           name="recordscore"
           text="Select a Player"
         >
-          <option id="selected" value="" disabled selected hidden>
+          <option default value="" disabled selected hidden>
             SELECT A PLAYER
           </option>
           <option v-for="posts in post" v-bind:key="posts.username">
@@ -98,7 +99,6 @@ export default {
     },
     resetForm() {
       this.score.scoreTotal = "";
-      this.option.selected = "";
     },
   },
 };

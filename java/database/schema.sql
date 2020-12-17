@@ -94,4 +94,4 @@ VALUES (DEFAULT, 'Pending'),
        (DEFAULT, 'Accepted'),
        (DEFAULT, 'Rejected');
 
-SELECT username FROM leagues WHERE league_name = 'hello';
+
