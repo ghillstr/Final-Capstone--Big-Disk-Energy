@@ -48,7 +48,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		jdbcTemplate.update(sql, league.getLeagueName(), league.getCourseName(), league.getUsername());
 		
 		insertLeagueAdminWhenLeagueCreated(principal, league);
-		
+	
 	}
 	
 	public void insertLeagueAdminWhenLeagueCreated(Principal principal, League league) {
@@ -200,47 +200,17 @@ public class LeagueSqlDAO implements LeagueDAO {
         return leagues;
 	}
 	
-	private League mapRowToLeague(SqlRowSet rowSet) {
-		
-		League theLeague = new League();
-		
-		theLeague.setLeagueId(rowSet.getInt("league_id"));
-		theLeague.setLeagueName(rowSet.getString("league_name"));
-		theLeague.setCourseName(rowSet.getString("course_name"));
-		theLeague.setStatusId(rowSet.getInt("status_id"));
-		theLeague.setInviteStatus(rowSet.getString("status_type"));
-		theLeague.setTeeTimeId(rowSet.getLong("tee_time_id"));
-		theLeague.setDate(rowSet.getString("tee_date"));
-		theLeague.setStartTime(rowSet.getString("start_time"));
-		
-		int userIdForTeeTime = dao.findIdByUsername(principal.getName());
-		
-		return userIdForTeeTime;
-	}
-	
 	@Override
     public int findIdByUsername(Principal principal) {
         return jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, principal.getName());
     }
-
-//	private League mapRowToLeague(SqlRowSet rowSet) {
-//		
-//		League theLeague = new League();
-//		
-//		theLeague.setLeagueId(rowSet.getInt("league_id"));
-//		theLeague.setLeagueName(rowSet.getString("league_name"));
-//		theLeague.setCourseName(rowSet.getString("course_name"));
-//		theLeague.setStatusId(rowSet.getInt("status_id"));
-//		theLeague.setInviteStatus(rowSet.getString("status_type"));
-//		theLeague.setTeeTimeId(rowSet.getLong("tee_time_id"));
-//		theLeague.setDate(rowSet.getString("tee_date"));
-//		theLeague.setStartTime(rowSet.getString("start_time"));
-//		
-//		return theLeague;
-//		
-//	}
-
 	
-
+	@Override
+	public int findUserIdByUsernameInLeague(Principal principal) {
+		 		
+		int userIdForTeeTime = dao.findIdByUsername(principal.getName());
+		 			
+		return userIdForTeeTime;
+	}
 
 }

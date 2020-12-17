@@ -30,12 +30,14 @@ public interface LeagueDAO {
 	List<League> viewTeeTimesByLeagueName(Principal principal, String leagueName);
 	
 	int findLeagueIdByLeagueName(String leagueName);
-	
-	int findUserIdByUsernameInLeague(Principal principal);
 
 	int findIdByUsernameInLeague(League teeTime);
 	
 	List<League> getAllLeagues();
+	
+	int findIdByUsername(Principal principal);
+	
+	int findUserIdByUsernameInLeague(Principal principal);
 
 	
 	
