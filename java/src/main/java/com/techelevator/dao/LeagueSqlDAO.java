@@ -27,7 +27,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	public List<League> viewLeaguesByUsername(Principal principal) {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT league_name, username FROM leagues  WHERE username = ?";
+		String sqlSelectAllLeagues = " SELECT u.username, l.league_name FROM users u JOIN users_leagues Using(user_id) JOIN leagues l USING(league_id) WHERE u.username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, principal.getName());
 		

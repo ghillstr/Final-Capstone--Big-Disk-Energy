@@ -88,6 +88,7 @@ export default {
           if (response.status == 201) {
             this.$store.commit("SET_SCORES", response.data.score);
             this.resetForm();
+            this.$router.go(0);
           }
         })
         .catch((error) => {

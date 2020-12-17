@@ -53,6 +53,7 @@ export default {
           this.invites = this.invites.filter((x) => {
             return x.leagueName != invite.leagueName;
           });
+          this.$router.go(0);
         }
       });
     },
