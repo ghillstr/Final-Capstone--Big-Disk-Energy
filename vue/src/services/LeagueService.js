@@ -2,20 +2,20 @@ import axios from 'axios';
 
 export default {
 
-    viewLeaguesByUsername(username) {
-        return axios.get(`/league/${username}`)
+    viewLeaguesByUsername(principal) {
+        return axios.get(`/league/${principal}`)
     },
 
     createLeague(league) {
         return axios.post('/league', league)
     },
 
-    viewTeeTimesByLeagueName(leagueName) {
+    viewTeeTimesByLeagueName(principal, leagueName) {
         return axios.get(`/tee-times/${leagueName}`)
     },
 
-    invitePlayers(username, leagueName) {
-        return axios.post(`/invites/${username}/${leagueName}`)
+    invitePlayers(invite) {
+        return axios.post('league/invite/', invite)
     },
 
     updateInvite(league) {
@@ -33,8 +33,11 @@ export default {
     //PATH WILL CHANGE, OBVS
     viewTeeTimesByUsername(username) {
         return axios.get('/h', username)
-    }
+    },
 
+    getAllLeagues() {
+        return axios.get('/getAllLeagues')
+    }
 
 
 }

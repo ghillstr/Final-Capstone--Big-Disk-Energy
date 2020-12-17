@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.League;
+import com.techelevator.model.User;
 
 @Component
 public class LeagueSqlDAO implements LeagueDAO {
@@ -26,7 +27,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 	public List<League> viewLeaguesByUsername(Principal principal) {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT l.league_name FROM leagues l JOIN users_leagues USING(league_id) JOIN users u USING(user_id) WHERE u.username = ?";
+		String sqlSelectAllLeagues = "SELECT league_name, username FROM leagues  WHERE username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, principal.getName());
 		
@@ -84,6 +85,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 		while (result.next()) {
 			League theInvite = new League();
 			theInvite.setLeagueName(result.getString("league_name"));
+			
 			invites.add(theInvite);
 		}
 		
@@ -149,19 +151,18 @@ public class LeagueSqlDAO implements LeagueDAO {
 	
 	//WORKING
 	@Override
-	public List<League> viewTeeTimesByLeagueName(String leagueName) {
+	public List<League> viewTeeTimesByLeagueName(Principal principal, String leagueName) {
 	
 		List<League> teeTimes = new ArrayList<>();
 		
-		String sql = "SELECT tee_date, start_time FROM tee_time WHERE league_name = ?";
+		String sql = "SELECT tee_date, start_time FROM tee_time WHERE username = ? AND league_name = ?";
 		
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, leagueName);
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, principal.getName(), leagueName);
 		
 		while (result.next()) {
 			League theTeeTime = new League();
 			theTeeTime.setDate(result.getString("tee_date"));
 			theTeeTime.setStartTime(result.getString("start_time"));
-			
 			teeTimes.add(theTeeTime);
 		}
 		return teeTimes;
@@ -185,7 +186,32 @@ public class LeagueSqlDAO implements LeagueDAO {
 	}
 	
 	@Override
-	public int findUserIdByUsernameInLeague(Principal principal) {
+    public List<League> getAllLeagues() {
+        List<League> leagues = new ArrayList<>();
+        String sql = "select league_name from leagues";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()) {
+             League league = new League();
+             league.setLeagueName(results.getString("league_name"));
+            leagues.add(league);
+        }
+
+        return leagues;
+	}
+	
+	private League mapRowToLeague(SqlRowSet rowSet) {
+		
+		League theLeague = new League();
+		
+		theLeague.setLeagueId(rowSet.getInt("league_id"));
+		theLeague.setLeagueName(rowSet.getString("league_name"));
+		theLeague.setCourseName(rowSet.getString("course_name"));
+		theLeague.setStatusId(rowSet.getInt("status_id"));
+		theLeague.setInviteStatus(rowSet.getString("status_type"));
+		theLeague.setTeeTimeId(rowSet.getLong("tee_time_id"));
+		theLeague.setDate(rowSet.getString("tee_date"));
+		theLeague.setStartTime(rowSet.getString("start_time"));
 		
 		int userIdForTeeTime = dao.findIdByUsername(principal.getName());
 		

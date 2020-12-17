@@ -9,11 +9,12 @@
       >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'league' }">LEAGUES</router-link
       >&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'leagueadmin' }">ADMIN</router-link
+      >&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
       >&nbsp;|&nbsp;
       <span v-on:click="handleClick"> OFFICAL DISC GOLF RULES</span
       >&nbsp;|&nbsp;
-
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
@@ -36,8 +37,6 @@
 <script>
 import Footer from "./components/Footer.vue";
 export default {
-  name: "app",
-
   components: {
     Footer,
   },
@@ -67,8 +66,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 #app {
-  color: black;
-
+  color: white;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: rgb(106, 153, 78);
   background: linear-gradient(
     180deg,

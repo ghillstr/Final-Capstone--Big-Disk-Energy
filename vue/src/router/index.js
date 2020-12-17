@@ -9,6 +9,8 @@ import CourseInfo from '../views/CourseInfo.vue'
 import League from '../views/League.vue'
 import Leaderboard from '../views/Leaderboard.vue'
 import AboutUs from '../views/AboutUs.vue'
+import RecordScore from '../components/RecordScore.vue'
+import LeagueAdmin from '../views/LeagueAdmin.vue'
 
 Vue.use(Router)
 
@@ -74,13 +76,15 @@ const router = new Router({
       }
     },
     {
-      path: "/leaderboard",
+      path: "/league/:id/leaderboard",
       name: "leaderboard",
       component: Leaderboard,
+
       meta: {
         requiresAuth: true
       }
     },
+
     {
       path: "/aboutus",
       name: "about-us",
@@ -88,7 +92,23 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/score/:leagueName",
+      name: "score",
+      component: RecordScore,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/leagueadmin",
+      name: "leagueadmin",
+      component: LeagueAdmin,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 

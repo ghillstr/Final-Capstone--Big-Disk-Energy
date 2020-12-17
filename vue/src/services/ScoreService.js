@@ -2,12 +2,16 @@ import axios from 'axios';
 
 export default {
 
-    recordScore() {
-        return axios.post('/score')
+    recordScore(score) {
+        return axios.post('/score', score)
     },
 
-    getAllScoresByLeagueName(leagueName) {
+    list(leagueName) {
         return axios.get(`/leaderboard/${leagueName}`)
+    },
+
+    getUserByLeague(leagueName) {
+        return axios.get(`/leagueUsers/${leagueName}`)
     },
 
     getAllScoresByUsername() {

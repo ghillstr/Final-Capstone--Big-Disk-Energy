@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import com.techelevator.model.League;
+import com.techelevator.model.User;
 
 public interface LeagueDAO {
 	
@@ -26,7 +27,7 @@ public interface LeagueDAO {
 
 	List<League> viewLeaguesByUsername(Principal principal);
 	
-	List<League> viewTeeTimesByLeagueName(String leagueName);
+	List<League> viewTeeTimesByLeagueName(Principal principal, String leagueName);
 	
 	int findLeagueIdByLeagueName(String leagueName);
 	
@@ -34,7 +35,7 @@ public interface LeagueDAO {
 
 	int findIdByUsernameInLeague(League teeTime);
 	
-	int findIdByUsername(Principal principal);
+	List<League> getAllLeagues();
 
 	
 	

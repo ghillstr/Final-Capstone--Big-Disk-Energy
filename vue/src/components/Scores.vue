@@ -1,23 +1,21 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th>SCORES</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="scores in score"
-        v-bind:key="scores.leagueName"
-        v-bind:="getAllScoresByLeagueName(score.leagueName)"
-      >
-        <!-- <td>{{ scoreleagueName }}</td> -->
-        <td>{{ score.username }}</td>
-        <td>{{ score.scoreTotal }}</td>
-      </tr>
-    </tbody>
-    <p>hello</p>
-  </table>
+  <div>
+    <table>
+      <thead>
+        <th>PLAYERS</th>
+        <th>TOTAL SCORE</th>
+      </thead>
+      <tbody class="leaderboard-table">
+        <tr v-for="scores in score" v-bind:key="scores.username">
+          <td class="score-user">{{ scores.username }}</td>
+          <td class="score-total">{{ scores.scoreTotal }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="button" @click="$router.push('/league')">
+      BACK TO LEAGUES
+    </button>
+  </div>
 </template>
 
  <script>
@@ -28,24 +26,46 @@ export default {
 
   data() {
     return {
-      score: {
-        // leagueName: "",
-        username: "",
-        scoreTotal: 0,
-      },
+      score: [],
     };
   },
   created() {
-    scoreService
-      .getAllScoresByLeagueName(this.$route.params.leagueName)
-      .then((response) => {
-        this.$store.commit("GET_LEAGUE_SCORES", response.data);
-      });
+    scoreService.list(this.$route.params.id).then((response) => {
+      this.score = response.data;
+      console.log(response.data);
+    });
   },
-  methods: {
-    getAllScoresByLeagueName(leagueName) {
-      this.$router.push(`/leaderboard/${leagueName}`).catch(() => {});
-    },
-  },
+  // methods: {
+  //   getAllScoresByLeagueName(leagueName) {
+  //     this.$router.push(`/leaderboard/${leagueName}`);
+  //   },
+  // },
 };
 </script>
+<style scoped>
+th {
+  background: #a7c957;
+}
+table,
+th,
+td {
+  border: solid 2px black;
+  width: 300px;
+  padding: 5px 5px 5px 5px;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #386641;
+}
+.leaderboard-table {
+  border: solid 2px black;
+  font-size: 20px;
+  background: white;
+}
+.score-user {
+  text-align: left;
+}
+.score-total {
+  text-align: right;
+}
+</style>
