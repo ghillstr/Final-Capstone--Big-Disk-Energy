@@ -27,7 +27,13 @@ public class LeagueSqlDAO implements LeagueDAO {
 	public List<League> viewLeaguesByUsername(Principal principal) {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT league_name, username FROM leagues  WHERE username = ?";
+		String sqlSelectAllLeagues = "SELECT leagues.league_name " +
+				"FROM leagues " +
+				"JOIN users_leagues " + 
+				"USING (league_id) " +
+				"JOIN users " +
+				"USING (user_id) " +
+				"WHERE users.username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, principal.getName());
 		
@@ -38,6 +44,8 @@ public class LeagueSqlDAO implements LeagueDAO {
 		}
 		return leagues;
 	}
+	
+
 
 	//WORKING
 	@Override

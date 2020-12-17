@@ -8,7 +8,7 @@
     >
       <p>{{ invite.leagueName }}</p>
 
-      <b-form-group v-slot="{ ariaDescribedby }">
+      <b-form-group>
         <b-form-radio
           v-model="invites[index].statusId"
           :aria-describedby="accept / reject"
