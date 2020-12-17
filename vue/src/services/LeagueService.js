@@ -15,7 +15,7 @@ export default {
     },
 
     invitePlayers(invite) {
-        return axios.post('league/invite', invite)
+        return axios.post('league/invite/', invite)
     },
 
     updateInvite(league) {

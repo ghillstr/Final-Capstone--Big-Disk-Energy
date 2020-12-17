@@ -45,8 +45,9 @@ export default {
       user: [],
       leagues: [],
       invite: {
-        username: "",
         leagueName: "",
+        username: "",
+        statusId: 1,
       },
     };
   },

@@ -48,13 +48,12 @@
     </b-collapse>
   </div>
 </template>
-
 <script>
 import scoreService from "../services/ScoreService";
 import LeagueService from "../services/LeagueService";
 
 export default {
-  name: "recordscore",
+  name: "RecordScore",
   data() {
     return {
       leagues: [],
@@ -108,8 +107,4 @@ export default {
 </script>
 
 <style scoped>
-#recordForm {
-  margin-top: 20px;
-  display: none;
-}
 </style>
