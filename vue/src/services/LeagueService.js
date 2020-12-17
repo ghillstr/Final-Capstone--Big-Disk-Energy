@@ -15,15 +15,15 @@ export default {
     },
 
     invitePlayers(invite) {
-        return axios.post('league/invites/', invite)
+        return axios.post('league/invite/', invite)
     },
 
     updateInvite(league) {
         return axios.put('/invites/status', league)
     },
 
-    getPendingInvitesByUsername(username) {
-        return axios.get(`/invites/${username}`)
+    getPendingInvitesByUsername(principal) {
+        return axios.get('/invites/', principal)
     },
 
     setTeeTime(teeTime) {

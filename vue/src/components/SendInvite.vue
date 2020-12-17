@@ -16,7 +16,7 @@
       </div>
       <div class="form-element">
         <label for="sendLeague">League Name:</label>
-        <select v-model="invite.username">
+        <select v-model="invite.leagueName">
           <option v-for="league in leagues" v-bind:key="league.leagueName">
             {{ league.leagueName }}
           </option>
@@ -40,9 +40,9 @@ export default {
       user: [],
       leagues: [],
       invite: {
-        username: "",
-        leagueName: "",
         statusId: 1,
+        leagueName: "",
+        username: "",
       },
     };
   },
