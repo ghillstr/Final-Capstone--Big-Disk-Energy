@@ -101,7 +101,7 @@ public class LeagueSqlDAO implements LeagueDAO {
 			jdbcTemplate.update(sql, invite.getUsername(), invite.getLeagueName());
 			
 		} 
-		// TODO Auto-generated method stub //put
+		
 		
 		
 	}
