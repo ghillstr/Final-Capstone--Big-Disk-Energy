@@ -27,7 +27,7 @@ export default {
     },
 
     setTeeTime(teeTime) {
-        return axios.post('/tee-times', teeTime)
+        return axios.post('/league/tee-times', teeTime)
     },
 
     //PATH WILL CHANGE, OBVS

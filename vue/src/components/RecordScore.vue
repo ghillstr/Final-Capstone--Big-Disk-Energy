@@ -11,7 +11,6 @@
           name="recordscore"
           text="Select a League"
         >
-          
           <option v-for="league in leagues" v-bind:key="league.username">
             {{ league.leagueName }}
           </option>
@@ -19,17 +18,15 @@
       </div>
       <div>
         <p>SELECT A PLAYER</p>
-          <b-form-select
-            v-model="score.username"
-            name="recordscore"
-            text="Select a Player"
-          >
-            
-            <option v-for="posts in post" v-bind:key="posts.username">
-              {{ posts.username }}
-            </option>
-          </b-form-select>
-        </p>
+        <b-form-select
+          v-model="score.username"
+          name="recordscore"
+          text="Select a Player"
+        >
+          <option v-for="posts in post" v-bind:key="posts.username">
+            {{ posts.username }}
+          </option>
+        </b-form-select>
       </div>
 
       <div>
@@ -77,7 +74,6 @@ export default {
     inputLeagueUser() {
       scoreService.getUserByLeague(this.score.leagueName).then((response) => {
         this.post = response.data;
-        console.log(response.data);
       });
     },
     recordScore() {

@@ -61,6 +61,10 @@ export default new Vuex.Store({
     SEND_INVITE(state, invite) {
       state.invite = {};
       localStorage.setItem('invite', JSON.stringify(invite));
+    },
+    SET_TEE_TIME(state, teetime) {
+      state.teetime = {};
+      localStorage.setItem('teetime', JSON.stringify(teetime));
     }
   }
 })

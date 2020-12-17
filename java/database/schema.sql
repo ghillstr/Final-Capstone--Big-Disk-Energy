@@ -34,7 +34,7 @@ CREATE TABLE leagues (
         league_id SERIAL PRIMARY KEY,
         username varchar(50) NOT NULL,
         course_name varchar(50) NOT NULL,
-        league_name varchar(50) NOT NULL    
+        league_name varchar(20) NOT NULL    
 );
 
 CREATE TABLE users_leagues (
@@ -71,8 +71,8 @@ CREATE TABLE tee_time (
         username varchar(50) NOT NULL,
         league_id integer NOT NULL,
         league_name varchar(50) NOT NULL,
-        tee_date varchar(50) NOT NULL,
-        start_time varchar(50) NOT NULL,
+        tee_date date NOT NULL,
+        start_time time NOT NULL,
         
         CONSTRAINT fk_league_id FOREIGN KEY (league_id) REFERENCES leagues(league_id),
         CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -94,4 +94,3 @@ VALUES (DEFAULT, 'Pending'),
        (DEFAULT, 'Accepted'),
        (DEFAULT, 'Rejected');
 
-SELECT username FROM leagues WHERE league_name = 'hello';

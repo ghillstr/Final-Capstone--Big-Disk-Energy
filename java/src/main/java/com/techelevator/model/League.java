@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class League {
 	
 	private int leagueId;
@@ -10,15 +13,15 @@ public class League {
 	private int statusId;
 	private String inviteStatus;
 	private long teeTimeId;
-	private String date;
-	private String startTime;
+	private Date date;
+	private Time startTime;
 	
 	public League() {
 	
 	}
 	
 	public League(int leagueId, String username, int userId, String leagueName, String courseName, int statusId, String inviteStatus, long teeTimeId,
-			String date, String startTime) {
+			Date date, Time startTime) {
 		super();
 		this.leagueId = leagueId;
 		this.username = username;
@@ -97,19 +100,19 @@ public class League {
 		this.teeTimeId = teeTimeId;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public String getStartTime() {
+	public Time getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(Time startTime) {
 		this.startTime = startTime;
 	}
 	
