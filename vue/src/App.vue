@@ -7,22 +7,31 @@
       <router-link v-bind:to="{ name: 'home' }">HOME</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'courseinfo' }">COURSES</router-link
       >&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'league' }">LEAGUES</router-link
-      >&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'league' }">LEAGUES</router-link>
+      <span class="pipe" v-if="rolePermission()">&nbsp;|&nbsp;</span>
+
       <router-link v-if="rolePermission()" v-bind:to="{ name: 'leagueadmin' }"
         >ADMIN</router-link
-      >&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'about-us' }">ABOUT US</router-link
-      >&nbsp;|&nbsp;
-      <span v-on:click="handleClick"> OFFICAL DISC GOLF RULES</span
-      >&nbsp;|&nbsp;
+      >
+      &nbsp;|&nbsp;
+      <span class="rules" v-on:click="handleClick">
+        OFFICAL DISC GOLF RULES</span
+      >&nbsp;|&nbsp;<router-link v-bind:to="{ name: 'about-us' }"
+        >ABOUT US</router-link
+      >
+      &nbsp;|&nbsp;
       <router-link
         v-bind:to="{ name: 'logout' }"
         v-if="$store.state.token != ''"
         >LOGOUT</router-link
       >
     </nav>
-    <p>{{ this.$store.state.user.role }}</p>
+    <div class="usertag">
+      <span class="usertag">Player: {{ this.$store.state.user.username }}</span>
+      <span class="usertag" v-if="rolePermission()">
+        - {{ this.$store.state.user.authorities[0].name }}
+      </span>
+    </div>
     <div class="container">
       <img
         src="@/assets/logo_transparent.png"
@@ -112,11 +121,12 @@ nav a.router-link-exact-active {
 nav a:hover {
   color: #bc4749;
 }
-span:hover {
+span.rules:hover {
   color: #bc4749;
   cursor: pointer;
 }
 h1 {
+  font-size: 70px;
   font-family: "Permanent Marker", cursive;
   color: #386641;
   text-shadow: -1px -1px 0 #a7c957, 1px -1px 0 #a7c957, -1px 1px 0 black,
@@ -124,8 +134,14 @@ h1 {
 }
 h2,
 h3,
-h4 {
-  text-shadow: 0 0 0 white, 0 0 0 white, -1 1 0 black, 1px 1px 0 black;
+h4,
+h5 {
+  color: #386641;
+
+  font-weight: bold;
+  text-decoration: underline overline;
+  text-underline-position: under;
+  text-decoration-color: #386641;
 }
 p,
 label {
@@ -162,5 +178,13 @@ label {
 .button:hover {
   background-color: #a7c957;
   color: #bc4749;
+}
+span.pipe {
+  text-decoration: none;
+}
+.usertag {
+  color: white;
+  text-decoration: none;
+  font-style: italic;
 }
 </style>

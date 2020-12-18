@@ -3,24 +3,20 @@
     <h1>League Info</h1>
     <pending-invites />
     <div class="leaderboards-sec">
-      <h2>Your League Leaderboards</h2>
-      <div
-        class="leaderboards-buttons"
-        v-for="leagues in league"
-        v-bind:key="leagues.username"
-      >
-        <router-link
-          class="anchor"
-          tag="span"
-          v-bind:to="{
-            name: 'leaderboard',
-            params: { id: leagues.leagueName },
-          }"
-        >
-          <button class="button">{{ leagues.leagueName }}</button>
-        </router-link>
+      <h4>MY LEAGUES</h4>
+      <div class="leaderboards-buttons">
+        <div v-for="leagues in league" v-bind:key="leagues.username">
+          <router-link
+            class="anchor"
+            v-bind:to="{
+              name: 'leaderboard',
+              params: { id: leagues.leagueName },
+            }"
+          >
+            {{ leagues.leagueName }}
+          </router-link>
+        </div>
       </div>
-
       <!-- <button class="button" @click="navigate">LEADERBOARD</button> -->
     </div>
   </div>
@@ -60,13 +56,7 @@ export default {
 </script>
 
 <style scoped>
-.league {
-  display: flexbox;
-  justify-items: center;
-}
 .button {
-  display: flex;
-  flex-wrap: wrap;
   height: 35px;
   width: 235px;
   justify-content: center;
@@ -74,13 +64,29 @@ export default {
 .anchor:hover {
   text-decoration: none;
   text-align: center;
+  color: #bc4749;
+  font-style: italic;
 }
+
 .leaderboards-sec {
-  display: flexbox;
-  justify-self: center;
+  margin-top: 10px;
 }
 .leaderboards-buttons {
-  display: flex;
   justify-content: center;
+  background-color: white;
+  outline: solid 2px;
+  outline-color: #386641;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-top: 5px;
+}
+.anchor {
+  color: #386641;
+  text-transform: uppercase;
+  background-color: none;
+  outline: none;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="league-name">{{ $route.params.id }}</h1>
-    <h4>Upcoming Tee Times:</h4>
+    <h4>Upcoming Tee Times</h4>
     <div class="tee-times" v-for="times in teetime" v-bind:key="times.username">
       <p>{{ times.date }} | {{ times.startTime }}</p>
     </div>

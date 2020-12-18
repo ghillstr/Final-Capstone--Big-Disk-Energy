@@ -1,28 +1,20 @@
 <template>
   <div>
-    <h3>Pending Invites:</h3>
+    <h5>PENDING INVITES</h5>
     <div
       class="pending-invites"
       v-for="invite in invites"
       v-bind:key="invite.username"
     >
-      <p>{{ invite.leagueName }}</p>
-      <b-form-group v-slot="{ ariaDescribedby }">
-        <b-form-radio
-          v-model="invites.statusId"
-          :aria-describedby="ariaDescribedby"
-          name="some-radios"
-          value="2"
+      <p class="join">Join {{ invite.leagueName }}?</p>
+      <b-form-radio-group>
+        <b-form-radio v-model="invites.statusId" name="some-radios" value="2"
           >Accept</b-form-radio
         >
-        <b-form-radio
-          v-model="invites.statusId"
-          :aria-describedby="ariaDescribedby"
-          name="some-radios"
-          value="3"
+        <b-form-radio v-model="invites.statusId" name="some-radios" value="3"
           >Reject</b-form-radio
         >
-      </b-form-group>
+      </b-form-radio-group>
       <button class="button" type="submit" @click="updateTheInvite()">
         SUBMIT
       </button>
@@ -60,4 +52,8 @@ export default {
 </script>
 
 <style scoped>
+.join {
+  font-weight: bold;
+  color: white;
+}
 </style>

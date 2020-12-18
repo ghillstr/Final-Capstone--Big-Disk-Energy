@@ -66,6 +66,14 @@ export default {
         this.$store.commit("SEND_INVITE", response.data.invite);
       });
     },
+    refreshForm() {
+      $("#creatives")
+        .selectpicker("refresh")
+        .empty()
+        .append(output)
+        .selectpicker("refresh")
+        .trigger("change");
+    },
   },
 };
 </script>
