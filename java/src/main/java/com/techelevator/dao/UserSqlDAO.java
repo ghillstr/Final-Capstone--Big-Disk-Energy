@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,14 +86,42 @@ public class UserSqlDAO implements UserDAO {
 
         return userCreated;
     }
+    
+	@Override
+	public void updateRoleWhenLeagueIsCreated(Principal principal) {
+		// TODO Auto-generated method stub //put
+		String updateRoleSql = "UPDATE users SET role = 'LEAGUE_ADMIN' WHERE username = ?";
+		
+		jdbcTemplate.update(updateRoleSql, principal);
+		
+	}
+	@Override
+	public List<User> getUserByLeague(String leagueName) {
+		List<User> users =new ArrayList<>();
+		
+		String sqlSelectUsers= "SELECT users.username FROM leagues JOIN users_leagues USING (league_id) JOIN users USING (user_id) WHERE leagues.league_name = ?";
+		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectUsers, leagueName);
+		
+		while (result.next()) {
+			User theUser = new User();
+			theUser.setUsername(result.getString("username"));
+			
+			
+			users.add(theUser);
+		}
+		return users;
+	}
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
-        user.setId(rs.getLong("user_id"));
+        user.setId(rs.getInt("user_id"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(rs.getString("role"));
-        user.setActivated(true);
+       user.setActivated(true);
         return user;
     }
 }
+
+

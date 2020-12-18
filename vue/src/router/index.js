@@ -5,6 +5,12 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import CourseInfo from '../views/CourseInfo.vue'
+import League from '../views/League.vue'
+import Leaderboard from '../views/Leaderboard.vue'
+import AboutUs from '../views/AboutUs.vue'
+import RecordScore from '../components/RecordScore.vue'
+import LeagueAdmin from '../views/LeagueAdmin.vue'
 
 Vue.use(Router)
 
@@ -53,6 +59,56 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/courseinfo",
+      name: "courseinfo",
+      component: CourseInfo,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/league",
+      name: "league",
+      component: League,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/league/:id/leaderboard",
+      name: "leaderboard",
+      component: Leaderboard,
+
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+    {
+      path: "/aboutus",
+      name: "about-us",
+      component: AboutUs,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/score/:leagueName",
+      name: "score",
+      component: RecordScore,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/leagueadmin",
+      name: "leagueadmin",
+      component: LeagueAdmin,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
@@ -68,5 +124,17 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+router.beforeResolve((to, from, next) => {
+  // If this isn't an initial page load.
+  if (to.name) {
+    // Start the route progress bar.
+    NProgress.start()
+  }
+  next()
+})
 
+router.afterEach((to, from) => {
+  // Complete the animation of the route progress bar.
+  NProgress.done()
+})
 export default router;
