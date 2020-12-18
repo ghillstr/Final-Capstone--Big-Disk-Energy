@@ -31,9 +31,8 @@
         </div>
         <button
           type="submit"
-          variant="success"
           class="button"
-          v-on:click="createLeague(), resetForm(), makeToast('success')"
+          v-on:click="createLeague(), resetForm()"
         >
           CREATE
         </button>
@@ -86,9 +85,8 @@ export default {
       this.showTheAnchor = false;
     },
     makeToast(variant = null) {
-      this.toastCount++;
       this.$bvToast.toast(`League has been created!`, {
-        title: "Successful Registration",
+        title: "SUCCESS!",
         autoHideDelay: 5000,
         variant: variant,
         solid: true,

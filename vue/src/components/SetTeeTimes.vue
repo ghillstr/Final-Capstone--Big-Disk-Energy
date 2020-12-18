@@ -88,7 +88,7 @@ export default {
         .then((response) => {
           if (response.status == 201) {
             this.$store.commit("SET_TIME", response.data.teetime);
-
+            this.makeToast();
             // this.resetForm();
           }
         })
@@ -99,9 +99,14 @@ export default {
           }
         });
     },
-    // resetForm() {
-    //   this. = "";
-    // },
+    makeToast() {
+      this.$bvToast.toast(`Your tee time has been scheduled! `, {
+        title: "SUCCESS!",
+        autoHideDelay: 5000,
+        variant: "success",
+        solid: true,
+      });
+    },
   },
 };
 </script>

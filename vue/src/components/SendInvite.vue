@@ -64,15 +64,16 @@ export default {
     sendInvite() {
       LeagueService.invitePlayers(this.invite).then((response) => {
         this.$store.commit("SEND_INVITE", response.data.invite);
+        this.makeToast();
       });
     },
-    refreshForm() {
-      $("#creatives")
-        .selectpicker("refresh")
-        .empty()
-        .append(output)
-        .selectpicker("refresh")
-        .trigger("change");
+    makeToast() {
+      this.$bvToast.toast(`They have been invited to your league! `, {
+        title: "SUCCESS!",
+        autoHideDelay: 5000,
+        variant: "success",
+        solid: true,
+      });
     },
   },
 };

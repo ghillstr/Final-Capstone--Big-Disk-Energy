@@ -8,9 +8,9 @@
     />
     <div id="tom-div" class="media-body align-self-center mr-3">
       <p>
-        Tom is the scrum master of ©BigDiscEnergy! He is encouraging, helful and
-        patient, and man, he's got style! We were lucky to have him scrummin'
-        for us and thank you for the experience!
+        Tom is the scrum master of ©BigDiscEnergy! He is encouraging, helpful
+        and patient, and man, that hair! We were lucky to have him scrummin' for
+        us and thank him for the experience!
       </p>
     </div>
   </div>

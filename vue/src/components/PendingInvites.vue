@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h5>PENDING INVITES</h5>
     <div
       class="pending-invites"
@@ -8,14 +8,20 @@
     >
       <p class="join">Join {{ invite.leagueName }}?</p>
       <b-form-radio-group>
-        <b-form-radio v-model="invites.statusId" name="some-radios" value="2"
+        <b-form-radio
+          v-model="invites[index].statusId"
+          name="some-radios"
+          value="2"
           >Accept</b-form-radio
         >
-        <b-form-radio v-model="invites.statusId" name="some-radios" value="3"
+        <b-form-radio
+          v-model="invites[index].statusId"
+          name="some-radios"
+          value="3"
           >Reject</b-form-radio
         >
       </b-form-radio-group>
-      <button class="button" type="submit" @click="updateTheInvite()">
+      <button class="button" type="submit" @click="updateTheInvite(invite)">
         SUBMIT
       </button>
     </div>
@@ -38,7 +44,6 @@ export default {
       this.invites = response.data;
     });
   },
-
   methods: {
     updateTheInvite(invite) {
       LeagueService.updateInvite(invite).then((response) => {

@@ -88,7 +88,7 @@ export default {
           if (response.status == 201) {
             this.$store.commit("SET_SCORES", response.data.score);
             this.resetForm();
-            this.$router.go(0);
+            this.makeToast();
           }
         })
         .catch((error) => {
@@ -97,6 +97,14 @@ export default {
             this.invalidEntry = true;
           }
         });
+    },
+    makeToast(variant = null) {
+      this.$bvToast.toast(`The Score Has Been Recorded!`, {
+        title: "SUCCESS",
+        autoHideDelay: 5000,
+        variant: "success",
+        solid: true,
+      });
     },
     resetForm() {
       this.score.scoreTotal = "";

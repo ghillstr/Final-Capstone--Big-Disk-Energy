@@ -8,7 +8,7 @@
     />
     <div id="jacob-div" class="media-body align-self-center mr-3">
       <p>
-        Jacob is the product owner of ©BigDiscEnergy! He a great, easy-going
+        Jacob is the product owner of ©BigDiscEnergy! He a fun, easy-going
         person to work with, and was very receptive to our creative input. He's
         also a pro video chat background creator and brought great energy and
         positivity to our project!

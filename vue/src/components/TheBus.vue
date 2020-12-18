@@ -83,6 +83,7 @@ h2 {
   text-shadow: -1px -1px 0 #a7c957, 1px -1px 0 #a7c957, -1px 1px 0 black,
     1px 1px 0 black;
   margin: 30px 0px 50px 0px;
+  text-decoration: none;
 }
 
 h4 {

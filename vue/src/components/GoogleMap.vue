@@ -5,6 +5,7 @@
       <h4>Search for a course and add a pin</h4>
       <label>
         <gmap-autocomplete
+          @place_changed="setPlace"
           input
           type="text"
           value="Disc Golf Course"
@@ -24,7 +25,7 @@
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        @click="(center = m.position), openInfoWindowTemplate(index)"
+        @click="(center = m.position), toggleInfoWindow(index)"
       ></gmap-marker>
       <gmap-info-window
         :options="infoOptions"
@@ -80,6 +81,7 @@ export default {
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
+        this.toggleInfoWindow;
       }
     },
     geolocate: function () {
