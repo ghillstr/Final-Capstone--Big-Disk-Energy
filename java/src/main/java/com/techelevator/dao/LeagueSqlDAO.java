@@ -27,7 +27,13 @@ public class LeagueSqlDAO implements LeagueDAO {
 	public List<League> viewLeaguesByUsername(Principal principal) {
 		List<League> leagues =new ArrayList<>();
 		
-		String sqlSelectAllLeagues = "SELECT league_name, username FROM leagues  WHERE username = ?";
+		String sqlSelectAllLeagues = "SELECT leagues.league_name " +
+				"FROM leagues " +
+				"JOIN users_leagues " + 
+				"USING (league_id) " +
+				"JOIN users " +
+				"USING (user_id) " +
+				"WHERE users.username = ?";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllLeagues, principal.getName());
 		
@@ -38,6 +44,8 @@ public class LeagueSqlDAO implements LeagueDAO {
 		}
 		return leagues;
 	}
+	
+
 
 	//WORKING
 	@Override
@@ -61,15 +69,24 @@ public class LeagueSqlDAO implements LeagueDAO {
 
 
 	//WORKING
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public void invitePlayers(League invite) {
 		
+		List<User> usersInLeague = dao.getUserByLeague(invite.getLeagueName());
+		
+		for (User user : usersInLeague) {
+			if (invite.getUsername().equals(user.getUsername())) {
+				break;
+			
+			} else {
+				
 		String sql = "INSERT INTO invite (invite_id, status_id, league_id, league_name, user_id, username) VALUES (DEFAULT, 1, ?, ?, ?, ?)"; 
 		
-
 		jdbcTemplate.update(sql, findLeagueIdByLeagueName(invite.getLeagueName()), invite.getLeagueName(), findIdByUsernameInLeague(invite), invite.getUsername());
-
-		
+				break;
+			}
+		} 
 	}
 
 	//WORKING
@@ -113,7 +130,9 @@ public class LeagueSqlDAO implements LeagueDAO {
 			
 			jdbcTemplate.update(sql, principal.getName(), invite.getLeagueName());
 			
+
 		}
+
 		
 	}
 		

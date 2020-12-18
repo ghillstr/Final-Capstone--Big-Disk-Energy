@@ -94,3 +94,7 @@ VALUES (DEFAULT, 'Pending'),
        (DEFAULT, 'Accepted'),
        (DEFAULT, 'Rejected');
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 99c8c3c8cd2186c8be9a522a6649173a36fde91c

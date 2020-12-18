@@ -3,7 +3,7 @@
     <h5>PENDING INVITES</h5>
     <div
       class="pending-invites"
-      v-for="invite in invites"
+      v-for="(invite, index) in invites"
       v-bind:key="invite.username"
     >
       <p class="join">Join {{ invite.leagueName }}?</p>
@@ -28,9 +28,7 @@ import LeagueService from "../services/LeagueService";
 export default {
   data() {
     return {
-      invites: {
-        statusId: "",
-      },
+      invites: [],
     };
   },
   created() {
@@ -42,9 +40,14 @@ export default {
   },
 
   methods: {
-    updateTheInvite() {
-      LeagueService.updateInvite(this.invites).then((response) => {
-        this.$store.commit("UPDATE_INVITE", response.data.invites);
+    updateTheInvite(invite) {
+      LeagueService.updateInvite(invite).then((response) => {
+        if (response.status == 200) {
+          this.invites = this.invites.filter((x) => {
+            return x.leagueName != invite.leagueName;
+          });
+          this.$router.go(0);
+        }
       });
     },
   },

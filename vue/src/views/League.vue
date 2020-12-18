@@ -44,14 +44,6 @@ export default {
         console.log(response.data);
       });
   },
-  methods: {
-    // navigate() {
-    //   this.$router.push({ name: "leaderboard", params: { id: "hi" } });
-    // },
-    scoresNav() {
-      this.$router.push({ name: "score", params: { leagueName: "DA BUS" } });
-    },
-  },
 };
 </script>
 
