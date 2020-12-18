@@ -10,6 +10,7 @@ public class Score {
 	private String leagueName;
 	private int scoreTotal;
 	private int roundId;
+
 	
 	public Score() {
 		
@@ -60,7 +61,5 @@ public class Score {
 		this.roundId = roundId;
 	}
 
-
-	
 	
 }

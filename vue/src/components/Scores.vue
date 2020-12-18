@@ -4,11 +4,13 @@
       <thead>
         <th>PLAYERS</th>
         <th>TOTAL SCORE</th>
+        <th>ROUNDS PLAYED</th>
       </thead>
       <tbody class="leaderboard-table">
         <tr v-for="scores in score" v-bind:key="scores.username">
           <td class="score-user">{{ scores.username }}</td>
           <td class="score-total">{{ scores.scoreTotal }}</td>
+          <td class="rounds-played">{{ scores.roundId }}</td>
         </tr>
       </tbody>
     </table>
