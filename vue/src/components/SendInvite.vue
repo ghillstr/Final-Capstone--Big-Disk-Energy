@@ -82,6 +82,9 @@ export default {
 #form-group {
   margin-top: 20px;
 }
+h4 {
+  text-decoration: none;
+}
 a {
   background-color: white;
   color: #386641;

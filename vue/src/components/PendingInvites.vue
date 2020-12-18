@@ -1,6 +1,8 @@
 <template>
   <div class="main">
-    <h5>PENDING INVITES</h5>
+    <div v-show="invites != 0">
+      <h5>PENDING INVITES</h5>
+    </div>
     <div
       class="pending-invites"
       v-for="(invite, index) in invites"

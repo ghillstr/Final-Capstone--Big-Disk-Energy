@@ -3,7 +3,7 @@
     <div>
       <h1>Welcome</h1>
     </div>
-    <div>
+    <div class="polaroid">
       <img
         src="@/assets/EP-801257102.jpg"
         id="home-basket-image"
@@ -24,6 +24,31 @@ export default {
 };
 </script>
 <style>
+.polaroid {
+  position: relative;
+  text-align: center;
+}
+
+.polaroid img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 0px 0px 10px #777;
+  -moz-box-shadow: 0px 0px 10px #777;
+  box-shadow: 0px 0px 10px #777;
+  -webkit-transform: rotate (3deg);
+  -moz-transform: rotate (3deg);
+  transform: rotate (3deg);
+}
+
+.polaroid p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  font: 400 18px/1 "Kaushan Script", cursive;
+  color: #888;
+  z-index: 99;
+}
 .button {
   background-color: white;
   color: #386641;
